@@ -1,0 +1,351 @@
+	
+
+********************
+
+Url's de Imágenes en HeatMap
+
+- Anuncio x10
+http://i.imgur.com/3XljAO5.png
+
+- Anuncio x20
+http://i.imgur.com/ll8pm3m.png
+
+- Anuncio x30
+http://i.imgur.com/78Pd7i5.png
+
+- Anuncio x406
+http://i.imgur.com/8Fbrar5.png
+
+- Anuncio2 x10
+http://i.imgur.com/nobs8YF.png
+
+- Anuncio2 x20
+http://i.imgur.com/HyaM6Ut.png
+
+- Anuncio2 x30
+http://i.imgur.com/xUiik6e.png
+
+- Anuncio2 x406
+http://i.imgur.com/6vG0s4d.png
+
+- Lugar x174
+http://i.imgur.com/9J5Bifx.png
+
+- Lugar x30
+http://i.imgur.com/CM5nCmh.png
+
+- Lugar x20
+http://i.imgur.com/Sl3Qfwl.png
+
+- Lugar x10
+http://i.imgur.com/BKA7dDn.png
+
+- Usuario Hombre
+http://i.imgur.com/6cY0syl.png
+
+- Usuario Mujer
+http://i.imgur.com/BzNupgP.png
+
+- Not Found1
+http://i.imgur.com/71WZUsC.png
+
+- Not Found2
+http://i.imgur.com/4BJNER0.png
+
+- Gps2 x512
+http://i.imgur.com/zPXIOBR.png
+
+- Gps2 x30
+http://i.imgur.com/mUNA2Ay.png
+
+- Gps2 x20
+http://i.imgur.com/FTbadSr.png
+
+- Gps2 x15
+http://i.imgur.com/q6fRcjs.png
+
+- Gps2 x10
+http://i.imgur.com/JM2ZWK3.png
+
+- Gps x30
+http://i.imgur.com/ZZrDNnz.png
+
+- Gps x20
+http://i.imgur.com/mU1xa3s.png
+
+- Gps x15
+http://i.imgur.com/oxyBGL2.png
+
+- Gps x10
+http://i.imgur.com/pp6xRgK.png
+
+- Point x512
+http://i.imgur.com/7tHhfdJ.png
+
+- Point x25
+http://i.imgur.com/s1H14ci.png
+
+- Point x15
+http://i.imgur.com/vcQ3no3.png
+
+- Star x10
+http://i.imgur.com/m7T0JcH.png
+
+- Star x15
+http://i.imgur.com/4gh1tVv.png
+
+- Star x20
+http://i.imgur.com/IpXtErw.png
+
+- Star x30
+http://i.imgur.com/kl9eH1k.png
+
+- Star x270
+http://i.imgur.com/oWW3Ox0.png
+
+- Star2 x10
+http://i.imgur.com/PL4hcUT.png
+
+- Star2 x20
+http://i.imgur.com/F2W2Thf.png
+
+- Star2 x30
+http://i.imgur.com/hwAIXmj.png
+
+- Star2 x626
+http://i.imgur.com/Hk0PaZW.png
+
+- Categoria1
+http://i.imgur.com/nhLXhCh.png
+
+- Categoria2
+http://i.imgur.com/TpmKaLa.png
+
+- Categoria3
+http://i.imgur.com/Tk5E9pe.png
+
+- Categoria Comida1 x636
+http://i.imgur.com/Pa5h5U5.png
+
+- Categoria Comida1 x128
+http://i.imgur.com/f7MJSHT.png
+
+- Categoria Comida1 x64
+http://i.imgur.com/irD9ofi.png
+
+- Categoria Comida1 x32
+http://i.imgur.com/izY8aET.png
+
+- Categoria Comida1 x16
+http://i.imgur.com/vLyzqcJ.png
+
+- Categoria Comida2 x750
+http://i.imgur.com/FE1GgYh.png
+
+- Categoria Comida2 x128
+http://i.imgur.com/XLsn7TF.png
+
+- Categoria Comida2 x64
+http://i.imgur.com/mCW0O9U.png
+
+- Categoria Comida2 x32
+http://i.imgur.com/nqAYtpI.png
+
+- Categoria Comida2 x16
+http://i.imgur.com/JLjaPQl.png
+
+- Categoria Entretinimiento1 x700
+http://i.imgur.com/AQ71GsW.png
+
+- Categoria Entretinimiento1 x128
+http://i.imgur.com/lYYbCZ8.png
+
+- Categoria Entretinimiento1 x64
+http://i.imgur.com/hQeG3SN.png
+
+- Categoria Entretinimiento1 x32
+http://i.imgur.com/ZauPFpv.png
+
+- Categoria Entretinimiento1 x16
+http://i.imgur.com/zOs8DLr.png
+
+- Categoria Entretenimiento2 x650
+http://i.imgur.com/7ttSKP7.png
+
+- Categoria Entretenimiento2 x128
+http://i.imgur.com/xPzjv10.png
+
+- Categoria Entretenimiento2 x64
+http://i.imgur.com/uRT8efv.png
+
+- Categoria Entretenimiento2 x32
+http://i.imgur.com/eEdNOuu.png
+
+- Categoria Entretenimiento2 x16
+http://i.imgur.com/J9ZRuAH.png
+
+- Categoria Servicios x650
+http://i.imgur.com/fdJ0OsW.png
+
+- Categoria Servicios x128
+http://i.imgur.com/fmypDrO.png
+
+- Categoria Servicios x64
+http://i.imgur.com/7wFJwL0.png
+
+- Categoria Servicios x32
+http://i.imgur.com/jeTqKlZ.png
+
+- Categoria Servicios x16
+http://i.imgur.com/VkXgWtZ.png
+
+- Hm x200
+http://i.imgur.com/zdaf34e.png
+
+- Hm x128
+http://i.imgur.com/jod4bs0.png
+
+- Hm x64
+http://i.imgur.com/35qAqoH.png
+
+- Hm x32
+http://i.imgur.com/mQI4Lqp.png
+
+- Hm x16
+http://i.imgur.com/2z1ZaRX.png
+
+- Hm 2 x389
+http://i.imgur.com/m8e8iG1.png
+
+- Hm 2 x128
+http://i.imgur.com/kBOrWNs.png
+
+- Hm 2 x64
+http://i.imgur.com/qYAUjC5.png
+
+- Hm 2 x32
+http://i.imgur.com/rbByfns.png
+
+- Hm 2 x16
+http://i.imgur.com/rWkcyzp.png
+
+- Heatmap name dark 569x419
+http://i.imgur.com/kDHAeUn.png
+
+- Heatmap Original 557x361
+http://i.imgur.com/0J8e1nC.png
+
+- Heatmap logo x200
+http://i.imgur.com/fe6qKts.png
+
+- Heatmap logo x128
+http://i.imgur.com/66r1u63.png
+
+- Heatmap logo x64
+http://i.imgur.com/IxOWxBE.png
+
+- Heatmap logo x32
+http://i.imgur.com/Nnp0Knj.png
+
+- Heatmap logo x16
+http://i.imgur.com/Onjcszi.png
+
+- Heatmap dark x215
+http://i.imgur.com/Z85XG68.png
+
+- Heatmap dark x128
+http://i.imgur.com/0p3LMt9.png
+
+- Heatmap dark x64
+http://i.imgur.com/I7P4A1X.png
+
+- Heatmap dark x32
+http://i.imgur.com/dEAukPl.png
+
+- Heatmap dark x16
+http://i.imgur.com/d6x2SCY.png
+
+- Heatmap logo1 x16
+http://i.imgur.com/fklrmSO.png
+
+- Heatmap logo1 x32
+http://i.imgur.com/CWETNPh.png
+
+- Heatmap logo1 x58
+http://i.imgur.com/Qr0RBaS.png
+
+- Heatmap logo1 x359
+http://i.imgur.com/rXRPfZ7.png
+
+- Heatmap logo2 x16
+http://i.imgur.com/CJcR8Wg.png
+
+- Heatmap logo2 x32
+http://i.imgur.com/ACcPa8w.png
+
+- Heatmap logo2 x92
+http://i.imgur.com/giTjB26.png
+
+- Heatmap logo2 x560
+http://i.imgur.com/vz5KH1l.png
+
+- Heatmap logo3 x16
+http://i.imgur.com/NygjfoQ.png
+
+- Heatmap logo3 x32
+http://i.imgur.com/7cEOhHe.png
+
+- Heatmap logo3 x58
+http://i.imgur.com/PmlRn0q.png
+
+- Heatmap logo3 x538
+http://i.imgur.com/0vWSeIF.png
+
+- Wallpaper 1
+http://i.imgur.com/BTHkNYr.jpg
+
+- Wallpaper 2
+http://i.imgur.com/icnB0bW.jpg
+
+- Wallpaper 3
+http://i.imgur.com/sFiiBgJ.jpg
+
+- Wallpaper 4
+http://i.imgur.com/8cBTIcw.jpg
+
+- Wallpaper 5
+http://i.imgur.com/1Cp3VtO.jpg
+
+- Wallpaper 6
+http://i.imgur.com/EOMCz38.jpg
+
+- Wallpaper 7
+http://i.imgur.com/BT2UdRj.jpg
+
+- Wallpaper 8
+http://i.imgur.com/ETMdArP.jpg
+
+- Wallpaper 9
+http://i.imgur.com/gbrCobx.jpg
+
+- Wallpaper 10
+http://i.imgur.com/qJnjJun.jpg
+
+- Wallpaper 11
+http://i.imgur.com/F2b0fL9.jpg
+
+- Wallpaper 12
+http://i.imgur.com/tUf0XlU.jpg
+
+- MP Pagina de Reporte Criminal
+http://i.imgur.com/0vB9QGU.jpg
+
+- Show Password x20
+http://i.imgur.com/mziTaCM.png
+
+- Show Password x10
+http://i.imgur.com/idjBjiI.png
+
+
+
+********************
