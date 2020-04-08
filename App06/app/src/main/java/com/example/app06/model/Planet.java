@@ -1,17 +1,16 @@
 package com.example.app06.model;
+
+
+import android.graphics.Bitmap;
+
 public class Planet{
     private String name;
+    private int distance;
     private int gravity;
     private int diameter;
+    private Bitmap imagen;
 
     public Planet(){}
-
-    public Planet(String name,int gravity,int diameter){
-        this.name=name;
-        this.gravity=gravity;
-        this.diameter=diameter;
-
-    }
 
     public String getName() {
         return name;
@@ -19,6 +18,14 @@ public class Planet{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public int getGravity() {
@@ -35,5 +42,13 @@ public class Planet{
 
     public void setDiameter(int diameter) {
         this.diameter = diameter;
+    }
+
+    public Bitmap getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Bitmap imagen) {
+        this.imagen = imagen;
     }
 }

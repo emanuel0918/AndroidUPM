@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">App06</string>
     <string name="distance_name">Distance</string>
     <string name="diameter_name">Diameter</string>
-    <string name="gravity_name">Gravity</string>
+    <string name="gravity_name">Gravite</string>
 </resources>
