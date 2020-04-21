@@ -1,0 +1,2 @@
+rootProject.name='PMD2020'
+include ':app'
