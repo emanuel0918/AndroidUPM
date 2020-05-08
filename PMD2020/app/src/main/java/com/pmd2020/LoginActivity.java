@@ -17,6 +17,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //
+
         user_editText =(TextInputEditText)findViewById(R.id.user);
         password_editText =(TextInputEditText)findViewById(R.id.password);
 
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent= new Intent(LoginActivity.this,MainActivity.class);
                     intent.putExtra("user",usr);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
