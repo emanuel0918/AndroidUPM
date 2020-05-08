@@ -8,4 +8,11 @@
     <string name="list_news">List News</string>
     <string name="more_options">More Options</string>
     <string name="list_local_news">List Stored News</string>
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="category">Category</string>
+    <string name="abstrac">Abstract</string>
+    <string name="body">Body</string>
+    <string name="image">Image</string>
+
 </resources>

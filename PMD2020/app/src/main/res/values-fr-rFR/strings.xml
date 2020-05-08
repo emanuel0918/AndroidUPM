@@ -9,6 +9,12 @@
     <string name="add_new">Ajouter des Nouvelles</string>
     <string name="list_news">Liste de Nouvelles</string>
     <string name="more_options">Plus d\'options</string>
-    <string name="list_local_news">Mes Nouvelles</string>
+    <string name="list_local_news">Mes Nouvelles</string>>
+    <string name="title">Titre</string>
+    <string name="subtitle">Sous-titres</string>
+    <string name="category">Catégorie</string>
+    <string name="abstrac">Résumé</string>
+    <string name="body">Contenu</string>
+    <string name="image">Image</string>
 
 </resources>

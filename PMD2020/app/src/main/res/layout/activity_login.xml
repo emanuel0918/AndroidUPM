@@ -7,20 +7,21 @@
     tools:context=".LoginActivity">
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="170dp"
+        android:background="@drawable/header"
         android:orientation="vertical"
-        android:id="@+id/header"
-        android:padding="24dp"
-        android:background="@drawable/header">
+        android:padding="@dimen/padding">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="@color/colorLight"
             android:text="@string/newspaper"
-            android:textStyle="bold"
-            android:textSize="45dp"/>
+            android:textColor="@color/colorLight"
+            android:textSize="45dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout

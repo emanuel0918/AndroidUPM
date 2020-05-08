@@ -9,6 +9,12 @@
     <string name="list_news">Listado de Noticias</string>
     <string name="more_options">Más Opciones</string>
     <string name="list_local_news">Mis Noticias</string>
+    <string name="title">Título</string>
+    <string name="subtitle">Subtítulo</string>
+    <string name="category">Categoría</string>
+    <string name="abstrac">Resumen</string>
+    <string name="body">Cuerpo</string>
+    <string name="image">Imagen</string>
 
 
 </resources>
