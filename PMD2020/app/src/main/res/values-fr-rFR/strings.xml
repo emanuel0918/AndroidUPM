@@ -2,5 +2,9 @@
 <resources>
 
     <string name="app_name">PMD2020</string>
+    <string name="newspaper">Nouvelles</string>
+    <string name="user">Utilisateur</string>
+    <string name="password">Mot de Passe</string>
+    <string name="login">S\'identifier</string>
 
 </resources>
