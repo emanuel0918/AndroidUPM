@@ -32,38 +32,38 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorEnabled="true">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/user"
                 android:inputType="text">
 
-            </com.google.android.material.textfield.TextInputEditText>
+            </android.support.design.widget.TextInputEditText>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <android.support.design.widget.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword">
 
-            </com.google.android.material.textfield.TextInputEditText>
+            </android.support.design.widget.TextInputEditText>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/login_btn"

@@ -1,14 +1,12 @@
 package com.pmd2020;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
-import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
     private Button login_btn;
@@ -29,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(logIn()){
                     String usr= user_editText.getText().toString();
-                    Intent intent= new Intent(LoginActivity.this,null);
+                    Intent intent= new Intent(LoginActivity.this,MainActivity.class);
                     intent.putExtra("user",usr);
                     startActivity(intent);
                 }

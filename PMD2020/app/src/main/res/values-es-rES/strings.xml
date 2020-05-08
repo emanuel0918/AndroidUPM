@@ -5,6 +5,10 @@
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="add_new">Agregar Noticia</string>
+    <string name="list_news">Listado de Noticias</string>
+    <string name="more_options">Más Opciones</string>
+    <string name="list_local_news">Mis Noticias</string>
 
 
 </resources>
