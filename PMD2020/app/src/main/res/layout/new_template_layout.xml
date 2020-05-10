@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textSizeNewCategory"
-            android:textColor="@color/colorDark"
-            android:text="TextView" />
+            android:textColor="@color/colorDark"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textSizeNewTitle"
                 android:textColor="@color/colorDark"
-                android:text="TextView"
                 android:gravity="center_horizontal"/>
 
             <TextView
@@ -39,7 +37,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textSizeNewSubtitle"
                 android:textColor="@color/colorDark"
-                android:text="TextView"
                 android:gravity="center_horizontal"/>
 
             <TextView
@@ -48,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textSizeNewAbstract"
                 android:textColor="@color/colorDark"
-                android:text="TextView"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </LinearLayout>

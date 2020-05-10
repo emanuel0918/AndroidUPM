@@ -1,68 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
-    android:layout_margin="5dp"
-    android:elevation="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="75dp"
+        android:id="@+id/quizcard"
+        android:elevation="15dp"
+        app:cardPreventCornerOverlap="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_news_foreground"
-        android:background="@color/white"
-        android:scaleType="centerCrop"
-
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/marginTopNewTemplate">
-
-        <TextView
-            android:id="@+id/categoryNew"
+        app:cardCornerRadius="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="250dp">
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textSizeNewCategory"
-            android:textColor="@color/colorDark"
-            android:text="TextView" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
+            android:id="@+id/quizimage"
+            android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/titleNew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/textSizeNewTitle"
-                android:textColor="@color/colorDark"
-                android:text="TextView"
-                android:gravity="center_horizontal"/>
-
-            <TextView
-                android:id="@+id/subtitleNew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/textSizeNewSubtitle"
-                android:textColor="@color/colorDark"
-                android:text="TextView"
-                android:gravity="center_horizontal"/>
-
-            <TextView
-                android:id="@+id/abstractNew"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="@dimen/textSizeNewAbstract"
-                android:textColor="@color/colorDark"
-                android:text="TextView"
-                android:gravity="center_horizontal"/>
-        </LinearLayout>
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

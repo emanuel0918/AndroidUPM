@@ -3,6 +3,7 @@ package com.pmd2020.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pmd2020.R;
+import com.pmd2020.utils.RoundCornerDrawable;
 import com.pmd2020.utils.network.exceptions.ServerCommunicationError;
 
 import java.nio.ByteBuffer;
@@ -61,7 +63,13 @@ public class ArticleAdapter extends BaseAdapter {
         }else{
             bitmap = BitmapFactory.decodeResource(this.context.getResources(),R.drawable.ic_news_foreground);
         }
-        ((ImageView) convertView.findViewById(R.id.imageView)).setImageBitmap(bitmap);
+        RoundCornerDrawable round = new RoundCornerDrawable(BitmapFactory.decodeResource(this.context.getResources(),R.mipmap.ic_news),
+                this.context.getResources().getDimension(R.dimen.cardview_radius), 0);
+        ImageView imageView=convertView.findViewById(R.id.);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+            imageView.setBackground(round);
+        else
+            imageView.setBackgroundDrawable(round);
         return convertView;
     }
 }

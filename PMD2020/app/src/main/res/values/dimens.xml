@@ -8,5 +8,6 @@
     <dimen name="textSizeNewSubtitle">14dp</dimen>
     <dimen name="textSizeNewCategory">25dp</dimen>
     <dimen name="textSizeNewAbstract">10dp</dimen>
+    <dimen name="cardview_radius">10dp</dimen>
 
 </resources>
