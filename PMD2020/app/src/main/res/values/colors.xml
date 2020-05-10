@@ -8,4 +8,5 @@
     <color name="color3">#D17A7A</color>
     <color name="color4">#D88D8D</color>
     <color name="colorLight">#dbdbd6</color>
+    <color name="colorDark">#363630</color>
 </resources>

@@ -11,7 +11,6 @@ import android.support.design.widget.NavigationView;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new Fragment1()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewListFragment()).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
 
@@ -35,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment f = null;
                 switch (item.getItemId()) {
                     case R.id.menu_1:
-                        f = new Fragment1();
+                        f = new PublishNewFragment();
                         break;
                     case R.id.menu_2:
-                        f = new Fragment1();
+                        f = new NewListFragment();
                         break;
                     case R.id.otras_1:
-                        f = new Fragment1();
+                        f = new NewListFragment();
                         break;
                 }
                 if (f!= null) {
