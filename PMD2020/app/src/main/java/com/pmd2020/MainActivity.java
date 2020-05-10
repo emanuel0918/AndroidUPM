@@ -1,5 +1,6 @@
 package com.pmd2020;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -19,14 +20,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         setToolbar();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewListFragment()).commit();
-        navigationView.getMenu().getItem(0).setChecked(true);
-        getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
+        navigationView.getMenu().getItem(1).setChecked(true);
+        getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -38,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_2:
                         f = new NewListFragment();
+                        break;
+                    case R.id.menu_3:
+                        Intent intent= new Intent(MainActivity.this,LoginActivity.class);
+                        intent.putExtra("user","");
+                        startActivity(intent);
+                        finish();
                         break;
                     case R.id.otras_1:
                         f = new NewListFragment();
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

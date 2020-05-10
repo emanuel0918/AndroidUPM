@@ -5,7 +5,8 @@
     <string name="newspaper">Nouvelles</string>
     <string name="user">Utilisateur</string>
     <string name="password">Mot de Passe</string>
-    <string name="login">S\'identifier</string>
+    <string name="login">S\' identifier</string>
+    <string name="logout">Déconnectez-vous</string>
     <string name="add_new">Ajouter des Nouvelles</string>
     <string name="list_news">Liste de Nouvelles</string>
     <string name="more_options">Plus d\'options</string>
@@ -16,5 +17,8 @@
     <string name="abstrac">Résumé</string>
     <string name="body">Contenu</string>
     <string name="image">Image</string>
+    <string name="missing_data">Données Manquantes</string>
+    <string name="new_published">Article Créé</string>
+    <string name="ok">D\' accord</string>
 
 </resources>

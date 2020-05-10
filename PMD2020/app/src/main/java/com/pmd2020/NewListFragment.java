@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.pmd2020.db.DBArticles;
 import com.pmd2020.model.Article;
 import com.pmd2020.model.ArticleAdapter;
 import com.pmd2020.utils.network.ModelManager;
@@ -28,6 +29,8 @@ public class NewListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // BD
+        DBArticles.init(getActivity().getApplicationContext());
         return inflater.inflate(R.layout.fragment_new_list, container, false);
     }
 
@@ -43,12 +46,27 @@ public class NewListFragment extends Fragment {
             }
         } catch (ServerCommunicationError serverCommunicationError) {
             serverCommunicationError.printStackTrace();
-            articles= new LinkedList<>();
+        }finally {
+            if(articles==null) {
+                articles = new LinkedList<>();
+            }
+            try {
+                List<Article> myArticles = DBArticles.loadAllArticles();
+                if (myArticles.size() > 0) {
+                    for (Article art : myArticles) {
+                        articles.add(art);
+                    }
+                }
+            }catch (Exception e){
+
+            }
             a = new Article("category","title","abstract","body","subtitle","3");
             articles.add(a);
             a = new Article("category","title","abstract","body","subtitle","3");
             articles.add(a);
+
         }
+
         ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),articles);
         newListView.setAdapter(articleAdapter);
         super.onViewCreated(view, savedInstanceState);

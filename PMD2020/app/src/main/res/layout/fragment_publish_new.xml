@@ -44,7 +44,7 @@
             android:textColor="@color/colorDark"
             android:text="@string/category" />
         <EditText
-            android:id="@+id/abstrac"
+            android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -55,7 +55,7 @@
             android:textColor="@color/colorDark"
             android:text="@string/abstrac" />
         <EditText
-            android:id="@+id/category"
+            android:id="@+id/abstrac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="4"
@@ -85,7 +85,8 @@
             android:layout_height="180dp"
             android:contentDescription="@string/image"
             app:srcCompat="@drawable/ic_news_foreground"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            android:layout_marginTop="18sp" />
         <Button
             android:id="@+id/publish_new_btn"
             android:layout_width="match_parent"
