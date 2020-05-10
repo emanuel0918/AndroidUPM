@@ -1,5 +1,8 @@
 package com.pmd2020.utils.network;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -133,6 +136,7 @@ public class ModelManager {
      * @return the list of articles in remote service
      * @throws ServerCommunicationError
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Article> getArticles() throws ServerCommunicationError{
         return getArticles(-1,-1);
     }
@@ -142,6 +146,7 @@ public class ModelManager {
      * @return the list of articles in remote service with pagination
      * @throws ServerCommunicationError
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Article> getArticles(int buffer, int offset) throws ServerCommunicationError{
         String limits = "";
         if (buffer>0 && offset >=0){
@@ -191,6 +196,7 @@ public class ModelManager {
      * @return the list of articles in remote service with pagination
      * @throws ServerCommunicationError
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static List<Article> getArticlesFrom(int buffer, int offset) throws ServerCommunicationError{
         String limits = "";
         if (buffer>0 && offset >=0){
@@ -240,6 +246,7 @@ public class ModelManager {
      * @return the article in remote service with id idArticle
      * @throws ServerCommunicationError
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static Article getArticle(int idArticle) throws ServerCommunicationError{
 
         Article result = null;

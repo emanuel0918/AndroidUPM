@@ -1,5 +1,6 @@
 package com.pmd2020;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,9 @@ public class NewListFragment extends Fragment {
         List<Article> articles=null;
         Article a;
         try {
-            articles= ModelManager.getArticles();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                articles= ModelManager.getArticles();
+            }
         } catch (ServerCommunicationError serverCommunicationError) {
             serverCommunicationError.printStackTrace();
             articles= new LinkedList<>();

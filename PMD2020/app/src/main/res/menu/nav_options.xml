@@ -13,6 +13,9 @@
             <item android:id="@+id/otras_1"
                 android:icon="@drawable/ic_home"
                 android:title="@string/list_local_news"/>
+            <item android:id="@+id/otras_2"
+                android:icon="@android:drawable/"
+                android:title="@string/list_local_news"/>
         </menu>
     </item>
 </menu>

@@ -18,7 +18,7 @@ public class RESTConnection {
 
     protected boolean isAdministrator = false;
 
-    protected String serviceUrl ;
+    protected String serviceUrl="https://sanger.dia.fi.upm.es/pmd-task" ;
 
     protected boolean requireSelfSigned = false;
 
