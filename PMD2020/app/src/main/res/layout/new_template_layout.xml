@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageNew"
+        android:src="@mipmap/ic_news"/>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:layout_weight="1">
-
+        android:layout_marginTop="@dimen/marginTopNewTemplate"
+        android:background="#40FFFFFF">
         <TextView
             android:id="@+id/categoryNew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/textSizeNewCategory"
-            android:textColor="@color/colorDark"/>
+            android:textColor="@color/colorDark" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,10 +44,10 @@
             <TextView
                 android:id="@+id/abstractNew"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textSize="@dimen/textSizeNewAbstract"
                 android:textColor="@color/colorDark"
                 android:gravity="center_horizontal"/>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

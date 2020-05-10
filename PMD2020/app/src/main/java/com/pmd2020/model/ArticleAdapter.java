@@ -3,12 +3,14 @@ package com.pmd2020.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pmd2020.R;
@@ -60,16 +62,9 @@ public class ArticleAdapter extends BaseAdapter {
             serverCommunicationError.printStackTrace();
         }
         if(image!=null) {
-        }else{
-            bitmap = BitmapFactory.decodeResource(this.context.getResources(),R.drawable.ic_news_foreground);
+            //Decode Bitmap from Image
+            //((ImageView)convertView.findViewById(R.id.imageNew)).setImageBitmap(bitmap);
         }
-        RoundCornerDrawable round = new RoundCornerDrawable(BitmapFactory.decodeResource(this.context.getResources(),R.mipmap.ic_news),
-                this.context.getResources().getDimension(R.dimen.cardview_radius), 0);
-        ImageView imageView=convertView.findViewById(R.id.);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-            imageView.setBackground(round);
-        else
-            imageView.setBackgroundDrawable(round);
         return convertView;
     }
 }

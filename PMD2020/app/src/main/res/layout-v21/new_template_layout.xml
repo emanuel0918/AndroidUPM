@@ -1,25 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <android.support.v7.widget.CardView
-        android:layout_marginTop="75dp"
-        android:id="@+id/quizcard"
         android:elevation="15dp"
         app:cardPreventCornerOverlap="false"
-        android:layout_width="match_parent"
-        app:cardCornerRadius="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_height="250dp">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        app:cardCornerRadius="@dimen/card_view_radius">
         <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageNew"
+            android:src="@mipmap/ic_news"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/marginTopNewTemplate"
+            android:background="#40FFFFFF">
+        <TextView
+            android:id="@+id/categoryNew"
             android:layout_width="match_parent"
-            android:id="@+id/quizimage"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSizeNewCategory"
+            android:textColor="@color/colorDark" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
 
+            <TextView
+                android:id="@+id/titleNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSizeNewTitle"
+                android:textColor="@color/colorDark"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/subtitleNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSizeNewSubtitle"
+                android:textColor="@color/colorDark"
+                android:gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/abstractNew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/textSizeNewAbstract"
+                android:textColor="@color/colorDark"
+                android:gravity="center_horizontal"/>
+        </LinearLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</RelativeLayout>
