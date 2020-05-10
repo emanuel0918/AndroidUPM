@@ -1,6 +1,9 @@
 package com.pmd2020.model;
 
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import org.json.simple.JSONObject;
 
 import java.util.Hashtable;
@@ -34,6 +37,7 @@ public class Image extends ModelEntity {
      *
      * @param jsonImage
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("unchecked")
     protected Image(JSONObject jsonImage){
         try{

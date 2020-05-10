@@ -1,5 +1,8 @@
 package com.pmd2020.model;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.Date;
 import java.util.Hashtable;
 
@@ -23,11 +26,13 @@ public class Article extends ModelEntity {
     private String thumbnail;
     private Date lastUpdate;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private String parseStringFromJson(JSONObject jsonArticle, String key, String def){
         Object in = jsonArticle.getOrDefault(key,def);
         return (in==null?def:in).toString();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("unchecked")
     public Article(JSONObject jsonArticle){
         try{
