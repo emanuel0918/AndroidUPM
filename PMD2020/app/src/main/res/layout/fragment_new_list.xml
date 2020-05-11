@@ -9,8 +9,6 @@
         android:id="@+id/news_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/marginNewTemplate"
-        android:layout_marginBottom="@dimen/marginNewTemplate"
         android:dividerHeight="@dimen/marginNewTemplate"
         android:divider="@android:color/transparent"/>
 </FrameLayout>

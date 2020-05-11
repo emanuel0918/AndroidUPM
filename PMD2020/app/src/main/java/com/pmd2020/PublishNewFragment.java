@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import com.pmd2020.db.DBArticles;
 import com.pmd2020.model.Article;
-import com.pmd2020.model.Image;
+import com.pmd2020.utils.SerializationUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -27,9 +27,9 @@ public class PublishNewFragment extends Fragment {
 
     public final int REQUEST_OPEN_IMAGE =203;
     //
-    private byte[] imagen;
+    private String b64Image;
     private ImageView imageView;
-    private Button publishArticle;
+    private Button publishArticleButton;
 
     public PublishNewFragment() {
         // Required empty public constructor
@@ -40,6 +40,8 @@ public class PublishNewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // BD
+        //DBArticles.init(getActivity().getApplicationContext());
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_publish_new, container, false);
     }
@@ -54,8 +56,8 @@ public class PublishNewFragment extends Fragment {
                 getImage();
             }
         });
-        publishArticle=(Button)getView().findViewById(R.id.publish_new_btn);
-        publishArticle.setOnClickListener(new View.OnClickListener() {
+        publishArticleButton =(Button)getView().findViewById(R.id.publish_new_btn);
+        publishArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 publishNew();
@@ -65,12 +67,16 @@ public class PublishNewFragment extends Fragment {
     }
 
     private void publishNew() {
+        ((Button)getView().findViewById(R.id.publish_new_btn)).setEnabled(false);
+        //
+        //
         FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
         SomeDialog builder=new SomeDialog();
         if(!(((EditText)getView().findViewById(R.id.title)).getText().toString().equals("")) &&
                 !(((EditText)getView().findViewById(R.id.subtitle)).getText().toString().equals("")) &&
                 !(((EditText)getView().findViewById(R.id.category)).getText().toString().equals("")) &&
                 !(((EditText)getView().findViewById(R.id.abstrac)).getText().toString().equals("")) &&
+                !(((EditText)getView().findViewById(R.id.description)).getText().toString().equals("")) &&
                 !(((EditText)getView().findViewById(R.id.body)).getText().toString().equals(""))){
             //CREATED
             String new_published="";
@@ -80,12 +86,18 @@ public class PublishNewFragment extends Fragment {
                 String category=((EditText)getView().findViewById(R.id.category)).getText().toString();
                 String abstrac=((EditText)getView().findViewById(R.id.abstrac)).getText().toString();
                 String body=((EditText)getView().findViewById(R.id.body)).getText().toString();
+                String description=((EditText)getView().findViewById(R.id.description)).getText().toString();
                 String idUser="7";
                 Article article=new Article(category,title,abstrac,body,subtitle,idUser);
-                //article.setImage(new Image());
-                long timestamp=0;
+                try {
+                    article.addImage(b64Image, description);
+                    //article.setImage(new Image());
+                }catch (Exception ee){
+
+                }
+                //long timestamp=0;
                 //set datetime
-                DBArticles.saveArticle(article,timestamp);
+                DBArticles.saveArticle(article);
                 new_published = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.new_published
@@ -134,6 +146,12 @@ public class PublishNewFragment extends Fragment {
                                 R.string.body
                         );
 
+            }else if(((EditText)getView().findViewById(R.id.description)).getText().toString().equals("")){
+                missingValue = getActivity().getApplicationContext()
+                        .getResources().getString(
+                                R.string.description
+                        );
+
             }
             builder.setTitle(missingData);
             builder.setMessage(missingValue);
@@ -146,6 +164,9 @@ public class PublishNewFragment extends Fragment {
 
         builder.setPositiveButton(accept_btn,null);
         builder.show(transaction,"dialog");
+        //
+        //
+        publishArticleButton.setEnabled(true);
     }
 
     private void getImage() {
@@ -169,13 +190,9 @@ public class PublishNewFragment extends Fragment {
                                 .getApplicationContext()
                                 .getContentResolver()
                                 .openInputStream(data.getData());
-                        try{
-                            imagen=readAllBytes(stream);
-                        }catch (Exception ioe){
-
-                        }
                         Bitmap bitmap= BitmapFactory.decodeStream(stream);
                         imageView.setImageBitmap(bitmap);
+                        b64Image = SerializationUtils.encodeImage(bitmap);
                     }catch (Exception e){
 
                     }finally {
@@ -192,19 +209,4 @@ public class PublishNewFragment extends Fragment {
         }
     }
 
-    private byte[] readAllBytes(InputStream is) {
-        byte[] bytes=null;
-        byte[] data = new byte[16384];
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        ArrayList<Byte> array=new ArrayList<>();
-        int nRead;
-        try {
-            while ((nRead = is.read(data, 0, data.length)) != -1) {
-                buffer.write(data, 0, nRead);
-            }
-        }catch (Exception e){
-
-        }
-        return  buffer.toByteArray();
-    }
 }

@@ -87,6 +87,17 @@
             app:srcCompat="@drawable/ic_news_foreground"
             tools:ignore="VectorDrawableCompat"
             android:layout_marginTop="18sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textSizeForm"
+            android:textColor="@color/colorDark"
+            android:text="@string/description" />
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
         <Button
             android:id="@+id/publish_new_btn"
             android:layout_width="match_parent"

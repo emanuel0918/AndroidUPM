@@ -17,6 +17,7 @@
     <string name="abstrac">Résumé</string>
     <string name="body">Contenu</string>
     <string name="image">Image</string>
+    <string name="description">Description</string>
     <string name="missing_data">Données Manquantes</string>
     <string name="new_published">Article Créé</string>
     <string name="ok">D\' accord</string>

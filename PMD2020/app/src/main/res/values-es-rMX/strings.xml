@@ -16,6 +16,7 @@
     <string name="abstrac">Resumen</string>
     <string name="body">Cuerpo</string>
     <string name="image">Imagen</string>
+    <string name="description">Descripción</string>
     <string name="missing_data">Campo Faltante</string>
     <string name="new_published">Artículo Creado</string>
     <string name="ok">Ok</string>

@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.pmd2020.R;
 import com.pmd2020.utils.RoundCornerDrawable;
+import com.pmd2020.utils.SerializationUtils;
 import com.pmd2020.utils.network.exceptions.ServerCommunicationError;
 
 import java.nio.ByteBuffer;
@@ -54,16 +55,14 @@ public class ArticleAdapter extends BaseAdapter {
         ((TextView)convertView.findViewById(R.id.titleNew)).setText(article.getTitleText());
         ((TextView)convertView.findViewById(R.id.subtitleNew)).setText(article.getSubtitleText());
         ((TextView)convertView.findViewById(R.id.abstractNew)).setText(article.getAbstractText());
-        Image image = null;
         Bitmap bitmap=null;
         try {
-            image =(Image) article.getImage();
-        } catch (ServerCommunicationError serverCommunicationError) {
-            serverCommunicationError.printStackTrace();
+            bitmap= SerializationUtils.base64StringToImg(article.getImage().getImage());
+        } catch (Exception e) {
         }
-        if(image!=null) {
+        if(bitmap!=null) {
             //Decode Bitmap from Image
-            //((ImageView)convertView.findViewById(R.id.imageNew)).setImageBitmap(bitmap);
+            ((ImageView)convertView.findViewById(R.id.imageNew)).setImageBitmap(bitmap);
         }
         return convertView;
     }
