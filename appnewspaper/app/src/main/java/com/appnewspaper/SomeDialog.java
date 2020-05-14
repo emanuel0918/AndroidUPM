@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;

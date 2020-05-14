@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,11 +9,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.model.Image;
-import com.example.appnewspaper.utils.network.ModelManager;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
-import com.example.testlistview.Modify_article_after_login;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.model.Image;
+import com.appnewspaper.utils.network.ModelManager;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.testlistview.Modify_article_after_login;
 
 
 import android.provider.MediaStore;
@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.imgToBase64String;
+import static com.appnewspaper.utils.SerializationUtils.imgToBase64String;
 
 public class NewArticleActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 100;

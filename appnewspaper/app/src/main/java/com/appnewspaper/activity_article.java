@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,12 @@ import android.widget.TextView;
 
 import android.support.annotation.RequiresApi;
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class activity_article extends Activity {
 

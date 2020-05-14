@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
-import com.example.appnewspaper.db.DBArticles;
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.SerializationUtils;
+import com.appnewspaper.db.DBArticles;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.SerializationUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

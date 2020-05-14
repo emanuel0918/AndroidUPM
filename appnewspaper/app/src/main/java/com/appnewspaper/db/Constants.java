@@ -1,4 +1,4 @@
-package com.example.appnewspaper.db;
+package com.appnewspaper.db;
 
 public class Constants {
     public static final String DB_CREATE_TABLE_ARTICLE = "CREATE TABLE article (\n" +

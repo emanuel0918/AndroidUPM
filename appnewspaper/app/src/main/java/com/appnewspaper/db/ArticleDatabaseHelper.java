@@ -1,4 +1,4 @@
-package com.example.appnewspaper.db;
+package com.appnewspaper.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

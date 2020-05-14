@@ -1,4 +1,4 @@
-package com.example.appnewspaper.utils.network;
+package com.appnewspaper.utils.network;
 
 public class SingletonRESTClient {
 

@@ -142,5 +142,9 @@
     <string name="description">Description</string>
     <string name="missing_data">Missing Data</string>
     <string name="new_published">Article Created</string>
+    <string name="remember_me">Remember me</string>
+    <string name="required_data">Required</string>
+    <string name="warning">Warning</string>
+    <string name="data_incorrect">Data incorrect</string>
     <string name="ok">Ok</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.testlistview;
+package com.testlistview;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,14 +9,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.example.appnewspaper.AddArticleTask;
+import com.appnewspaper.AddArticleTask;
 
-import com.example.appnewspaper.LoadArticleTask;
-import com.example.appnewspaper.MainActivityAfterLogin;
+import com.appnewspaper.LoadArticleTask;
+import com.appnewspaper.MainActivityAfterLogin;
 
-import com.example.appnewspaper.R;
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.R;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 
 
@@ -38,8 +38,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
-import static com.example.appnewspaper.utils.SerializationUtils.imgToBase64String;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.imgToBase64String;
 
 public class Modify_article_after_login extends AppCompatActivity {
     private static final int PICK_IMAGE = 100;

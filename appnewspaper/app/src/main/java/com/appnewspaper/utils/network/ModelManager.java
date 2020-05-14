@@ -1,11 +1,11 @@
-package com.example.appnewspaper.utils.network;
+package com.appnewspaper.utils.network;
 
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.model.Image;
-import com.example.appnewspaper.utils.Logger;
-import com.example.appnewspaper.utils.network.exceptions.AuthenticationError;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.model.Image;
+import com.appnewspaper.utils.Logger;
+import com.appnewspaper.utils.network.exceptions.AuthenticationError;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import org.json.simple.JSONObject;
 
@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.appnewspaper.utils.network.ServiceCallUtils.parseHttpStreamResult;
+import static com.appnewspaper.utils.network.ServiceCallUtils.parseHttpStreamResult;
 
 public class ModelManager {
     private static RESTConnection rc = new RESTConnection();

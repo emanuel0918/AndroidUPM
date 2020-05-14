@@ -1,4 +1,4 @@
-package com.example.appnewspaper.utils.network.exceptions;
+package com.appnewspaper.utils.network.exceptions;
 
 
 public class AuthenticationError extends Exception {

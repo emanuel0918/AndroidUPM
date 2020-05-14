@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 
 import android.content.Intent;
@@ -12,15 +12,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.appnewspaper.LoadArticleTask;
-import com.example.appnewspaper.MainActivity;
-import com.example.appnewspaper.R;
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.LoadArticleTask;
+import com.appnewspaper.MainActivity;
+import com.appnewspaper.R;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class activity_article_after_login extends AppCompatActivity {
 

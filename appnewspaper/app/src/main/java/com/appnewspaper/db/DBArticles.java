@@ -1,4 +1,4 @@
-package com.example.appnewspaper.db;
+package com.appnewspaper.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.model.Image;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.model.Image;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,12 @@
-package com.example.appnewspaper.model;
+package com.appnewspaper.model;
 
 
 import android.os.Build;
 
 import android.support.annotation.RequiresApi;
 
-import com.example.appnewspaper.utils.Logger;
-import com.example.appnewspaper.utils.SerializationUtils;
+import com.appnewspaper.utils.Logger;
+import com.appnewspaper.utils.SerializationUtils;
 
 import org.json.simple.JSONObject;
 

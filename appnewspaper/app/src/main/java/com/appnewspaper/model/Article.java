@@ -1,9 +1,9 @@
-package com.example.appnewspaper.model;
+package com.appnewspaper.model;
 
 
-import com.example.appnewspaper.utils.Logger;
-import com.example.appnewspaper.utils.SerializationUtils;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.utils.Logger;
+import com.appnewspaper.utils.SerializationUtils;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import org.json.simple.JSONObject;
 

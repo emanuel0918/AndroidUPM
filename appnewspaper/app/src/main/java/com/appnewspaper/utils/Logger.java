@@ -1,4 +1,4 @@
-package com.example.appnewspaper.utils;
+package com.appnewspaper.utils;
 
 
 import android.util.Log;

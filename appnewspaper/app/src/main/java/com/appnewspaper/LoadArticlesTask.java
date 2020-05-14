@@ -1,12 +1,12 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.network.ModelManager;
-import com.example.appnewspaper.utils.network.exceptions.AuthenticationError;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.network.ModelManager;
+import com.appnewspaper.utils.network.exceptions.AuthenticationError;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import java.util.List;
 

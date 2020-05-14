@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,14 +18,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
-import com.example.testlistview.Modify_article_after_login;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.testlistview.Modify_article_after_login;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class MyAdapter extends ArrayAdapter<Article> {
     Context mContext;

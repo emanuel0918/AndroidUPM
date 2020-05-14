@@ -1,6 +1,8 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +15,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
+    private SharedPreferences rememberMe;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     @Override
@@ -23,43 +28,66 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setToolbar();
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //Sesion
+        rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        Map<String, ?> map = rememberMe.getAll();
+        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        String user = (String) map.get("user");
+        String password = (String) map.get("password");
+        String apiKey = (String) map.get("apiKey");
+        String authType = (String) map.get("authUser");
+        if (mantenerSesion == null) {
+            SharedPreferences.Editor editorTwo = rememberMe.edit();
+            editorTwo.putBoolean("stayLogged", false);
+            mantenerSesion = false;
+            editorTwo.commit();
+        }else{
+            if(mantenerSesion) {
+                Intent login_intent =
+                        new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(login_intent);
+                finish();
+            }else{
+                //
+                drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+                navigationView = (NavigationView) findViewById(R.id.nav_view);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PublishNewFragment()).commit();
-        navigationView.getMenu().getItem(1).setChecked(true);
-        getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewListFragment()).commit();
+                navigationView.getMenu().getItem(1).setChecked(true);
+                getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment f = null;
-                switch (item.getItemId()) {
-                    case R.id.menu_1:
-                        f = new PublishNewFragment();
-                        break;
-                    case R.id.menu_2:
-                        f = new PublishNewFragment();
-                        break;
-                    case R.id.menu_3:
-                        Intent intent= new Intent(MainActivity.this,LoginActivity.class);
-                        intent.putExtra("user","");
-                        startActivity(intent);
-                        finish();
-                        break;
-                    case R.id.otras_1:
-                        f = new PublishNewFragment();
-                        break;
-                }
-                if (f!= null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
-                    item.setChecked(true);
-                    getSupportActionBar().setTitle(item.getTitle());
-                    drawerLayout.closeDrawers();
-                }
-                return false;
+                navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment f = null;
+                        switch (item.getItemId()) {
+                            case R.id.menu_1:
+                                f = new PublishNewFragment();
+                                break;
+                            case R.id.menu_2:
+                                f = new NewListFragment();
+                                break;
+                            case R.id.menu_3:
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                intent.putExtra("user", "");
+                                startActivity(intent);
+                                finish();
+                                break;
+                            case R.id.otras_1:
+                                f = new MyNewListFragment();
+                                break;
+                        }
+                        if (f != null) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
+                            item.setChecked(true);
+                            getSupportActionBar().setTitle(item.getTitle());
+                            drawerLayout.closeDrawers();
+                        }
+                        return false;
+                    }
+                });
             }
-        });
+        }
     }
 
 

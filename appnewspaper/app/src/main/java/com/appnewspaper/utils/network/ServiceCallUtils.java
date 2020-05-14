@@ -1,7 +1,7 @@
-package com.example.appnewspaper.utils.network;
+package com.appnewspaper.utils.network;
 
-import com.example.appnewspaper.utils.network.exceptions.AuthenticationError;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.utils.network.exceptions.AuthenticationError;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

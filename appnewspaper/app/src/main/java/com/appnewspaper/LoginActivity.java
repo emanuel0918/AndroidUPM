@@ -1,5 +1,6 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,8 +18,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.appnewspaper.utils.network.ModelManager;
-import com.example.appnewspaper.utils.network.exceptions.AuthenticationError;
+import com.appnewspaper.utils.network.ModelManager;
+import com.appnewspaper.utils.network.exceptions.AuthenticationError;
 
 import java.util.concurrent.ExecutionException;
 
@@ -30,35 +33,37 @@ public class LoginActivity extends AppCompatActivity {
 
         Button buttonLogin = (Button) findViewById(R.id.login_btn);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
                 //Obtener los valores introducidos en los campos
-                TextView usernameForm = (TextView) findViewById(R.id.user);
-                String usermane = usernameForm.getText().toString();
-                EditText passwordFrom = (EditText) findViewById(R.id.password);
-                String password = passwordFrom.getText().toString();
+                TextInputEditText usernameForm = (TextInputEditText) findViewById(R.id.user);
+                String username = usernameForm.getText().toString();
+                TextInputEditText passwordForm = (TextInputEditText) findViewById(R.id.password);
+                String password = passwordForm.getText().toString();
 
 
-                System.out.println("Username " + usermane + " " + " Password " + password);
-                if (usermane.equals("") || password.equals("")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setTitle("Attention!");
-                    builder.setMessage("Please, fill the user and password");
+                System.out.println("Username " + username + " " + " Password " + password);
+                if (username.equals("") || password.equals("")) {
+                    String required_string=getResources().getString(R.string.required);
+                    usernameForm.setError(null);
+                    passwordForm.setError(null);
+                    //user
+                    if(username.equals("")){
+                        usernameForm.setError(required_string,null);
 
-                    builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    }
+                    //password
+                    if(password.equals("")){
+                        passwordForm.setError(required_string,null);
+
+                    }
                 } else {
                     try {
                         LoadLoginTask loginTask = new LoadLoginTask();
                         CheckBox rememberMe = (CheckBox) findViewById(R.id.rememberMe);
                         loginTask.password = password;
-                        loginTask.user = usermane;
+                        loginTask.user = username;
                         loginTask.execute();
                         String userLogger = loginTask.get();
                         if (userLogger.equals("0")) {
@@ -75,13 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                             alertDialog.show();
                         } else {
                             //  DEV_TEAM_07", "89423"
-                            Intent goMainPage = new Intent(getBaseContext(), MainActivityAfterLogin.class);
+                            Intent goMainPage = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(goMainPage);
                             if (rememberMe.isChecked()) {
                                 SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
                                 editorTwo.putBoolean("stayLogged", true);
-                                editorTwo.putString("user", usermane);
+                                editorTwo.putString("user", username);
                                 editorTwo.putString("password", password);
                                 editorTwo.putString("apiKey", password);
                                 editorTwo.putString("authUser", password);
@@ -111,10 +116,13 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        String warning_string=getResources().getString(R.string.warning);
+                        String data_incorrect=getResources().getString(R.string.data_incorrect);
+                        String ok=getResources().getString(R.string.ok);
                         builder.setTitle("Attention!");
                         builder.setMessage("Data Incorect");
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();

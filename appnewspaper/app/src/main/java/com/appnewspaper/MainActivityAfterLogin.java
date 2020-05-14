@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.example.appnewspaper.model.Article;
+import com.appnewspaper.model.Article;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class MainActivityAfterLogin extends AppCompatActivity {
     SharedPreferences rememberMe;

@@ -19,6 +19,10 @@
     <string name="description">Descripción</string>
     <string name="missing_data">Campo Faltante</string>
     <string name="new_published">Artículo Creado</string>
+    <string name="remember_me">Recuérdame</string>
+    <string name="required_data">Campo necesario</string>
+    <string name="warning">Atención</string>
+    <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.appnewspaper.utils.network;
+package com.appnewspaper.utils.network;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;

@@ -1,4 +1,4 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,13 +15,13 @@ import android.widget.TextView;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.example.appnewspaper.model.Article;
-import com.example.appnewspaper.model.Image;
-import com.example.appnewspaper.utils.network.exceptions.ServerCommunicationError;
+import com.appnewspaper.model.Article;
+import com.appnewspaper.model.Image;
+import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 import java.util.ArrayList;
 
-import static com.example.appnewspaper.utils.SerializationUtils.base64StringToImg;
+import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class AdapterBeforeLogin extends ArrayAdapter<Article> {
 

@@ -1,4 +1,4 @@
-package com.example.appnewspaper.model;
+package com.appnewspaper.model;
 
 import org.json.simple.JSONObject;
 

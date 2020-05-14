@@ -1,9 +1,9 @@
-package com.example.appnewspaper;
+package com.appnewspaper;
 
 import android.os.AsyncTask;
 
-import com.example.appnewspaper.utils.network.ModelManager;
-import com.example.appnewspaper.utils.network.exceptions.AuthenticationError;
+import com.appnewspaper.utils.network.ModelManager;
+import com.appnewspaper.utils.network.exceptions.AuthenticationError;
 
 public class LoadLoginTask extends AsyncTask<Void, Void, String> {
 
