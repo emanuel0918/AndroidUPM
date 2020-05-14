@@ -47,14 +47,14 @@ public class MyArticleListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
-        List<Article> myArticles=null;
+        ArrayList<Article> myArticles=null;
         try {
             myArticles = DBArticles.loadAllArticles();
         }catch (Exception e){
 
         }
 
-        ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),myArticles);
+        MyAdapter articleAdapter= new MyAdapter(getActivity().getApplicationContext(),myArticles);
         newListView.setAdapter(articleAdapter);
         super.onViewCreated(view, savedInstanceState);
     }

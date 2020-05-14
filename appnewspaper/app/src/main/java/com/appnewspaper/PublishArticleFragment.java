@@ -13,9 +13,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 
 import com.appnewspaper.db.DBArticles;
@@ -69,6 +71,12 @@ public class PublishArticleFragment extends Fragment {
                 publishNew();
             }
         });
+
+        Spinner spinnerCategory = (Spinner) getView().findViewById(R.id.category_new);
+        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(
+                getActivity().getBaseContext(), R.array.category, android.R.layout.simple_spinner_item);
+        adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapterCategory);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -81,19 +89,21 @@ public class PublishArticleFragment extends Fragment {
         SomeDialog builder=new SomeDialog();
         EditText title_form=((EditText)getView().findViewById(R.id.title));
         EditText subtitle_form=((EditText)getView().findViewById(R.id.subtitle));
-        EditText category_form=((EditText)getView().findViewById(R.id.category));
+        Spinner categorySpinner = (Spinner) getView().findViewById(R.id.category_new);
         EditText abstrac_form=((EditText)getView().findViewById(R.id.abstrac));
         EditText description_form=((EditText)getView().findViewById(R.id.description));
         EditText body_form=((EditText)getView().findViewById(R.id.body));
-        if(!((title_form.getText().toString().equals("")) && subtitle_form.getText().toString().equals("")) &&
-                !(category_form.getText().toString().equals("")) && !(abstrac_form.getText().toString().equals("")) &&
-                !(description_form.getText().toString().equals("")) && !(body_form.getText().toString().equals(""))){
+        if(!((title_form.getText().toString().equals("")) &&
+                !(subtitle_form.getText().toString().equals(""))) &&
+                !(abstrac_form.getText().toString().equals("")) &&
+                !(description_form.getText().toString().equals("")) &&
+                !(body_form.getText().toString().equals(""))){
             //CREATED
             String new_published="";
             try {
                 String title=title_form.getText().toString();
                 String subtitle=subtitle_form.getText().toString();
-                String category=category_form.getText().toString();
+                String category = String.valueOf(categorySpinner.getSelectedItem());
                 String abstrac=abstrac_form.getText().toString();
                 String body=body_form.getText().toString();
                 String description=description_form.getText().toString();
@@ -149,10 +159,6 @@ public class PublishArticleFragment extends Fragment {
             if(subtitle_form.getText().toString().equals("")){
                 subtitle_form.setError(required_data,null);
             }
-            category_form.setError(null);
-            if(category_form.getText().toString().equals("")){
-                category_form.setError(required_data,null);
-            }
             abstrac_form.setError(null);
             if(abstrac_form.getText().toString().equals("")){
                 abstrac_form.setError(required_data,null);
@@ -180,12 +186,6 @@ public class PublishArticleFragment extends Fragment {
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.subtitle
-                        );
-
-            }else if(category_form.getText().toString().equals("")){
-                missingValue = getActivity().getApplicationContext()
-                        .getResources().getString(
-                                R.string.category
                         );
 
             }else if(abstrac_form.getText().toString().equals("")){

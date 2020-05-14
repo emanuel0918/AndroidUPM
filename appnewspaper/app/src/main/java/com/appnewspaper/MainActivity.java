@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         f = new ArticleListFragment();
                         break;
                     case R.id.menu_logout:
+                        drawerLayout.closeDrawers();
                         stayLogged=false;
                         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
@@ -83,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
                         editorTwo.commit();
                         navigationView.getMenu().clear();
                         navigationView.inflateMenu(R.menu.options_general);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
+                        navigationView.getMenu().getItem(1).setChecked(true);
+                        getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
                         break;
                     case R.id.otras_1:
                         f = new MyArticleListFragment();

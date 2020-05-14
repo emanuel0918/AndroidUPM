@@ -49,7 +49,8 @@ public class NewArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_article);
 
         Spinner spinnerCategory = (Spinner) findViewById(R.id.categoryAdd);
-        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(
+                this, R.array.category, android.R.layout.simple_spinner_item);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapterCategory);
 

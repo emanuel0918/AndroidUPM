@@ -20,8 +20,8 @@ public class DBArticles {
     public static void init(Context context){
         helper=new ArticleDatabaseHelper(context);
     }
-    public static List<Article> loadAllArticles(){
-        List<Article> articles=new ArrayList<>();
+    public static ArrayList<Article> loadAllArticles(){
+        ArrayList<Article> articles=new ArrayList<>();
         Article article;
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor=db.query(Constants.DB_TABLE_NAME,
