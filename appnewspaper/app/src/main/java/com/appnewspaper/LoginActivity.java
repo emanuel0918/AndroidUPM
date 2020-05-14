@@ -41,11 +41,15 @@ public class LoginActivity extends AppCompatActivity {
                 String username = usernameForm.getText().toString();
                 TextInputEditText passwordForm = (TextInputEditText) findViewById(R.id.password);
                 String password = passwordForm.getText().toString();
+                //Text in Values
+                String warning_string=getResources().getString(R.string.warning);
+                String data_incorrect=getResources().getString(R.string.data_incorrect);
+                String ok=getResources().getString(R.string.ok);
 
 
                 System.out.println("Username " + username + " " + " Password " + password);
                 if (username.equals("") || password.equals("")) {
-                    String required_string=getResources().getString(R.string.required);
+                    String required_string=getResources().getString(R.string.required_data);
                     usernameForm.setError(null);
                     passwordForm.setError(null);
                     //user
@@ -68,9 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                         String userLogger = loginTask.get();
                         if (userLogger.equals("0")) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                            builder.setTitle("Attention!");
-                            builder.setMessage("Data Incorect");
-                            builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                            builder.setTitle(warning_string);
+                            builder.setMessage(data_incorrect);
+                            builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
@@ -102,10 +106,10 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("Data Incorect");
+                        builder.setTitle(warning_string);
+                        builder.setMessage(data_incorrect);
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -116,11 +120,8 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                        String warning_string=getResources().getString(R.string.warning);
-                        String data_incorrect=getResources().getString(R.string.data_incorrect);
-                        String ok=getResources().getString(R.string.ok);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("Data Incorect");
+                        builder.setTitle(warning_string);
+                        builder.setMessage(data_incorrect);
 
                         builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override

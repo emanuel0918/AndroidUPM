@@ -24,5 +24,37 @@
     <string name="warning">Atención</string>
     <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
+    <string name="title_activity_modify_article_after_login">Modificar Articulo</string>
+
+    <string-array name="category">
+        <item>Nacional</item>
+        <item>Economía</item>
+        <item>Deportes</item>
+        <item>Tecnología</item>
+    </string-array>
+    <string name="action_settings">Ajustes</string>
+    <string name="title_activity_login">Nueva Sesión</string>
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión o Registrarse</string>
+    <string name="action_sign_in_short">Nueva Sesión</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="invalid_username">Usuario no válido</string>
+    <string name="invalid_password">La contraseña debe superar 5 caracteres</string>
+    <string name="login_failed">Error en Inicio de Sesión</string>
+    <string name="button_login">Iniciar Sesión</string>
+    <string name = "imagenModify">Elegir Imagen</string>
+    <string name = "titleModify">Título</string>
+    <string name = "subtitleModify">Subtítulo</string>
+    <string name = "abstractModify">Resumen</string>
+    <string name = "bodyModify">Cuerpo</string>
+    <string name = "chooseCategoryModify">Elegir Categoría</string>
+    <string name = "saveModify">Guardar</string>
+    <string name = "cancelModify">Cancelar</string>
+    <string name = "descriptionImage">Descripción de Imagen *</string>
+    <string name = "titleMandatory">Título *</string>
+    <string name = "subTitleMandatory">Subtítulo *</string>
+    <string name = "abstractMandatory">Resumen *</string>
+    <string name = "bodyMandatory">Cuerpo *</string>
 
 </resources>
