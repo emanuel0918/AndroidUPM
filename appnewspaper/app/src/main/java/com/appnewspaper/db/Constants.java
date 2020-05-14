@@ -9,7 +9,8 @@ public class Constants {
             "\tabstract_a TEXT,\n" +
             "\tbody_a TEXT,\n" +
             "\timage_a TEXT,\n" +
-            "\tdesc_a TEXT\n" +
+            "\tdesc_a TEXT,\n" +
+            "\tidUsr int\n" +
             "\t\n" +
             ");";
     public static final String DB_TABLE_NAME="article";
@@ -20,4 +21,5 @@ public class Constants {
     public static final String DB_TABLE_FIELD_BODY="body_a";
     public static final String DB_TABLE_FIELD_IMAGE="image_a";
     public static final String DB_TABLE_FIELD_DESCRIPTION="desc_a";
+    public static final String DB_TABLE_FIELD_ID_USER="idUsr";
 }

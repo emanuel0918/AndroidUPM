@@ -84,24 +84,23 @@ public class LoginActivity extends AppCompatActivity {
                             alertDialog.show();
                         } else {
                             //  DEV_TEAM_07", "89423"
+                            SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editorOne = rememberMeTwo.edit();
+                            editorOne.putBoolean("session", true);
+                            editorOne.putBoolean("stayLogged", rememberMe.isChecked());
+                            editorOne.putString("idUser", userLogger);
+                            editorOne.putString("user", username);
+                            editorOne.putString("password", password);
+                            editorOne.putString("apiKey", password);
+                            editorOne.putString("authUser", password);
+                            editorOne.commit();
+                            //
+                            //
+                            //
+                            //
                             Intent goMainPage = new Intent(getBaseContext(), MainActivity.class);
                             startActivity(goMainPage);
-                            if (rememberMe.isChecked()) {
-                                SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-                                editorTwo.putBoolean("stayLogged", true);
-                                editorTwo.putString("user", username);
-                                editorTwo.putString("password", password);
-                                editorTwo.putString("apiKey", password);
-                                editorTwo.putString("authUser", password);
-                                editorTwo.commit();
-                                //System.out.println("EEEEEE QUE LO HE PUESTO");
-                            } else {
-                                SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-                                editorTwo.putString("idUser", userLogger);
-                                editorTwo.commit();
-                            }
+                            finish();
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();

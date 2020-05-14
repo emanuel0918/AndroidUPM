@@ -6,7 +6,7 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="marginTopBtn">25dp</dimen>
-    <dimen name="marginNewTemplate">25sp</dimen>
+    <dimen name="marginNewTemplate">19sp</dimen>
     <dimen name="marginTopNewTemplate">35sp</dimen>
     <dimen name="padding">25sp</dimen>
     <dimen name="textSizeForm">21dp</dimen>

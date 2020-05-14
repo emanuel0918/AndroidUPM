@@ -68,21 +68,31 @@ public class NewArticleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                //
+                //
+                String warning_string=getResources().getString(R.string.warning);
+                String cancel=getResources().getString(R.string.cancelModify);
+                String ok=getResources().getString(R.string.ok);
+                //
+                //
+                //
+                //
+
                 //Toast alertMensaje = Toast.makeText(getApplicationContext(), "Dialogo de confirmacion", Toast.LENGTH_LONG);
                 //alertMensaje.show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(NewArticleActivity.this);
                 builder.setIcon(R.mipmap.ic_launcher);
-                builder.setTitle("Attention!");
-                builder.setMessage("Are you sure to cancel the process?");
+                builder.setTitle(warning_string);
+                builder.setMessage("?");
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Me quedo donde estoyi
                         dialog.dismiss();
                     }
                 });
-                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent goMainAfterLogin = new Intent(getBaseContext(), MainActivityAfterLogin.class);
@@ -101,6 +111,13 @@ public class NewArticleActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //
+                String warning_string=getResources().getString(R.string.warning);
+                String article_created=getResources().getString(R.string.new_published);
+                String required_data=getResources().getString(R.string.required_data);
+                String ok=getResources().getString(R.string.ok);
+                //
+                //
                 //Comprobar que cada uno de los campos estan rellenos
                 TextInputEditText addTitle = (TextInputEditText) findViewById(R.id.titleAddForm);
                 String titleAdd = addTitle.getText().toString();
@@ -117,10 +134,10 @@ public class NewArticleActivity extends AppCompatActivity {
 
                 if (titleAdd.equals("") || subtiteAdd.equals("") || abstractAdd.equals("") || noticiaAdd.equals("")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewArticleActivity.this);
-                    builder.setTitle("Attention!");
-                    builder.setMessage("Please, fill the fields");
+                    builder.setTitle(warning_string);
+                    builder.setMessage(required_data);
 
-                    builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -149,10 +166,10 @@ public class NewArticleActivity extends AppCompatActivity {
                         Article articleAdd = addArticleTask.get();
                         System.out.println(articleAdd);
                         AlertDialog.Builder builder = new AlertDialog.Builder(NewArticleActivity.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article is saved correctly");
+                        builder.setTitle(warning_string);
+                        builder.setMessage(article_created);
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goMainAfterLogin = new Intent(getBaseContext(), MainActivityAfterLogin.class);
@@ -166,9 +183,9 @@ public class NewArticleActivity extends AppCompatActivity {
                         e.printStackTrace();
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(NewArticleActivity.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article have been added correctly");
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setTitle(warning_string);
+                        builder.setMessage(article_created);
+                        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goBeforeScreen = new Intent(getBaseContext(), MainActivityAfterLogin.class);
@@ -181,9 +198,9 @@ public class NewArticleActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(NewArticleActivity.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article have been added correctly");
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setTitle(warning_string);
+                        builder.setMessage(article_created);
+                        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goBeforeScreen = new Intent(getBaseContext(), MainActivityAfterLogin.class);

@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/marginTopBtn"
-            android:background="@color/color1"
+            android:background="@color/colorAccent"
             android:text="@string/login"
             android:textColor="@color/colorLight" />
     </LinearLayout>

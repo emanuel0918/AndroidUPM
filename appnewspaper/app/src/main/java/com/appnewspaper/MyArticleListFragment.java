@@ -24,11 +24,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class NewListFragment extends Fragment {
+public class MyArticleListFragment extends Fragment {
     private ListView newListView;
     private SharedPreferences rememberMe;
 
-    public NewListFragment() {
+    public MyArticleListFragment() {
         // Required empty public constructor
     }
 
@@ -47,36 +47,14 @@ public class NewListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
-        List<Article> articles=null;
-        Article a;
+        List<Article> myArticles=null;
         try {
-            SharedPreferences.Editor editor = rememberMe.edit();
-            editor.putBoolean("stayLogged", false);
-            editor.commit();
-            AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
-            //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
-            //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
-             articles = p.get();
-        } catch (Exception er) {
-
-        }finally {
-            if(articles==null) {
-                articles = new LinkedList<>();
-            }
-            try {
-                List<Article> myArticles = DBArticles.loadAllArticles();
-                if (myArticles.size() > 0) {
-                    for (Article art : myArticles) {
-                        articles.add(art);
-                    }
-                }
-            }catch (Exception e){
-
-            }
+            myArticles = DBArticles.loadAllArticles();
+        }catch (Exception e){
 
         }
 
-        ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),articles);
+        ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),myArticles);
         newListView.setAdapter(articleAdapter);
         super.onViewCreated(view, savedInstanceState);
     }

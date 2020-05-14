@@ -6,6 +6,7 @@ CREATE TABLE article (
 	abstract_a TEXT,
 	body_a TEXT,
 	image_a TEXT,
-	desc_a TEXT
+	desc_a TEXT,
+	idUsr int
 	
 );

@@ -1,5 +1,6 @@
 package com.appnewspaper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,15 +14,16 @@ import android.support.design.widget.NavigationView;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
-    private SharedPreferences rememberMe;
+    private boolean stayLogged;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,65 +31,104 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setToolbar();
         //Sesion
-        rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion = (Boolean) map.get("stayLogged");
-        String user = (String) map.get("user");
-        String password = (String) map.get("password");
-        String apiKey = (String) map.get("apiKey");
-        String authType = (String) map.get("authUser");
+        Boolean session = (Boolean) map.get("session");
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
-            editorTwo.putBoolean("stayLogged", false);
-            mantenerSesion = false;
+            editorTwo = rememberMe.edit();
+            editorTwo.putBoolean("session", false);
+            session=false;
             editorTwo.commit();
         }else{
-            if(mantenerSesion) {
-                Intent login_intent =
-                        new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(login_intent);
-                finish();
-            }else{
-                //
-                drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-                navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewListFragment()).commit();
-                navigationView.getMenu().getItem(1).setChecked(true);
-                getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
-
-                navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Fragment f = null;
-                        switch (item.getItemId()) {
-                            case R.id.menu_1:
-                                f = new PublishNewFragment();
-                                break;
-                            case R.id.menu_2:
-                                f = new NewListFragment();
-                                break;
-                            case R.id.menu_3:
-                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                                intent.putExtra("user", "");
-                                startActivity(intent);
-                                finish();
-                                break;
-                            case R.id.otras_1:
-                                f = new MyNewListFragment();
-                                break;
-                        }
-                        if (f != null) {
-                            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
-                            item.setChecked(true);
-                            getSupportActionBar().setTitle(item.getTitle());
-                            drawerLayout.closeDrawers();
-                        }
-                        return false;
-                    }
-                });
+            stayLogged=mantenerSesion;
+            if(!session) {
+                session = mantenerSesion;
             }
         }
+        //
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().clear();
+        if(session){
+            navigationView.inflateMenu(R.menu.options_user);
+        }else{
+            navigationView.inflateMenu(R.menu.options_general);
+        }
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
+        navigationView.getMenu().getItem(1).setChecked(true);
+        getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment f = null;
+                switch (item.getItemId()) {
+                    case R.id.menu_login:
+                        logIn();
+                        break;
+                    case R.id.menu_1:
+                        f = new PublishArticleFragment();
+                        break;
+                    case R.id.menu_2:
+                        f = new ArticleListFragment();
+                        break;
+                    case R.id.menu_logout:
+                        stayLogged=false;
+                        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+                        editorTwo.putBoolean("session", false);
+                        editorTwo.putBoolean("stayLogged", false);
+                        editorTwo.commit();
+                        navigationView.getMenu().clear();
+                        navigationView.inflateMenu(R.menu.options_general);
+                        break;
+                    case R.id.otras_1:
+                        f = new MyArticleListFragment();
+                        break;
+                }
+                if (f != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
+                    item.setChecked(true);
+                    getSupportActionBar().setTitle(item.getTitle());
+                    drawerLayout.closeDrawers();
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onStop();
+    }
+
+    private void logIn() {
+        Intent login_intent =
+                new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(login_intent);
+        finish();
     }
 
 

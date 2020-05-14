@@ -1,6 +1,7 @@
 package com.appnewspaper.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -11,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appnewspaper.LoadArticleTask;
 import com.appnewspaper.R;
+import com.appnewspaper.activity_article;
 import com.appnewspaper.utils.SerializationUtils;
 
 import java.nio.ByteBuffer;
@@ -48,7 +52,7 @@ public class ArticleAdapter extends BaseAdapter {
             LayoutInflater layoutInflater=LayoutInflater.from(this.context);
             convertView=layoutInflater.inflate(R.layout.new_template_layout,null);
         }
-        Article article= arrayData.get(position);
+        final Article article= arrayData.get(position);
         ((TextView)convertView.findViewById(R.id.categoryNew)).setText(article.getCategory());
         ((TextView)convertView.findViewById(R.id.titleNew)).setText(article.getTitleText());
         ((TextView)convertView.findViewById(R.id.subtitleNew)).setText(article.getSubtitleText());
@@ -62,6 +66,19 @@ public class ArticleAdapter extends BaseAdapter {
             //Decode Bitmap from Image
             ((ImageView)convertView.findViewById(R.id.imageNew)).setImageBitmap(bitmap);
         }
+        ((RelativeLayout)convertView.findViewById(R.id.new_template_layout)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //int id2 = (int) id;
+                LoadArticleTask.id = article.getId();
+                System.out.println("ID EEEEEE " + article.getId());
+                //if (position == 0 || position < articles2.size()) {
+                Intent goToArticle = new Intent(context, activity_article.class);
+                goToArticle.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.getApplicationContext().startActivity(goToArticle);
+
+            }
+        });
         return convertView;
     }
 }

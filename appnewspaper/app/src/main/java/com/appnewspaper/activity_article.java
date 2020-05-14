@@ -31,15 +31,6 @@ public class activity_article extends Activity {
         setContentView(R.layout.activity_article);
         //Hacer peticion al servidor para coger el articulo
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.loginArticle);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goLogin = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(goLogin);
-            }
-        });
-
         AsyncTask<Void, Void, Article> p = new LoadArticleTask().execute();
         Article article = null;
         try {

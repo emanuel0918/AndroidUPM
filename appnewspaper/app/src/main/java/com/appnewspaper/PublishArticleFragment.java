@@ -1,7 +1,9 @@
 package com.appnewspaper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -23,8 +25,10 @@ import com.appnewspaper.utils.SerializationUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class PublishNewFragment extends Fragment {
+public class PublishArticleFragment extends Fragment {
+    private SharedPreferences rememberMe;
 
     public final int REQUEST_OPEN_IMAGE =203;
     //
@@ -32,7 +36,7 @@ public class PublishNewFragment extends Fragment {
     private ImageView imageView;
     private Button publishArticleButton;
 
-    public PublishNewFragment() {
+    public PublishArticleFragment() {
         // Required empty public constructor
     }
 
@@ -43,6 +47,7 @@ public class PublishNewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // BD
         //DBArticles.init(getActivity().getApplicationContext());
+        rememberMe = getActivity().getBaseContext().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_publish_new, container, false);
     }
@@ -70,26 +75,31 @@ public class PublishNewFragment extends Fragment {
     private void publishNew() {
         ((Button)getView().findViewById(R.id.publish_new_btn)).setEnabled(false);
         //
+        String required_data =getActivity().getBaseContext().getResources().getString(R.string.required_data);
         //
         FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
         SomeDialog builder=new SomeDialog();
-        if(!(((EditText)getView().findViewById(R.id.title)).getText().toString().equals("")) &&
-                !(((EditText)getView().findViewById(R.id.subtitle)).getText().toString().equals("")) &&
-                !(((EditText)getView().findViewById(R.id.category)).getText().toString().equals("")) &&
-                !(((EditText)getView().findViewById(R.id.abstrac)).getText().toString().equals("")) &&
-                !(((EditText)getView().findViewById(R.id.description)).getText().toString().equals("")) &&
-                !(((EditText)getView().findViewById(R.id.body)).getText().toString().equals(""))){
+        EditText title_form=((EditText)getView().findViewById(R.id.title));
+        EditText subtitle_form=((EditText)getView().findViewById(R.id.subtitle));
+        EditText category_form=((EditText)getView().findViewById(R.id.category));
+        EditText abstrac_form=((EditText)getView().findViewById(R.id.abstrac));
+        EditText description_form=((EditText)getView().findViewById(R.id.description));
+        EditText body_form=((EditText)getView().findViewById(R.id.body));
+        if(!((title_form.getText().toString().equals("")) && subtitle_form.getText().toString().equals("")) &&
+                !(category_form.getText().toString().equals("")) && !(abstrac_form.getText().toString().equals("")) &&
+                !(description_form.getText().toString().equals("")) && !(body_form.getText().toString().equals(""))){
             //CREATED
             String new_published="";
             try {
-                String title=((EditText)getView().findViewById(R.id.title)).getText().toString();
-                String subtitle=((EditText)getView().findViewById(R.id.subtitle)).getText().toString();
-                String category=((EditText)getView().findViewById(R.id.category)).getText().toString();
-                String abstrac=((EditText)getView().findViewById(R.id.abstrac)).getText().toString();
-                String body=((EditText)getView().findViewById(R.id.body)).getText().toString();
-                String description=((EditText)getView().findViewById(R.id.description)).getText().toString();
-                String idUser="7";
-                Article article=new Article(category,title,abstrac,body,subtitle,idUser);
+                String title=title_form.getText().toString();
+                String subtitle=subtitle_form.getText().toString();
+                String category=category_form.getText().toString();
+                String abstrac=abstrac_form.getText().toString();
+                String body=body_form.getText().toString();
+                String description=description_form.getText().toString();
+                Map<String, ?> map = rememberMe.getAll();
+                String userId = (String) map.get("idUser");
+                Article article=new Article(category,title,abstrac,body,subtitle,userId);
                 try {
                     article.addImage(b64Image, description);
                     //article.setImage(new Image());
@@ -98,7 +108,26 @@ public class PublishNewFragment extends Fragment {
                 }
                 //long timestamp=0;
                 //set datetime
-                DBArticles.saveArticle(article);
+
+
+                // CREAR SOLO EN LA BD
+                try {
+                    DBArticles.saveArticle(article);
+                }catch (Exception e){
+
+                }
+
+                //CREAR EN EL WEB SERVICE
+                try {
+
+                    AddArticleTask addArticleTask = (AddArticleTask) new AddArticleTask();
+                    addArticleTask.article = article;
+                    addArticleTask.execute();
+                }catch (Exception e){
+
+                }
+
+                //--------------------------------------------------
                 new_published = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.new_published
@@ -112,42 +141,66 @@ public class PublishNewFragment extends Fragment {
                 builder.setMessage("");
             }
         }else{
+            title_form.setError(null);
+            if(title_form.getText().toString().equals("")){
+                title_form.setError(required_data,null);
+            }
+            subtitle_form.setError(null);
+            if(subtitle_form.getText().toString().equals("")){
+                subtitle_form.setError(required_data,null);
+            }
+            category_form.setError(null);
+            if(category_form.getText().toString().equals("")){
+                category_form.setError(required_data,null);
+            }
+            abstrac_form.setError(null);
+            if(abstrac_form.getText().toString().equals("")){
+                abstrac_form.setError(required_data,null);
+            }
+            body_form.setError(null);
+            if(body_form.getText().toString().equals("")){
+                body_form.setError(required_data,null);
+            }
+            description_form.setError(null);
+            if(description_form.getText().toString().equals("")){
+                description_form.setError(required_data,null);
+            }
 
             String missingData=getActivity().getApplicationContext()
                     .getResources().getString(
                             R.string.missing_data
                     );
             String missingValue="";
-            if(((EditText)getView().findViewById(R.id.title)).getText().toString().equals("")){
+            if(title_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.title
                         );
-            }else if(((EditText)getView().findViewById(R.id.subtitle)).getText().toString().equals("")){
+            }else if(subtitle_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.subtitle
                         );
 
-            }else if(((EditText)getView().findViewById(R.id.category)).getText().toString().equals("")){
+            }else if(category_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.category
                         );
 
-            }else if(((EditText)getView().findViewById(R.id.abstrac)).getText().toString().equals("")){
+            }else if(abstrac_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.abstrac
                         );
 
-            }else if(((EditText)getView().findViewById(R.id.body)).getText().toString().equals("")){
+            }else if(body_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.body
                         );
 
-            }else if(((EditText)getView().findViewById(R.id.description)).getText().toString().equals("")){
+            }else if(description_form.getText().toString().equals("")){
                 missingValue = getActivity().getApplicationContext()
                         .getResources().getString(
                                 R.string.description

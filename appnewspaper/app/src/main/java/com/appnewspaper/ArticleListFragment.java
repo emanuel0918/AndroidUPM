@@ -24,11 +24,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class MyNewListFragment extends Fragment {
+public class ArticleListFragment extends Fragment {
     private ListView newListView;
     private SharedPreferences rememberMe;
 
-    public MyNewListFragment() {
+    public ArticleListFragment() {
         // Required empty public constructor
     }
 
@@ -50,13 +50,14 @@ public class MyNewListFragment extends Fragment {
         List<Article> articles=null;
         Article a;
         try {
-            List<Article> myArticles = DBArticles.loadAllArticles();
-            if (myArticles.size() > 0) {
-                for (Article art : myArticles) {
-                    articles.add(art);
-                }
-            }
-        }catch (Exception e){
+            SharedPreferences.Editor editor = rememberMe.edit();
+            editor.putBoolean("stayLogged", false);
+            editor.commit();
+            AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
+            //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
+            //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
+             articles = p.get();
+        } catch (Exception er) {
 
         }
 

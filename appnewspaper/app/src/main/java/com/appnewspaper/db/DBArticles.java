@@ -60,7 +60,13 @@ public class DBArticles {
             columnIndex++;
             //description
             String description = cursor.getString(columnIndex);
-            article=new Article(category,title,abstractText,body,subtitle,"1");
+            columnIndex++;
+            //Id User
+            int idUsr = cursor.getInt(columnIndex);
+
+            //
+            //
+            article=new Article(category,title,abstractText,body,subtitle,idUsr+"");
             try {
                 article.addImage(b64Image,description);
             } catch (Exception e) {
@@ -78,6 +84,7 @@ public class DBArticles {
         values.put(Constants.DB_TABLE_FIELD_ABSTRACT,article.getAbstractText());
         values.put(Constants.DB_TABLE_FIELD_CATEGORY,article.getCategory());
         values.put(Constants.DB_TABLE_FIELD_BODY,article.getBodyText());
+        values.put(Constants.DB_TABLE_FIELD_ID_USER,article.getIdUser());
         String imagenString="";
         String description="";
         try{

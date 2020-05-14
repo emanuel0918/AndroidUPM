@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PublishNewFragment">
+    tools:context=".PublishArticleFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -102,7 +102,7 @@
             android:id="@+id/publish_new_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color1"
+            android:background="@color/colorAccent"
             android:text="@string/add_new"
             android:textColor="@color/colorLight"
             android:layout_marginTop="@dimen/marginTopBtn" />
