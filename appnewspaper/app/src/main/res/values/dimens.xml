@@ -15,5 +15,5 @@
     <dimen name="textSizeNewCategory">21dp</dimen>
     <dimen name="textSizeNewAbstract">10dp</dimen>
     <dimen name="card_view_radius">15dp</dimen>
-    <dimen name="spinnerHeight">39dp</dimen>
+    <dimen name="spinnerHeight">29dp</dimen>
 </resources>

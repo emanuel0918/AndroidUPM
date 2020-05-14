@@ -46,7 +46,10 @@
         <Spinner
             android:id="@+id/category_new"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spinnerHeight"
+            android:layout_marginBottom="@dimen/spinnerHeight"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
