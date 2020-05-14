@@ -11,6 +11,7 @@ public class SomeDialog extends DialogFragment {
     private String title;
     private String message;
     private String button;
+    private String button2;
     private int opcion;
 
     private DialogInterface.OnClickListener clickListener;
@@ -31,8 +32,8 @@ public class SomeDialog extends DialogFragment {
                 alertDialog= new AlertDialog.Builder(getActivity())
                 .setTitle(this.title)
                 .setMessage(this.message)
-                .setNegativeButton(android.R.string.no,this.noClickListener)
-                .setPositiveButton(android.R.string.yes,this.yesClickListener)
+                .setNegativeButton(this.button2,this.noClickListener)
+                .setPositiveButton(this.button,this.yesClickListener)
                 .create();
                 break;
             case POSITIVE:
@@ -65,6 +66,11 @@ public class SomeDialog extends DialogFragment {
 
     public void setPositiveButton(String button,DialogInterface.OnClickListener clickListener) {
         this.button = button;
+        this.clickListener=clickListener;
+    }
+
+    public void setNegativeButton(String button,DialogInterface.OnClickListener clickListener) {
+        this.button2 = button;
         this.clickListener=clickListener;
     }
 

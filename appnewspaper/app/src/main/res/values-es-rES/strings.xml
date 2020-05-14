@@ -51,6 +51,11 @@
     <string name = "chooseCategoryModify">Elegir Categoría</string>
     <string name = "saveModify">Guardar</string>
     <string name = "cancelModify">Cancelar</string>
+    <string name = "cancel">Cancelar</string>
+    <string name = "accept">Aceptar</string>
+    <string name = "confirm_deleting">¿Estás seguro?</string>
+    <string name = "error_deleting">Error eliminando el registro</string>
+    <string name = "deleted">Eliminado correctamente</string>
     <string name = "descriptionImage">Descripción de Imagen *</string>
     <string name = "titleMandatory">Título *</string>
     <string name = "subTitleMandatory">Subtítulo *</string>

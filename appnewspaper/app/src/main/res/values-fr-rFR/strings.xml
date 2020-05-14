@@ -50,6 +50,11 @@
     <string name = "chooseCategoryModify">Choisir Category</string>
     <string name = "saveModify">Stocker</string>
     <string name = "cancelModify">Annuler</string>
+    <string name = "cancel">Annuler</string>
+    <string name = "accept">J\'accepte</string>
+    <string name = "confirm_deleting">Supprimer l\'article?</string>
+    <string name = "error_deleting">Désolé, une erreur est survenue</string>
+    <string name = "deleted">Supprimé avec succès</string>
     <string name = "descriptionImage">Description de l\'image *</string>
     <string name = "titleMandatory">Title *</string>
     <string name = "subTitleMandatory">Subtitle *</string>

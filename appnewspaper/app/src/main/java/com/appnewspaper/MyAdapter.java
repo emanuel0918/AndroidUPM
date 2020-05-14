@@ -85,10 +85,11 @@ public class MyAdapter extends ArrayAdapter<Article> {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle("Attention!");
-                builder.setMessage("Are you sure to delete the article?");
+                builder.setTitle(mContext.getResources().getString(R.string.warning));
+                builder.setMessage(mContext.getResources().getString(R.string.confirm_deleting));
 
-                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Añadir
@@ -101,23 +102,23 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                            builder.setTitle("Attention!");
-                            builder.setMessage("An error has occurred while deleting the article");
+                            builder.setTitle(mContext.getResources().getString(R.string.warning));
+                            builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                            builder.setTitle("Attention!");
-                            builder.setMessage("An error has occurred while deleting the article");
+                            builder.setTitle(mContext.getResources().getString(R.string.warning));
+                            builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
 
                         }
                         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article have been deleted correctly");
+                        builder.setTitle(mContext.getResources().getString(R.string.warning));
+                        builder.setMessage(mContext.getResources().getString(R.string.deleted));
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
                         Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
@@ -125,7 +126,8 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         mContext.getApplicationContext().startActivity(goMainAfterLogin);
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(mContext.getResources().getString(R.string.cancel),
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Me quedo donde estoyi

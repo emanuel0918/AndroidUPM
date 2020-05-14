@@ -49,6 +49,11 @@
     <string name = "chooseCategoryModify">Choose Category</string>
     <string name = "saveModify">Save</string>
     <string name = "cancelModify">Cancel</string>
+    <string name = "confirm_deleting">Are you sure to delete the article?</string>
+    <string name = "error_deleting">An error has occurred while deleting the article</string>
+    <string name = "deleted">Deleted Successfully</string>
+    <string name = "cancel">Cancel</string>
+    <string name = "accept">Accept</string>
     <string name = "descriptionImage">Image Description *</string>
     <string name = "titleMandatory">Title *</string>
     <string name = "subTitleMandatory">Subtitle *</string>
