@@ -5,4 +5,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="marginTopBtn">25dp</dimen>
+    <dimen name="marginNewTemplate">25sp</dimen>
+    <dimen name="marginTopNewTemplate">35sp</dimen>
+    <dimen name="padding">25sp</dimen>
+    <dimen name="textSizeForm">21dp</dimen>
+    <dimen name="textSizeNewTitle">19dp</dimen>
+    <dimen name="textSizeNewSubtitle">14dp</dimen>
+    <dimen name="textSizeNewCategory">21dp</dimen>
+    <dimen name="textSizeNewAbstract">10dp</dimen>
+    <dimen name="card_view_radius">15dp</dimen>
 </resources>

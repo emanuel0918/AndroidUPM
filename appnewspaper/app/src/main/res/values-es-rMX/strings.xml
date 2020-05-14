@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NEWSPAPER APP</string>
+    <string name="newspaper">Noticias</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="add_new">Agregar Noticia</string>
+    <string name="list_news">Listado de Noticias</string>
+    <string name="more_options">Más Opciones</string>
+    <string name="list_local_news">Mis Noticias</string>>
+    <string name="title">Título</string>
+    <string name="subtitle">Subtítulo</string>
+    <string name="category">Categoría</string>
+    <string name="abstrac">Resumen</string>
+    <string name="body">Cuerpo</string>
+    <string name="image">Imagen</string>
+    <string name="description">Descripción</string>
+    <string name="missing_data">Campo Faltante</string>
+    <string name="new_published">Artículo Creado</string>
+    <string name="ok">Ok</string>
+
+</resources>

@@ -1,8 +1,5 @@
 CREATE TABLE article (
 	_id INTEGER PRIMARY KEY AUTOINCREMENT,
-	/*
-	timestamp INTEGER,
-	*/
 	title_a TEXT,
 	subtitle_a TEXT,
 	category_a TEXT,
