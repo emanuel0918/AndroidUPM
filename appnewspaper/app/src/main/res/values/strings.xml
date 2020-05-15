@@ -54,6 +54,9 @@
     <string name = "deleted">Deleted Successfully</string>
     <string name = "cancel">Cancel</string>
     <string name = "accept">Accept</string>
+    <string name = "article_modified">The article has been modified successfully</string>
+    <string name = "article_not_modified">Failed while modifying the article</string>
+    <string name = "modify_article">Sure you want to modify it?</string>
     <string name = "descriptionImage">Image Description *</string>
     <string name = "titleMandatory">Title *</string>
     <string name = "subTitleMandatory">Subtitle *</string>

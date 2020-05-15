@@ -53,6 +53,9 @@
     <string name = "cancelModify">Cancelar</string>
     <string name = "cancel">Cancelar</string>
     <string name = "accept">Aceptar</string>
+    <string name = "article_modified">El artículo ha sido modificado</string>
+    <string name = "article_not_modified">Error modificando el articulo</string>
+    <string name = "modify_article">¿Descartar los cambios?</string>
     <string name = "confirm_deleting">¿Estás seguro?</string>
     <string name = "error_deleting">Error eliminando el registro</string>
     <string name = "deleted">Eliminado correctamente</string>

@@ -7,9 +7,6 @@
         <item android:id="@+id/menu_2"
             android:icon="@drawable/ic_home"
             android:title="@string/list_news" />
-        <item android:id="@+id/otras_1"
-            android:icon="@drawable/ic_home"
-            android:title="@string/list_local_news"/>
     </group>
     <group android:checkableBehavior="single"
         android:title="@string/more_options">

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.appnewspaper.AddArticleTask;
 
 import com.appnewspaper.LoadArticleTask;
+import com.appnewspaper.MainActivity;
 import com.appnewspaper.MainActivityAfterLogin;
 
 import com.appnewspaper.R;
@@ -42,6 +43,7 @@ import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 import static com.appnewspaper.utils.SerializationUtils.imgToBase64String;
 
 public class Modify_article_after_login extends AppCompatActivity {
+    private boolean stayLogged;
     private static final int PICK_IMAGE = 100;
     ImageView imageView;
     Article newModifArticle;
@@ -54,6 +56,19 @@ public class Modify_article_after_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_article_after_login);
+        //Sesion
+        rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        Map<String, ?> map = rememberMe.getAll();
+        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        if (mantenerSesion == null) {
+            SharedPreferences.Editor editorTwo = rememberMe.edit();
+            editorTwo = rememberMe.edit();
+            editorTwo.putBoolean("session", false);
+            editorTwo.commit();
+        }else{
+            stayLogged=mantenerSesion;
+        }
+        //
 
         Button chooseImagen =(Button) findViewById(R.id.chooseImagen);
         chooseImagen.setOnClickListener(new View.OnClickListener() {
@@ -130,10 +145,10 @@ public class Modify_article_after_login extends AppCompatActivity {
                         newModifArticle = saveArticle.get();
                         //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article is saved correctly");
+                        builder.setTitle(getResources().getString(R.string.warning));
+                        builder.setMessage(getResources().getString(R.string.article_modified));
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent goMainAfterLogin = new Intent(getBaseContext(), MainActivityAfterLogin.class);
@@ -142,14 +157,17 @@ public class Modify_article_after_login extends AppCompatActivity {
                         });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
+                        Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                        startActivity(back_intent);
+                        // finish();
 
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article is not saved correctly");
+                        builder.setTitle(getResources().getString(R.string.warning));
+                        builder.setMessage(getResources().getString(R.string.article_not_modified));
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -159,10 +177,10 @@ public class Modify_article_after_login extends AppCompatActivity {
                         alertDialog.show();
                     } catch (InterruptedException e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article is not saved correctly");
+                        builder.setTitle(getResources().getString(R.string.warning));
+                        builder.setMessage(getResources().getString(R.string.article_not_modified));
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -174,10 +192,10 @@ public class Modify_article_after_login extends AppCompatActivity {
                     } catch (ServerCommunicationError serverCommunicationError) {
                         serverCommunicationError.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle("Attention!");
-                        builder.setMessage("The article is not saved correctly");
+                        builder.setTitle(getResources().getString(R.string.warning));
+                        builder.setMessage(getResources().getString(R.string.article_not_modified));
 
-                        builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -197,17 +215,17 @@ public class Modify_article_after_login extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                    builder.setTitle("Attention!");
-                    builder.setMessage("Are you sure to cancel the modify?");
+                    builder.setTitle(getResources().getString(R.string.warning));
+                    builder.setMessage(getResources().getString(R.string.modify_article));
 
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //Me quedo donde estoyi
                             dialog.dismiss();
                         }
                     });
-                    builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent goMainAfterLogin = new Intent(getBaseContext(), MainActivityAfterLogin.class);
@@ -232,32 +250,35 @@ public class Modify_article_after_login extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onStop();
+    }
+
     public String[] setcategory(String categoryArticle) {
-        String[] set = new String[4];
-        if (categoryArticle.equals("Sport")) {
-            set[0] = categoryArticle;
-            set[1] = "National";
-            set[2] = "Economy";
-            set[3] = "Technology";
-        } else if (categoryArticle.equals("National")) {
-            set[0] = categoryArticle;
-            set[1] = "Sport";
-            set[2] = "Economy";
-            set[3] = "Technology";
-
-
-        } else if (categoryArticle.equals("Economy")) {
-            set[0] = categoryArticle;
-            set[1] = "Sport";
-            set[2] = "National";
-            set[3] = "Technology";
-        } else {
-            //Technology
-            set[0] = categoryArticle;
-            set[1] = "Sport";
-            set[2] = "National";
-            set[3] = "Economy";
+        String[] set = getResources().getStringArray(R.array.category);
+        int index=0;
+        for(int i=0;i<set.length;i++){
+            if(categoryArticle.equals(set[i])){
+                index=i;
+            }
         }
+        set[index]=categoryArticle;
         return set;
     }
 

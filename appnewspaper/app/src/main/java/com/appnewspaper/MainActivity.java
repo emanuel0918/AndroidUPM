@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
                         navigationView.getMenu().getItem(1).setChecked(true);
                         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
                         break;
-                    case R.id.otras_1:
-                        f = new MyArticleListFragment();
-                        break;
                 }
                 if (f != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, f).commit();
