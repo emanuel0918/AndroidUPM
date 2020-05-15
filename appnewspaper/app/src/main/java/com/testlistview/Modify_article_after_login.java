@@ -151,8 +151,9 @@ public class Modify_article_after_login extends AppCompatActivity {
                         builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent goMainAfterLogin = new Intent(getBaseContext(), MainActivityAfterLogin.class);
-                                startActivity(goMainAfterLogin);
+                                Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                                startActivity(back_intent);
+                                // finish();
                             }
                         });
                         AlertDialog alertDialog = builder.create();
