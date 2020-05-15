@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Intent login_intent =
                 new Intent(MainActivity.this,LoginActivity.class);
         startActivity(login_intent);
-        reload_articles();
+        finish();
     }
 
 
