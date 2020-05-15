@@ -34,6 +34,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class PublishArticleFragment extends Fragment {
+    private boolean session;
+    private boolean stayLogged;
+
+    //
     private SharedPreferences rememberMe;
 
     public final int REQUEST_OPEN_IMAGE =203;
@@ -58,7 +62,24 @@ public class PublishArticleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // BD
         //DBArticles.init(getActivity().getApplicationContext());
+        //Sesion
         rememberMe = getActivity().getBaseContext().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        Map<String, ?> map = rememberMe.getAll();
+        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        Boolean sesion1 = (Boolean) map.get("session");
+        if (mantenerSesion == null) {
+            SharedPreferences.Editor editorTwo = rememberMe.edit();
+            editorTwo = rememberMe.edit();
+            editorTwo.putBoolean("session", false);
+            session=false;
+            editorTwo.commit();
+        }else{
+            stayLogged=mantenerSesion;
+            session=sesion1;
+            if(!sesion1) {
+                session = mantenerSesion;
+            }
+        }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_publish_new, container, false);
     }
