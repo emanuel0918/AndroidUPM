@@ -133,8 +133,8 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         builder.setTitle(mContext.getResources().getString(R.string.warning));
                         builder.setMessage(mContext.getResources().getString(R.string.deleted));
                         builder.show(transaction,"dialog");
-                        Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
-                        goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent goMainAfterLogin = new Intent(mContext, MainActivity.class);
+                        //goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.getApplicationContext().startActivity(goMainAfterLogin);
                     }
                 });
