@@ -13,7 +13,7 @@
         android:layout_height="197dp"
         android:padding="10dp"
         tools:layout_editor_absoluteY="4dp"
-        android:src="@drawable/ic_news_foreground"/>
+        android:src="@mipmap/img_article"/>
 
     <LinearLayout
         android:layout_width="58dp"

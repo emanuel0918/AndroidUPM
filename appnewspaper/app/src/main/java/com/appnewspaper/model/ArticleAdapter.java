@@ -60,11 +60,8 @@ public class ArticleAdapter extends BaseAdapter {
         Bitmap bitmap=null;
         try {
             bitmap= SerializationUtils.base64StringToImg(article.getImage().getImage());
-        } catch (Exception e) {
-        }
-        if(bitmap!=null) {
-            //Decode Bitmap from Image
             ((ImageView)convertView.findViewById(R.id.imageNew)).setImageBitmap(bitmap);
+        } catch (Exception e) {
         }
         ((RelativeLayout)convertView.findViewById(R.id.new_template_layout)).setOnClickListener(new View.OnClickListener() {
             @Override

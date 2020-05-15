@@ -55,13 +55,12 @@ public class MyAdapter extends ArrayAdapter<Article> {
         ImageView imageList = (ImageView) convertView.findViewById(R.id.imageArticleAfter);
         ImageButton editListArticle = (ImageButton) convertView.findViewById(R.id.buttonEditArticle);
         ImageButton deleteListArticle = (ImageButton) convertView.findViewById(R.id.buttonDeleteArticle);
-        Bitmap bitmap= null;
-            try{
-                bitmap=base64StringToImg(item.getImage().getImage());
-            }catch (Exception e){
-                bitmap= BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ic_news_foreground);
-            }
-        imageList.setImageBitmap(bitmap);
+        Bitmap bitmap=null;
+        try{
+            bitmap=base64StringToImg(item.getImage().getImage());
+            imageList.setImageBitmap(bitmap);
+        }catch (Exception e){
+        }
         Spanned title = Html.fromHtml(item.getTitleText());
         listTitle.setText(title);
         listCategory.setText(item.getCategory());

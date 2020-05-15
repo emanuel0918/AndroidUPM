@@ -16,12 +16,12 @@
             android:dividerHeight="@dimen/marginNewTemplate"
             android:divider="@android:color/transparent"/>
         <android.support.design.widget.FloatingActionButton
-            android:layout_width="@dimen/floating_btn_size"
-            android:layout_height="@dimen/floating_btn_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/publish_new_floating_bnt"
             android:layout_marginRight="@dimen/floating_btn_padding"
             android:layout_marginBottom="@dimen/floating_btn_padding"
-            android:src="@android:drawable/ic_menu_add"
+            android:src="@drawable/ic_add"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
