@@ -97,6 +97,7 @@ public class MyAdapter extends ArrayAdapter<Article> {
                 transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
                 SomeDialog builder= new SomeDialog();
                 builder.setTitle(mContext.getResources().getString(R.string.warning));
+                builder.setOpcion(SomeDialog.MULTIPLE);
                 builder.setMessage(mContext.getResources().getString(R.string.confirm_deleting));
 
                 builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
@@ -137,14 +138,7 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         mContext.getApplicationContext().startActivity(goMainAfterLogin);
                     }
                 });
-                builder.setNegativeButton(mContext.getResources().getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Me quedo donde estoyi
-                        ((MainActivity)activity).finish();
-                    }
-                });
+                builder.setNegativeButton(mContext.getResources().getString(R.string.cancel),null);
 
                 builder.show(transaction,"dialog");
             }

@@ -66,12 +66,12 @@ public class SomeDialog extends DialogFragment {
 
     public void setPositiveButton(String button,DialogInterface.OnClickListener clickListener) {
         this.button = button;
-        this.clickListener=clickListener;
+        this.yesClickListener=clickListener;
     }
 
     public void setNegativeButton(String button,DialogInterface.OnClickListener clickListener) {
         this.button2 = button;
-        this.clickListener=clickListener;
+        this.noClickListener=clickListener;
     }
 
     public void setOpcion(int opcion) {
