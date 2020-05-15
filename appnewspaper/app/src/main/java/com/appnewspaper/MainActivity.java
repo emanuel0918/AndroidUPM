@@ -154,4 +154,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
+    public void finish(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
+        navigationView.getMenu().getItem(1).setChecked(true);
+        getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
+
+    }
 }

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MyArticleListFragment extends Fragment {
+    //
     private ListView newListView;
     private SharedPreferences rememberMe;
 

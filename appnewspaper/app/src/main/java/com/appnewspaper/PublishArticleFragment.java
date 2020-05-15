@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -38,7 +40,11 @@ public class PublishArticleFragment extends Fragment {
     //
     private String b64Image;
     private ImageView imageView;
+    private ImageButton imageButton;
     private Button publishArticleButton;
+    private Button cancelButton;
+    //
+    private NavigationView navigationView;
 
     public PublishArticleFragment() {
         // Required empty public constructor
@@ -66,11 +72,25 @@ public class PublishArticleFragment extends Fragment {
                 getImage();
             }
         });
+        imageButton=(ImageButton)getView().findViewById(R.id.image_btn_add_image);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImage();
+            }
+        });
         publishArticleButton =(Button)getView().findViewById(R.id.publish_new_btn);
         publishArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 publishNew();
+            }
+        });
+        cancelButton =(Button)getView().findViewById(R.id.publish_cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -233,13 +253,7 @@ public class PublishArticleFragment extends Fragment {
     }
 
     private void finish() {
-        String tag=getActivity().getBaseContext().getResources().getString(R.string.list_news);
-        ArticleListFragment fragment2=new ArticleListFragment();
-        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame,fragment2,tag);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        ((MainActivity)getActivity()).finish();
     }
 
     private void getImage() {

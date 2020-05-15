@@ -3,6 +3,8 @@ package com.appnewspaper;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.Spanned;
@@ -53,17 +55,18 @@ public class MyAdapter extends ArrayAdapter<Article> {
         ImageView imageList = (ImageView) convertView.findViewById(R.id.imageArticleAfter);
         ImageButton editListArticle = (ImageButton) convertView.findViewById(R.id.buttonEditArticle);
         ImageButton deleteListArticle = (ImageButton) convertView.findViewById(R.id.buttonDeleteArticle);
-
-        try {
-            imageList.setImageBitmap(base64StringToImg(item.getImage().getImage()));
-            Spanned title = Html.fromHtml(item.getTitleText());
-            listTitle.setText(title);
-            listCategory.setText(item.getCategory());
-            Spanned abstractArticle = Html.fromHtml(item.getAbstractText());
-            listAbstract.setText(abstractArticle);
-        } catch (ServerCommunicationError serverCommunicationError) {
-            serverCommunicationError.printStackTrace();
-        }
+        Bitmap bitmap= null;
+            try{
+                bitmap=base64StringToImg(item.getImage().getImage());
+            }catch (Exception e){
+                bitmap= BitmapFactory.decodeResource(mContext.getResources(),R.drawable.ic_news_foreground);
+            }
+        imageList.setImageBitmap(bitmap);
+        Spanned title = Html.fromHtml(item.getTitleText());
+        listTitle.setText(title);
+        listCategory.setText(item.getCategory());
+        Spanned abstractArticle = Html.fromHtml(item.getAbstractText());
+        listAbstract.setText(abstractArticle);
 
 
         imageList.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +134,7 @@ public class MyAdapter extends ArrayAdapter<Article> {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Me quedo donde estoyi
-                        dialog.dismiss();
+                        ((MainActivity)mContext).finish();
                     }
                 });
 

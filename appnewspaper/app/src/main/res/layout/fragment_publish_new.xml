@@ -89,6 +89,13 @@
             app:srcCompat="@drawable/ic_news_foreground"
             tools:ignore="VectorDrawableCompat"
             android:layout_marginTop="18sp" />
+
+        <ImageButton
+            android:id="@+id/image_btn_add_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_camera" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,14 +107,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
-        <Button
-            android:id="@+id/publish_new_btn"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:text="@string/add_new"
-            android:textColor="@color/colorLight"
-            android:layout_marginTop="@dimen/marginTopBtn" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/publish_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorLight"
+                android:text="@string/cancel"
+                android:textColor="@color/colorDark"
+                android:layout_marginTop="@dimen/marginTopBtn" />
+
+            <Button
+                android:id="@+id/publish_new_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:text="@string/add_new"
+                android:textColor="@color/colorLight"
+                android:layout_marginTop="@dimen/marginTopBtn" />
+        </LinearLayout>
 
     </LinearLayout>
     </ScrollView>

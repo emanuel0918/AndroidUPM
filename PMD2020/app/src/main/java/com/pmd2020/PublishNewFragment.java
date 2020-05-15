@@ -1,12 +1,14 @@
 package com.pmd2020;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +72,9 @@ public class PublishNewFragment extends Fragment {
         ((Button)getView().findViewById(R.id.publish_new_btn)).setEnabled(false);
         //
         //
+        DialogInterface.OnClickListener clickListener=null;
+        //
+        //
         FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
         SomeDialog builder=new SomeDialog();
         if(!(((EditText)getView().findViewById(R.id.title)).getText().toString().equals("")) &&
@@ -104,6 +109,12 @@ public class PublishNewFragment extends Fragment {
                         );
                 builder.setTitle(new_published);
                 builder.setMessage("");
+                clickListener=new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                };
             }catch(Exception e){
 
             }finally {
@@ -162,11 +173,21 @@ public class PublishNewFragment extends Fragment {
                         R.string.ok
                 );
 
-        builder.setPositiveButton(accept_btn,null);
+        builder.setPositiveButton(accept_btn,clickListener);
         builder.show(transaction,"dialog");
         //
         //
         publishArticleButton.setEnabled(true);
+    }
+
+    private void finish() {
+        String tag=getActivity().getBaseContext().getResources().getString(R.string.list_news);
+        NewListFragment fragment = new NewListFragment();
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_frame,fragment,tag);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     private void getImage() {
