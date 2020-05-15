@@ -161,4 +161,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
 
     }
+
+    public void publishArticle(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PublishArticleFragment()).commit();
+        navigationView.getMenu().getItem(0).setChecked(true);
+        getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
+
+    }
 }

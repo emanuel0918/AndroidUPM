@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class ArticleListFragment extends Fragment {
 
 
     private ListView newListView;
+    private FloatingActionButton publishArticlefloatingButton;
     private SharedPreferences rememberMe;
 
     public ArticleListFragment() {
@@ -53,6 +55,13 @@ public class ArticleListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
+        publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
+        publishArticlefloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publishArticle();
+            }
+        });
         List<Article> articles=null;
         Article a;
         try {
@@ -73,6 +82,10 @@ public class ArticleListFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
 
         }
+    }
+
+    private void publishArticle() {
+        ((MainActivity)getActivity()).publishArticle();
     }
 
 }

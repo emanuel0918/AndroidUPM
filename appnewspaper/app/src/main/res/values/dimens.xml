@@ -16,4 +16,6 @@
     <dimen name="textSizeNewAbstract">10dp</dimen>
     <dimen name="card_view_radius">15dp</dimen>
     <dimen name="spinnerHeight">29dp</dimen>
+    <dimen name="floating_btn_padding">10dp</dimen>
+    <dimen name="floating_btn_size">40dp</dimen>
 </resources>
