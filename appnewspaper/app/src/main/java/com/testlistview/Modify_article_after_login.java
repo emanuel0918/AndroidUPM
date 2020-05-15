@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,6 +20,7 @@ import com.appnewspaper.MainActivityAfterLogin;
 
 import com.appnewspaper.R;
 import com.appnewspaper.model.Article;
+import com.appnewspaper.model.Image;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 
@@ -26,6 +30,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +41,7 @@ import android.widget.TextView;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -135,13 +141,19 @@ public class Modify_article_after_login extends AppCompatActivity {
                     rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                     Map<String, ?> map = rememberMe.getAll();
                     String userId = (String) map.get("idUser");
-                    newModifArticle = new Article(addCategory, titleAccept, abstractAccept, bodyAccept, subTitleAccept, userId);
+                    article.setTitleText(titleAccept);
+                    article.setCategory(addCategory);
+                    article.setAbstractText(abstractAccept);
+                    article.setBodyText(bodyAccept);
+                    article.setSubtitleText(subTitleAccept);
+
+                    //newModifArticle = new Article(addCategory, titleAccept, abstractAccept, bodyAccept, subTitleAccept, userId);
                     try {
                         String imageDescription = article.getImage().getDescription();
                         thumbail = imgToBase64String(bitmap);
-                        newModifArticle.addImage(thumbail, imageDescription);
-
-                        AddArticleTask.article = newModifArticle;
+                        Image image = new Image(0,imageDescription, article.getId(), thumbail);
+                        article.setImage(image);
+                        AddArticleTask.article = article;
                         AddArticleTask saveArticle = new AddArticleTask();
                         saveArticle.execute();
                         newModifArticle = saveArticle.get();
@@ -274,12 +286,25 @@ public class Modify_article_after_login extends AppCompatActivity {
     }
 
     public String[] setcategory(String categoryArticle) {
+        //Only English
+        //Resources standardResources = Modify_article_after_login.this.getResources();
+        //AssetManager assets = standardResources.getAssets();
+        //DisplayMetrics metrics = standardResources.getDisplayMetrics();
+        //Configuration config = new Configuration(standardResources.getConfiguration());
+        //config.locale = Locale.US;
+        //Resources defaultResources = new Resources(assets, metrics, config);
+        //String[] set = defaultResources.getStringArray(R.array.category);
         String[] set = getResources().getStringArray(R.array.category);
-        int index=0;
-        for(int i=0;i<set.length;i++){
-            if(categoryArticle.equals(set[i])){
-                index=i;
-            }
+        int index;
+        if(categoryArticle.equals("National") || categoryArticle.equals("Natconal")){
+            index=0;
+        }else if(categoryArticle.equals("Economy") || categoryArticle.equals("Economia") ||
+        categoryArticle.equals("Economía")){
+            index=1;
+        }else if(categoryArticle.equals("Sports") || categoryArticle.equals("Deportes")){
+            index=2;
+        }else {
+            index=3;
         }
         set[index]=categoryArticle;
         return set;
