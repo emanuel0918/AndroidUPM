@@ -115,6 +115,7 @@ public class PublishArticleFragment extends Fragment {
                         reload_articles();
                     }
                 });
+                builder.show(transaction,"dialog");
             }
         });
 
