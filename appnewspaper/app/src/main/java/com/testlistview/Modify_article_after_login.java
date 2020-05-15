@@ -296,15 +296,18 @@ public class Modify_article_after_login extends AppCompatActivity {
         //String[] set = defaultResources.getStringArray(R.array.category);
         String[] set = getResources().getStringArray(R.array.category);
         int index;
-        if(categoryArticle.equals("National") || categoryArticle.equals("Natconal")){
+        if(categoryArticle.equals("National") || categoryArticle.equals("Nacional")){
             index=0;
         }else if(categoryArticle.equals("Economy") || categoryArticle.equals("Economia") ||
         categoryArticle.equals("Economía")){
             index=1;
         }else if(categoryArticle.equals("Sports") || categoryArticle.equals("Deportes")){
             index=2;
-        }else {
+        }else if(categoryArticle.equals("Tecnology") || categoryArticle.equals("Tecnologia") ||
+        categoryArticle.equals("Tecnologia")){
             index=3;
+        }else{
+            index=4;
         }
         set[index]=categoryArticle;
         return set;
