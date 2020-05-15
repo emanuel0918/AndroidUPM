@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.testlistview.Modify_article_after_login"
+    tools:context="com.testlistview.Modify_article_after_login"
     tools:showIn="@layout/activity_modify_article_after_login">
 
     <LinearLayout
@@ -116,15 +116,6 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/saveModify"
-                android:layout_width="159dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="30dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/saveModify" />
-
-            <Button
                 android:id="@+id/cancelModify"
                 android:layout_width="159dp"
                 android:layout_height="74dp"
@@ -134,6 +125,15 @@
                 android:text="@string/cancelModify"
                 android:textColor="#FAFFFFFF"
                 android:textColorLink="#3949AB" />
+
+            <Button
+                android:id="@+id/saveModify"
+                android:layout_width="159dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/saveModify" />
         </LinearLayout>
 
     </LinearLayout>

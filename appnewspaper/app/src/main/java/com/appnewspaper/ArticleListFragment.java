@@ -28,10 +28,10 @@ import java.util.concurrent.ExecutionException;
 
 public class ArticleListFragment extends Fragment {
     private boolean session;
+    private boolean stayLogged;
 
 
     private ListView newListView;
-    private FloatingActionButton publishArticlefloatingButton;
     private SharedPreferences rememberMe;
 
     public ArticleListFragment() {
@@ -47,7 +47,19 @@ public class ArticleListFragment extends Fragment {
         //Sesion
         rememberMe = getActivity().getBaseContext().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
-        session = (Boolean) map.get("session");
+        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        if (mantenerSesion == null) {
+            SharedPreferences.Editor editorTwo = rememberMe.edit();
+            editorTwo = rememberMe.edit();
+            editorTwo.putBoolean("session", false);
+            session=false;
+            editorTwo.commit();
+        }else{
+            stayLogged=mantenerSesion;
+            if(!session) {
+                session = mantenerSesion;
+            }
+        }
         return inflater.inflate(R.layout.fragment_new_list, container, false);
     }
 
@@ -55,13 +67,6 @@ public class ArticleListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
-        publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
-        publishArticlefloatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                publishArticle();
-            }
-        });
         List<Article> articles=null;
         Article a;
         try {
@@ -73,10 +78,25 @@ public class ArticleListFragment extends Fragment {
 
         }
         if(session){
+            FloatingActionButton publishArticlefloatingButton;
+            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
+            publishArticlefloatingButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    publishArticle();
+                }
+            });
+            publishArticlefloatingButton.show();
             MyAdapter articleAdapter= new MyAdapter(getActivity().getApplicationContext(),(ArrayList<Article>)articles);
+            //IMPORTANTE
+            articleAdapter.setActivity(getActivity());
+            //
             newListView.setAdapter(articleAdapter);
             super.onViewCreated(view, savedInstanceState);
         }else{
+            FloatingActionButton publishArticlefloatingButton;
+            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
+            publishArticlefloatingButton.hide();
             ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),articles);
             newListView.setAdapter(articleAdapter);
             super.onViewCreated(view, savedInstanceState);

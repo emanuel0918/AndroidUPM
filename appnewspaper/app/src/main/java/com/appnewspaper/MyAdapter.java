@@ -5,7 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -31,10 +32,17 @@ import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class MyAdapter extends ArrayAdapter<Article> {
     Context mContext;
+    FragmentActivity activity;
+    FragmentTransaction transaction;
+
+    public void setActivity(FragmentActivity activity) {
+        this.activity = activity;
+    }
 
     public MyAdapter(Context context, ArrayList<Article> records) {
         super(context, 0, records);
         mContext = context;
+        this.activity=activity;
     }
 
     @NonNull
@@ -86,7 +94,8 @@ public class MyAdapter extends ArrayAdapter<Article> {
         deleteListArticle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                SomeDialog builder= new SomeDialog();
                 builder.setTitle(mContext.getResources().getString(R.string.warning));
                 builder.setMessage(mContext.getResources().getString(R.string.confirm_deleting));
 
@@ -103,26 +112,26 @@ public class MyAdapter extends ArrayAdapter<Article> {
 
                         } catch (ExecutionException e) {
                             e.printStackTrace();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                            SomeDialog builder = new SomeDialog();
                             builder.setTitle(mContext.getResources().getString(R.string.warning));
                             builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
+                            builder.show(transaction,"dialog");
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                            SomeDialog builder= new SomeDialog();
                             builder.setTitle(mContext.getResources().getString(R.string.warning));
                             builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
+                            builder.show(transaction,"dialog");
 
                         }
-                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                        SomeDialog builder= new SomeDialog();
                         builder.setTitle(mContext.getResources().getString(R.string.warning));
                         builder.setMessage(mContext.getResources().getString(R.string.deleted));
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
+                        builder.show(transaction,"dialog");
                         Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
                         goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         mContext.getApplicationContext().startActivity(goMainAfterLogin);
@@ -133,12 +142,11 @@ public class MyAdapter extends ArrayAdapter<Article> {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Me quedo donde estoyi
-                        ((MainActivity)mContext).finish();
+                        ((MainActivity)activity).finish();
                     }
                 });
 
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                builder.show(transaction,"dialog");
             }
         });
 

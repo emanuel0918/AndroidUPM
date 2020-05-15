@@ -23,7 +23,8 @@
                 android:layout_width="406dp"
                 android:layout_height="177dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="22dp" />
+                android:layout_marginBottom="22dp"
+                android:src="@mipmap/img_article"/>
 
             <TextView
                 android:id="@+id/categoryArticle"
