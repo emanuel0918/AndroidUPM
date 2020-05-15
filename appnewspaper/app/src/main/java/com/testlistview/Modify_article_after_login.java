@@ -307,7 +307,7 @@ public class Modify_article_after_login extends AppCompatActivity {
         categoryArticle.equals("Tecnologia")){
             index=3;
         }else{
-            index=4;
+            index=1;
         }
         set[index]=categoryArticle;
         return set;
