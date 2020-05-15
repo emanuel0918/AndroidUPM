@@ -63,5 +63,18 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_floating_btn"
+        android:layout_marginRight="@dimen/floating_btn_padding"
+        android:layout_marginBottom="@dimen/floating_btn_padding"
+        android:src="@drawable/ic_login"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </android.support.constraint.ConstraintLayout>

@@ -18,7 +18,7 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/publish_new_floating_bnt"
+            android:id="@+id/publish_new_floating_btn"
             android:layout_marginRight="@dimen/floating_btn_padding"
             android:layout_marginBottom="@dimen/floating_btn_padding"
             android:src="@drawable/ic_add"

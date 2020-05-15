@@ -81,7 +81,7 @@ public class ArticleListFragment extends Fragment {
         }
         if(session){
             FloatingActionButton publishArticlefloatingButton;
-            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
+            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_btn));
             publishArticlefloatingButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -97,7 +97,7 @@ public class ArticleListFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
         }else{
             FloatingActionButton publishArticlefloatingButton;
-            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_bnt));
+            publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_btn));
             publishArticlefloatingButton.hide();
             ArticleAdapter articleAdapter= new ArticleAdapter(getActivity().getApplicationContext(),articles);
             newListView.setAdapter(articleAdapter);

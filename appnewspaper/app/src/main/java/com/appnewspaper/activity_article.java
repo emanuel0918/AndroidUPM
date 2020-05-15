@@ -93,9 +93,27 @@ public class activity_article extends Activity {
          htmlAsSpanned = Html.fromHtml(article.getBodyText());
         body.setText(htmlAsSpanned);
 
+        if(!session){
+            FloatingActionButton login_btn=(FloatingActionButton)findViewById(R.id.login_floating_btn);
+            login_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    login();
+                }
+            });
+            login_btn.show();
+        }else{
+            FloatingActionButton login_btn=(FloatingActionButton)findViewById(R.id.login_floating_btn);
+            login_btn.hide();
+
+        }
 
 
+    }
 
+    private void login() {
+        Intent login_intent=new Intent(activity_article.this,LoginActivity.class);
+        startActivity(login_intent);
     }
 
 
