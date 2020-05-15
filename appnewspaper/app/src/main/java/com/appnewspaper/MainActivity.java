@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         stayLogged=false;
                         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-                        editorTwo.putBoolean("session1", false);
-                        editorTwo.putBoolean("stayLogged", false);
+                        editorTwo.clear();
                         editorTwo.commit();
                         navigationView.getMenu().clear();
                         navigationView.inflateMenu(R.menu.options_general);
