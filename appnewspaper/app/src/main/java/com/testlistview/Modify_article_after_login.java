@@ -172,8 +172,8 @@ public class Modify_article_after_login extends AppCompatActivity {
                         });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
-                        Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
-                        startActivity(back_intent);
+                        //Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                        //startActivity(back_intent);
                         // reload_articles();
 
                     } catch (ExecutionException e) {
@@ -304,7 +304,7 @@ public class Modify_article_after_login extends AppCompatActivity {
         }else if(categoryArticle.equals("Sports") || categoryArticle.equals("Deportes")){
             index=2;
         }else if(categoryArticle.equals("Tecnology") || categoryArticle.equals("Tecnologia") ||
-        categoryArticle.equals("Tecnologia")){
+        categoryArticle.equals("Tecnología")){
             index=3;
         }else{
             index=1;
