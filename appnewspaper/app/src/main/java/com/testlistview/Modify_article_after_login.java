@@ -44,6 +44,7 @@ import static com.appnewspaper.utils.SerializationUtils.imgToBase64String;
 
 public class Modify_article_after_login extends AppCompatActivity {
     private boolean stayLogged;
+    private boolean session;
     private static final int PICK_IMAGE = 100;
     ImageView imageView;
     Article newModifArticle;
@@ -60,6 +61,7 @@ public class Modify_article_after_login extends AppCompatActivity {
         rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        Boolean session = (Boolean) map.get("session");
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();

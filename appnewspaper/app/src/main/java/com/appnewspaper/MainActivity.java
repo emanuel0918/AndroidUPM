@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    private boolean session;
     private boolean stayLogged;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion = (Boolean) map.get("stayLogged");
-        Boolean session = (Boolean) map.get("session");
+        Boolean sesion1 = (Boolean) map.get("session");
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
             editorTwo.commit();
         }else{
             stayLogged=mantenerSesion;
-            if(!session) {
+            session=sesion1;
+            if(!sesion1) {
                 session = mantenerSesion;
             }
         }
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         stayLogged=false;
                         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-                        editorTwo.putBoolean("session", false);
+                        editorTwo.putBoolean("session1", false);
                         editorTwo.putBoolean("stayLogged", false);
                         editorTwo.commit();
                         navigationView.getMenu().clear();

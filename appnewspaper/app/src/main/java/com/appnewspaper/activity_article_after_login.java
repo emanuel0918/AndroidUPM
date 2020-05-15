@@ -29,6 +29,7 @@ import static com.appnewspaper.utils.SerializationUtils.base64StringToImg;
 
 public class activity_article_after_login extends AppCompatActivity {
     private boolean stayLogged;
+    private boolean session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +39,19 @@ public class activity_article_after_login extends AppCompatActivity {
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        Boolean sesion1 = (Boolean) map.get("session");
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
             editorTwo.putBoolean("session", false);
+            session=false;
             editorTwo.commit();
         }else{
             stayLogged=mantenerSesion;
+            session=sesion1;
+            if(!sesion1) {
+                session = mantenerSesion;
+            }
         }
         //
 
@@ -83,6 +90,7 @@ public class activity_article_after_login extends AppCompatActivity {
         body.setText(htmlAsSpanned);
 
     }
+
 
 
     @Override

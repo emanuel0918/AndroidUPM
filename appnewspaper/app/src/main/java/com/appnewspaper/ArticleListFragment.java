@@ -48,6 +48,7 @@ public class ArticleListFragment extends Fragment {
         rememberMe = getActivity().getBaseContext().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion = (Boolean) map.get("stayLogged");
+        Boolean sesion1 = (Boolean) map.get("session");
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
@@ -56,7 +57,8 @@ public class ArticleListFragment extends Fragment {
             editorTwo.commit();
         }else{
             stayLogged=mantenerSesion;
-            if(!session) {
+            session=sesion1;
+            if(!sesion1) {
                 session = mantenerSesion;
             }
         }

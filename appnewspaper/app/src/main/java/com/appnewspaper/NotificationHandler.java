@@ -1,7 +1,7 @@
 package com.appnewspaper;
 
 import android.app.Notification;
-//import android.app.NotificationChannel;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Icon;
 import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 public class NotificationHandler extends ContextWrapper {
     private NotificationManager manager;
@@ -44,6 +45,7 @@ public class NotificationHandler extends ContextWrapper {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public Notification.Builder createNotification (String title, String msg, boolean priority) {
         if (Build.VERSION.SDK_INT>= 26) {
             if (priority) {
@@ -55,6 +57,7 @@ public class NotificationHandler extends ContextWrapper {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private Notification.Builder createNotificationWithChannels (String title, String msg, String channelID) {
         Intent intent = new Intent(this, basicActivity.class);
         intent.putExtra("title", title);
@@ -81,6 +84,7 @@ public class NotificationHandler extends ContextWrapper {
                 .setAutoCancel(true);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void publishNotificationGroup (boolean priority) {
         String channelID = CHANNEL_LOW_ID;
         if (priority) {
@@ -95,6 +99,7 @@ public class NotificationHandler extends ContextWrapper {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private Notification.Builder createNotificationWithoutChannels (String title, String msg) {
         return new Notification.Builder(getApplicationContext())
                 .setContentTitle(title)
