@@ -13,8 +13,6 @@ public class SomeDialog extends DialogFragment {
     private String button;
     private String button2;
     private int opcion;
-
-    private DialogInterface.OnClickListener clickListener;
     private DialogInterface.OnClickListener yesClickListener;
     private DialogInterface.OnClickListener noClickListener;
 
@@ -40,7 +38,7 @@ public class SomeDialog extends DialogFragment {
                 alertDialog= new AlertDialog.Builder(getActivity())
                         .setTitle(this.title)
                         .setMessage(this.message)
-                        .setPositiveButton(this.button,this.clickListener)
+                        .setPositiveButton(this.button,this.yesClickListener)
                         .create();
                 break;
             default:
@@ -49,7 +47,7 @@ public class SomeDialog extends DialogFragment {
                 alertDialog= new AlertDialog.Builder(getActivity())
                         .setTitle(this.title)
                         .setMessage(this.message)
-                        .setPositiveButton(android.R.string.ok,this.clickListener)
+                        .setPositiveButton(android.R.string.ok,this.yesClickListener)
                         .create();
                 break;
         }

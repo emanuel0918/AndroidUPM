@@ -52,6 +52,7 @@
     <string name = "cancelModify">Annuler</string>
     <string name = "cancel">Annuler</string>
     <string name = "accept">J\'accepte</string>
+    <string name = "discard_changes">Jetez-le??</string>
     <string name = "article_modified">L\'article a été modifié</string>
     <string name = "article_not_modified">Erreur lors de la modification</string>
     <string name = "modify_article">Jetez-le?</string>

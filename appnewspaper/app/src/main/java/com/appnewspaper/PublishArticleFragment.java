@@ -43,6 +43,7 @@ public class PublishArticleFragment extends Fragment {
     private ImageButton imageButton;
     private Button publishArticleButton;
     private Button cancelButton;
+    private Bitmap bitmap;
     //
     private NavigationView navigationView;
 
@@ -90,7 +91,30 @@ public class PublishArticleFragment extends Fragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reload_articles();
+                FragmentTransaction transaction =getActivity().getSupportFragmentManager().beginTransaction();
+                SomeDialog builder=new SomeDialog();
+                builder.setOpcion(SomeDialog.MULTIPLE);
+                builder.setTitle(getActivity().getApplicationContext()
+                        .getResources().getString(
+                                R.string.warning
+                        ));
+                builder.setMessage(getActivity().getApplicationContext()
+                        .getResources().getString(
+                                R.string.discard_changes
+                        ));
+                builder.setNegativeButton(getActivity().getApplicationContext()
+                        .getResources().getString(
+                                R.string.cancel
+                        ),null);
+                builder.setPositiveButton(getActivity().getApplicationContext()
+                        .getResources().getString(
+                                R.string.accept
+                        ), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        reload_articles();
+                    }
+                });
             }
         });
 
@@ -134,6 +158,7 @@ public class PublishArticleFragment extends Fragment {
                 String userId = (String) map.get("idUser");
                 Article article=new Article(category,title,abstrac,body,subtitle,userId);
                 try {
+                    b64Image = SerializationUtils.encodeImage(bitmap);
                     article.addImage(b64Image, description);
                     //article.setImage(new Image());
                 }catch (Exception ee){
@@ -175,9 +200,6 @@ public class PublishArticleFragment extends Fragment {
                 };
             }catch(Exception e){
 
-            }finally {
-                builder.setTitle(new_published);
-                builder.setMessage("");
             }
         }else{
             title_form.setError(null);
@@ -277,9 +299,8 @@ public class PublishArticleFragment extends Fragment {
                                 .getApplicationContext()
                                 .getContentResolver()
                                 .openInputStream(data.getData());
-                        Bitmap bitmap= BitmapFactory.decodeStream(stream);
+                        bitmap= BitmapFactory.decodeStream(stream);
                         imageView.setImageBitmap(bitmap);
-                        b64Image = SerializationUtils.encodeImage(bitmap);
                     }catch (Exception e){
 
                     }finally {

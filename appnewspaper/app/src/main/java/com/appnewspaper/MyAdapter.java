@@ -132,6 +132,14 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         SomeDialog builder= new SomeDialog();
                         builder.setTitle(mContext.getResources().getString(R.string.warning));
                         builder.setMessage(mContext.getResources().getString(R.string.deleted));
+
+                        builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        reload_articles();
+                                    }
+                                });
                         builder.show(transaction,"dialog");
                         //Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
                         //goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
