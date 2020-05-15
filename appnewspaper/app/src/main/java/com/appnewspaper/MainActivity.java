@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         Intent login_intent =
                 new Intent(MainActivity.this,LoginActivity.class);
         startActivity(login_intent);
-        finish();
+        reload_articles();
     }
 
 
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void finish(){
+    public void reload_articles(){
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());

@@ -133,12 +133,17 @@ public class MyAdapter extends ArrayAdapter<Article> {
                         builder.setTitle(mContext.getResources().getString(R.string.warning));
                         builder.setMessage(mContext.getResources().getString(R.string.deleted));
                         builder.show(transaction,"dialog");
-                        Intent goMainAfterLogin = new Intent(mContext, MainActivity.class);
+                        //Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
                         //goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        mContext.getApplicationContext().startActivity(goMainAfterLogin);
+                        //mContext.getApplicationContext().startActivity(goMainAfterLogin);
                     }
                 });
-                builder.setNegativeButton(mContext.getResources().getString(R.string.cancel),null);
+                builder.setNegativeButton(mContext.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        reload_articles();
+                    }
+                });
 
                 builder.show(transaction,"dialog");
             }
@@ -155,6 +160,10 @@ public class MyAdapter extends ArrayAdapter<Article> {
             }
         });
         return convertView;
+    }
+
+    private void reload_articles() {
+        ((MainActivity)activity).reload_articles();
     }
 
 

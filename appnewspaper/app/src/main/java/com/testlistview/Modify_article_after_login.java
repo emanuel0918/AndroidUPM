@@ -155,14 +155,14 @@ public class Modify_article_after_login extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
                                 startActivity(back_intent);
-                                // finish();
+                                // reload_articles();
                             }
                         });
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
                         Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
                         startActivity(back_intent);
-                        // finish();
+                        // reload_articles();
 
                     } catch (ExecutionException e) {
                         e.printStackTrace();

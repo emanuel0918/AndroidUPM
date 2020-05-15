@@ -90,7 +90,7 @@ public class PublishArticleFragment extends Fragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                reload_articles();
             }
         });
 
@@ -170,7 +170,7 @@ public class PublishArticleFragment extends Fragment {
                 clickListener=new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        reload_articles();
                     }
                 };
             }catch(Exception e){
@@ -252,8 +252,8 @@ public class PublishArticleFragment extends Fragment {
         publishArticleButton.setEnabled(true);
     }
 
-    private void finish() {
-        ((MainActivity)getActivity()).finish();
+    private void reload_articles() {
+        ((MainActivity)getActivity()).reload_articles();
     }
 
     private void getImage() {
