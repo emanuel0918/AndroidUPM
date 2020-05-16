@@ -169,6 +169,8 @@ public class Modify_article_after_login extends AppCompatActivity {
                         Image image = new Image(0,imageDescription, article.getId(), thumbail);
                         article.setImage(image);
                         AddArticleTask saveArticle = new AddArticleTask();
+                        saveArticle.setOpcion(AddArticleTask.OPCION_MODIFY_ACTIVITY);
+                        saveArticle.setModifyActivity(Modify_article_after_login.this);
                         saveArticle.setArticle(article);
                         saveArticle.execute();
                         newModifArticle = saveArticle.get();
@@ -293,19 +295,79 @@ public class Modify_article_after_login extends AppCompatActivity {
         int index;
         if(categoryArticle.equals("National") || categoryArticle.equals("Nacional")){
             index=0;
-        }else if(categoryArticle.equals("Economy") || categoryArticle.equals("Economia") ||
-        categoryArticle.equals("Economía")){
+        }else if(categoryArticle.equals("Economy") || categoryArticle.equals("Economia")){
             index=1;
         }else if(categoryArticle.equals("Sports") || categoryArticle.equals("Deportes")){
             index=2;
-        }else if(categoryArticle.equals("Tecnology") || categoryArticle.equals("Tecnologia") ||
-        categoryArticle.equals("Tecnología")){
+        }else if(categoryArticle.equals("Tecnology") || categoryArticle.equals("Tecnologia") ){
             index=3;
         }else{
             index=1;
         }
         set[index]=categoryArticle;
-        return set;
+        String new_set[]=new String[set.length];
+        for(int i=0;i<set.length;i++){
+            new_set[i]=set[i];
+        }
+        String temp=set[index];
+        new_set[0]=categoryArticle;
+        new_set[index]=temp;
+        return new_set;
+    }
+
+
+    public void error_result(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+
+        builder.setTitle(getResources().getString(
+                R.string.warning
+        ));
+        builder.setMessage(getResources().getString(
+                R.string.error_transaction
+        ));
+        builder.setPositiveButton(getResources().getString(
+                R.string.ok
+        ),new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reload_articles();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+    }
+
+
+    public void article_modified(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+
+        builder.setTitle(getResources().getString(
+                R.string.article_modified
+        ));
+        builder.setMessage(getResources().getString(
+                R.string.article_modified
+        ));
+        builder.setPositiveButton(getResources().getString(
+                R.string.ok
+        ),new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reload_articles();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+    }
+
+    private void reload_articles() {
+        Intent intent=new Intent(Modify_article_after_login.this,MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

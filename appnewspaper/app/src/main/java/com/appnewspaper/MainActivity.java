@@ -179,18 +179,68 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void someDialog(){
+    public void article_created(){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setTitle(getResources().getString(
-                        R.string.article_modified
+                        R.string.new_published
                 ));
         builder.setMessage(getResources().getString(
-                R.string.article_modified
+                R.string.new_published
         ));
         builder.setPositiveButton(getResources().getString(
                         R.string.ok
                 ),new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reload_articles();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+    }
+
+
+    public void error_result(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle(getResources().getString(
+                R.string.warning
+        ));
+        builder.setMessage(getResources().getString(
+                R.string.error_transaction
+        ));
+        builder.setPositiveButton(getResources().getString(
+                R.string.ok
+        ),new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reload_articles();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+    }
+
+
+    public void article_modified(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle(getResources().getString(
+                R.string.article_modified
+        ));
+        builder.setMessage(getResources().getString(
+                R.string.article_modified
+        ));
+        builder.setPositiveButton(getResources().getString(
+                R.string.ok
+        ),new DialogInterface.OnClickListener(){
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

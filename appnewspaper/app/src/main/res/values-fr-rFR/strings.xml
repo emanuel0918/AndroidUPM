@@ -24,6 +24,7 @@
     <string name="warning">Attention</string>
     <string name="data_incorrect">Données incorrectes</string>
     <string name="ok">D\' accord</string>
+    <string name="error_transaction">Erreur</string>
     <string name="title_activity_modify_article_after_login">Modifier l\'Article</string>
     <string-array name="category">
         <item>National</item>

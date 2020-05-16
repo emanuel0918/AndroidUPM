@@ -23,6 +23,7 @@
     <string name="warning">Warning</string>
     <string name="data_incorrect">Data incorrect</string>
     <string name="ok">Ok</string>
+    <string name="error_transaction">Something went wrong</string>
 
     <string-array name="category">
         <item>National</item>

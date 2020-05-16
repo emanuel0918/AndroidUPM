@@ -24,15 +24,14 @@
     <string name="warning">Atención</string>
     <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
+    <string name="error_transaction">Error en la operación</string>
     <string name="title_activity_modify_article_after_login">Modificar Articulo</string>
-
     <string-array name="category">
         <item>Nacional</item>
-        <item>Economía</item>
+        <item>Economia</item>
         <item>Deportes</item>
-        <item>Tecnología</item>
-    </string-array>
-    <string name="action_settings">Ajustes</string>
+        <item>Tecnologia</item>
+    </string-array>    <string name="action_settings">Ajustes</string>
     <string name="title_activity_login">Nueva Sesión</string>
     <string name="prompt_email">Correo</string>
     <string name="prompt_password">Contraseña</string>
