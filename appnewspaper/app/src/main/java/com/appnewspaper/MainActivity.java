@@ -183,9 +183,11 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setTitle(getResources().getString(
-                        R.string.warning
+                        R.string.article_modified
                 ));
-        builder.setMessage("");
+        builder.setMessage(getResources().getString(
+                R.string.article_modified
+        ));
         builder.setPositiveButton(getResources().getString(
                         R.string.ok
                 ),new DialogInterface.OnClickListener(){
