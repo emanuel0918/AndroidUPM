@@ -159,6 +159,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
         super.onDestroy();
     }
 
