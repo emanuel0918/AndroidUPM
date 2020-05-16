@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +16,16 @@ import android.support.design.widget.NavigationView;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 
 //Clase hecha para el Navigation View
 public class MainActivity extends AppCompatActivity {
+    //Filtrado
+    //public boolean CATEGORIES[];
+    public int filter;
     //Sesion
     private boolean session;
     private boolean stayLogged;
@@ -40,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         setToolbar();
+        //FILTRADO
+        filter=0;
+        //String array_categories[]=getResources().getStringArray(R.array.category);
+        //CATEGORIES =new boolean[4]; // las categorias
+        //for(int i = 0; i< CATEGORIES.length; i++){
+        //    CATEGORIES[i]=false;
+        //}
+        //
+        //
+
         //Sesion
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
@@ -107,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         f = new PublishArticleFragment();
                         break;
                     case R.id.menu_2:
+                        filter=-1;
                         f = new ArticleListFragment();
                         break;
                     case R.id.menu_logout:
@@ -118,9 +129,26 @@ public class MainActivity extends AppCompatActivity {
                         editorTwo.commit();
                         navigationView.getMenu().clear();
                         navigationView.inflateMenu(R.menu.options_general);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
-                        navigationView.getMenu().getItem(1).setChecked(true);
                         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
+                        navigationView.getMenu().getItem(1).setChecked(true);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
+
+                        break;
+                    case R.id.category1:
+                        filter=0;
+                        f = new ArticleListFragment();
+                        break;
+                    case R.id.category2:
+                        filter=1;
+                        f = new ArticleListFragment();
+                        break;
+                    case R.id.category3:
+                        filter=2;
+                        f = new ArticleListFragment();
+                        break;
+                    case R.id.category4:
+                        filter=3;
+                        f = new ArticleListFragment();
                         break;
                     //case R.id.otras_1:
                         // f = new MyArticleListFragment();

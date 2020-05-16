@@ -79,13 +79,54 @@ public class ArticleListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
+        ArrayList<String> categorias_por_filtrar=new ArrayList<>(); //Agregamos las categorias del strings.xml
         List<Article> articles=null;
+        List<Article> articles_non_filtered=null;
         Article a;
         try {
             AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
             //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
             //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
-             articles = p.get();
+             articles_non_filtered = p.get();
+             articles=new ArrayList<>();
+             boolean filtrar=false;
+             int filtro=((MainActivity)getActivity()).filter;
+             switch (filtro) {
+                 case 0:
+                     categorias_por_filtrar.add("National");
+                     categorias_por_filtrar.add("Nacional");
+                     filtrar=true;
+                     break;
+                 case 1:
+                     categorias_por_filtrar.add("Economy");
+                     categorias_por_filtrar.add("Economia");
+                     filtrar=true;
+                     break;
+                 case 2:
+                     categorias_por_filtrar.add("Sports");
+                     categorias_por_filtrar.add("Deportes");
+                     filtrar=true;
+                     break;
+                 case 3:
+                     categorias_por_filtrar.add("Technology");
+                     categorias_por_filtrar.add("Tecnologia");
+                     filtrar=true;
+                     break;
+                 default:
+                     break;
+             }
+            if(filtrar){
+                 for(Article article_category:articles_non_filtered){
+                     for(String category_resource:categorias_por_filtrar){
+                         if(article_category.getCategory().equals(category_resource)){
+                             articles.add(article_category);
+                         }
+                     }
+                 }
+             }else {
+                 articles=articles_non_filtered; //Opcion para no filtrar
+             }
+
         } catch (Exception er) {
 
         }
