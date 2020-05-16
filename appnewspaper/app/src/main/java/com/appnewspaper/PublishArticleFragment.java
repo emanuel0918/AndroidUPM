@@ -228,7 +228,7 @@ public class PublishArticleFragment extends Fragment {
                 addArticleTask = (AddArticleTask) new AddArticleTask();
                 addArticleTask.setOpcion(AddArticleTask.OPCION_MAIN_ACTIVITY);
                 addArticleTask.setMainActivity((MainActivity)getActivity());
-                addArticleTask.setArticle(article);
+                addArticleTask.article=article;
                 try {
                     addArticleTask.execute();
                 }catch (Exception e){

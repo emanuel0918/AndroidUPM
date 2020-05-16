@@ -160,7 +160,7 @@ public class NewArticleActivity extends AppCompatActivity {
                     //Hago llamada a model manager
 
                     AddArticleTask addArticleTask = (AddArticleTask) new AddArticleTask();
-                    addArticleTask.setArticle(newModifArticle);
+                    addArticleTask.article = newModifArticle;
                     addArticleTask.execute();
 
                     try {

@@ -15,7 +15,7 @@ import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 import com.testlistview.Modify_article_after_login;
 
 public class AddArticleTask extends AsyncTask<Void, Void, Article> {
-    private Article article;
+    public static Article article;
     public static final int OPCION_MAIN_ACTIVITY=1;
     public static final int OPCION_MODIFY_ACTIVITY=2;
     private int opcion;
@@ -33,26 +33,6 @@ public class AddArticleTask extends AsyncTask<Void, Void, Article> {
 
     public void setModifyActivity(Modify_article_after_login activity) {
         this.modifyActivity = activity;
-    }
-
-    public void setArticle(Article article) {
-        this.article = new Article(
-                article.getCategory(),
-                article.getTitleText(),
-                article.getAbstractText(),
-                article.getBodyText(),
-                article.getSubtitleText(),
-                article.getIdUser()+"");
-        try {
-            this.article.addImage(article.getImage().getImage(),article.getImage().getDescription());
-
-        }catch (Exception e){
-            try {
-                this.article.addImage(SerializationUtils.IMG_STRING, "description");
-            }catch (Exception ee){
-            }
-
-        }
     }
 
     @Override

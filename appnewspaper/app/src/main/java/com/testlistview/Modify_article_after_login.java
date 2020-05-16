@@ -171,7 +171,7 @@ public class Modify_article_after_login extends AppCompatActivity {
                         AddArticleTask saveArticle = new AddArticleTask();
                         saveArticle.setOpcion(AddArticleTask.OPCION_MODIFY_ACTIVITY);
                         saveArticle.setModifyActivity(Modify_article_after_login.this);
-                        saveArticle.setArticle(article);
+                        saveArticle.article=article;
                         saveArticle.execute();
                         newModifArticle = saveArticle.get();
                         //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
