@@ -20,6 +20,10 @@ public class DBArticles {
     public static void init(Context context){
         helper=new ArticleDatabaseHelper(context);
     }
+
+
+
+    //
     public static ArrayList<Article> loadAllArticles(){
         ArrayList<Article> articles=new ArrayList<>();
         Article article;
@@ -79,6 +83,7 @@ public class DBArticles {
     public static void saveArticle(Article article){
         SQLiteDatabase db =helper.getWritableDatabase();
         ContentValues values=new ContentValues();
+        values.put(Constants.DB_TABLE_FIELD_ID, article.getId());
         values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
         values.put(Constants.DB_TABLE_FIELD_SUBTITLE,article.getSubtitleText());
         values.put(Constants.DB_TABLE_FIELD_ABSTRACT,article.getAbstractText());
@@ -101,5 +106,24 @@ public class DBArticles {
         insertId=db.insert(Constants.DB_TABLE_NAME,null,values);
         Log.i(TAG,"Article created");
 
+    }
+
+    public static void updateArticle(int idArticle,Article article){
+        //SQLiteDatabase db=helper.getWritableDatabase();
+        //String where="ID = ?";
+        //String id=idArticle+"";
+        deleteArticle(idArticle);
+        article.setId(idArticle);
+        saveArticle(article);
+        //db.update(Constants.DB_TABLE_NAME,where,new String[]{id});
+    }
+
+    public static void deleteArticle(int idArticle){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String where=Constants.DB_TABLE_FIELD_ID+" = ?";
+        String id=idArticle+"";
+        long insertId;
+        insertId=db.delete(Constants.DB_TABLE_NAME,where,new String[]{id});
+        Log.i(TAG,"Article deleted");
     }
 }

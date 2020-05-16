@@ -31,6 +31,7 @@
     <string name="category_name2">Economy</string>
     <string name="category_name3">Sports</string>
     <string name="category_name4">Technology</string>
+    <string name="category_name_all">Tout</string>
     <string-array name="category">
         <item>National</item>
         <item>Economy</item>

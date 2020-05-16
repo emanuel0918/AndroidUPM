@@ -21,6 +21,7 @@ import com.appnewspaper.MainActivityAfterLogin;
 import com.appnewspaper.R;
 import com.appnewspaper.model.Article;
 import com.appnewspaper.model.Image;
+import com.appnewspaper.utils.SerializationUtils;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 
@@ -109,8 +110,14 @@ public class Modify_article_after_login extends AppCompatActivity {
             Spanned htmlAsSpanned;
             imageView = (ImageView)findViewById(R.id.imageModify);
             thumbail = article.getImage().getImage();
-            imageView.setImageBitmap(base64StringToImg(article.getImage().getImage()));
-            bitmap = base64StringToImg(article.getImage().getImage());
+            String base64img=article.getImage().getImage();
+            bitmap=null;
+            try{
+                bitmap=base64StringToImg(base64img);
+            }catch (Exception ee){
+                bitmap= base64StringToImg(SerializationUtils.IMG_STRING);
+            }
+            imageView.setImageBitmap(bitmap);
             TextView title = (TextView) findViewById(R.id.titleModify);
             htmlAsSpanned = Html.fromHtml(article.getTitleText());
             title.setText(htmlAsSpanned);

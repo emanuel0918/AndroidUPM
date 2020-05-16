@@ -55,8 +55,8 @@ public class MyArticleListFragment extends Fragment {
 
         }
 
-        MyAdapter articleAdapter= new MyAdapter(getActivity().getApplicationContext(),myArticles);
-        newListView.setAdapter(articleAdapter);
+        //MyAdapter articleAdapter= new MyAdapter(getActivity().getApplicationContext(),myArticles);
+        //newListView.setAdapter(articleAdapter);
         super.onViewCreated(view, savedInstanceState);
     }
 }

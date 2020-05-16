@@ -12,6 +12,10 @@
         android:title="@string/category_name"  android:checkableBehavior="single">
         <menu  android:checkableBehavior="single">
             <group  android:checkableBehavior="single">
+
+                <item android:id="@+id/category_all"
+                    android:title="@string/category_name_all"
+                    android:checkable="false"/>
                 <item android:id="@+id/category1"
                     android:title="@string/category_name1"
                     android:checkable="false"/>

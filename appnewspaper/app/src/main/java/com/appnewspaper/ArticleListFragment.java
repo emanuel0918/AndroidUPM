@@ -80,57 +80,82 @@ public class ArticleListFragment extends Fragment {
         // Inflate the layout for this fragment
         newListView=(ListView)getView().findViewById(R.id.news_list);
         ArrayList<String> categorias_por_filtrar=new ArrayList<>(); //Agregamos las categorias del strings.xml
-        List<Article> articles=null;
-        List<Article> articles_non_filtered=null;
+        ArrayList<Article> articles=null;
+        List<Article> articles_non_filtered=new LinkedList<>();
         Article a;
+        try{
+            List<Article> listDB=DBArticles.loadAllArticles();
+            for(Article aDB:listDB){
+                articles_non_filtered.add(aDB);
+            }
+        }catch (Exception dbE){}
         try {
             AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
             //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
             //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
-             articles_non_filtered = p.get();
-             articles=new ArrayList<>();
-             boolean filtrar=false;
-             int filtro=((MainActivity)getActivity()).filter;
-             switch (filtro) {
-                 case 0:
-                     categorias_por_filtrar.add("National");
-                     categorias_por_filtrar.add("Nacional");
-                     filtrar=true;
-                     break;
-                 case 1:
-                     categorias_por_filtrar.add("Economy");
-                     categorias_por_filtrar.add("Economia");
-                     filtrar=true;
-                     break;
-                 case 2:
-                     categorias_por_filtrar.add("Sports");
-                     categorias_por_filtrar.add("Deportes");
-                     filtrar=true;
-                     break;
-                 case 3:
-                     categorias_por_filtrar.add("Technology");
-                     categorias_por_filtrar.add("Tecnologia");
-                     filtrar=true;
-                     break;
-                 default:
-                     break;
-             }
-            if(filtrar){
-                 for(Article article_category:articles_non_filtered){
-                     for(String category_resource:categorias_por_filtrar){
-                         if(article_category.getCategory().equals(category_resource)){
-                             articles.add(article_category);
-                         }
-                     }
-                 }
-             }else {
-                 articles=articles_non_filtered; //Opcion para no filtrar
+             //articles_non_filtered = p.get();
+             List<Article> listSE=p.get();
+             for(Article aSE:listSE){
+                 articles_non_filtered.add(aSE);
              }
 
         } catch (Exception er) {
 
         }
+
+         //
+         //
+         //FILTRADO
+         articles=new ArrayList<>();
+         boolean filtrar=false;
+         int filtro=((MainActivity)getActivity()).filter;
+         switch (filtro) {
+             case 0:
+                 categorias_por_filtrar.add("National");
+                 categorias_por_filtrar.add("Nacional");
+                 filtrar=true;
+                 break;
+             case 1:
+                 categorias_por_filtrar.add("Economy");
+                 categorias_por_filtrar.add("Economia");
+                 filtrar=true;
+                 break;
+             case 2:
+                 categorias_por_filtrar.add("Sports");
+                 categorias_por_filtrar.add("Deportes");
+                 filtrar=true;
+                 break;
+             case 3:
+                 categorias_por_filtrar.add("Technology");
+                 categorias_por_filtrar.add("Tecnologia");
+                 filtrar=true;
+                 break;
+             default:
+                 break;
+         }
+        if(filtrar){
+             for(Article article_category:articles_non_filtered){
+                 for(String category_resource:categorias_por_filtrar){
+                     if(article_category.getCategory().equals(category_resource)){
+                         articles.add(article_category);
+                     }
+                 }
+             }
+         }else {
+            //Opcion para no filtrar
+            for(Article artic:articles_non_filtered){
+                articles.add(artic);
+            }
+         }
+        //
+        //
+
+        //Interfaz
+        //
         if(session){
+            //Interfaz del usuario que haya iniciado sesion
+            //
+            //
             FloatingActionButton publishArticlefloatingButton;
             publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_btn));
             publishArticlefloatingButton.setOnClickListener(new View.OnClickListener() {
@@ -140,13 +165,16 @@ public class ArticleListFragment extends Fragment {
                 }
             });
             publishArticlefloatingButton.show();
-            MyAdapter articleAdapter= new MyAdapter(getActivity().getApplicationContext(),(ArrayList<Article>)articles);
+            MyAdapter articleAdapter= new MyAdapter(getActivity().getBaseContext(),articles);
             //IMPORTANTE
             articleAdapter.setActivity(getActivity());
             //
             newListView.setAdapter(articleAdapter);
             super.onViewCreated(view, savedInstanceState);
         }else{
+            //Interfaz del usuario que no haya iniciado sesion
+            //
+            //
             FloatingActionButton publishArticlefloatingButton;
             publishArticlefloatingButton= (FloatingActionButton)getView().findViewById((R.id.publish_new_floating_btn));
             publishArticlefloatingButton.hide();

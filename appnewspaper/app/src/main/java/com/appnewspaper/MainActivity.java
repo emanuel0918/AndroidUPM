@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setToolbar();
         //FILTRADO
-        filter=0;
+        filter=-1;
         //String array_categories[]=getResources().getStringArray(R.array.category);
         //CATEGORIES =new boolean[4]; // las categorias
         //for(int i = 0; i< CATEGORIES.length; i++){
@@ -93,18 +93,27 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         //
+
+        //Interfaz del MainActivity (con navigation view)
+        //
+        //
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().clear();
+        //Interfaz dinamica
         if(session){
+            //Interfaz para el usuario que previamente ha iniciado sesion
             navigationView.inflateMenu(R.menu.options_user);
         }else{
+            //Interfaz para el usuario general
             navigationView.inflateMenu(R.menu.options_general);
         }
+        //
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
 
+        //Control de los botones en el menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -133,6 +142,10 @@ public class MainActivity extends AppCompatActivity {
                         navigationView.getMenu().getItem(1).setChecked(true);
                         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
 
+                        break;
+                    case R.id.category_all:
+                        filter=-1;
+                        f = new ArticleListFragment();
                         break;
                     case R.id.category1:
                         filter=0;

@@ -65,7 +65,7 @@ public class MainActivityAfterLogin extends AppCompatActivity {
             final List<Article> articles2 = p.get();
             ListView listNews = (ListView) findViewById(R.id.listNewsAfterLogin);
             ArrayList<Article> myData = (ArrayList<Article>) articles2;
-            MyAdapter adapter = new MyAdapter(this, myData);
+            MyAdapter adapter = new MyAdapter(MainActivityAfterLogin.this, myData);
             listNews.setAdapter(adapter);
 
         } catch (ExecutionException e) {

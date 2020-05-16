@@ -1,3 +1,4 @@
+
 package com.appnewspaper;
 
 import android.content.Context;
@@ -21,6 +22,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 
+import com.appnewspaper.db.DBArticles;
 import com.appnewspaper.model.Article;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 import com.testlistview.Modify_article_after_login;
@@ -42,7 +44,6 @@ public class MyAdapter extends ArrayAdapter<Article> {
     public MyAdapter(Context context, ArrayList<Article> records) {
         super(context, 0, records);
         mContext = context;
-        this.activity=activity;
     }
 
     @NonNull
@@ -102,50 +103,59 @@ public class MyAdapter extends ArrayAdapter<Article> {
 
                 builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
                         new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //Añadir
-                        DeleteArticleTask.id = item.getId();
-                        DeleteArticleTask delete = new DeleteArticleTask();
-                        delete.execute();
-                        try {
-                            int i = delete.get();
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //
+                                //
+                                //BORRAR EN LA BD
+                                try{
+                                    DBArticles.deleteArticle(item.getId());
+                                }catch (Exception e){
 
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                            transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
-                            SomeDialog builder = new SomeDialog();
-                            builder.setTitle(mContext.getResources().getString(R.string.warning));
-                            builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
-                            builder.show(transaction,"dialog");
+                                }
+                                //
+                                //
+                                DeleteArticleTask.id = item.getId();
+                                DeleteArticleTask delete = new DeleteArticleTask();
+                                delete.execute();
+                                try {
+                                    int i = delete.get();
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                            transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
-                            SomeDialog builder= new SomeDialog();
-                            builder.setTitle(mContext.getResources().getString(R.string.warning));
-                            builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
-                            builder.show(transaction,"dialog");
+                                } catch (ExecutionException e) {
+                                    e.printStackTrace();
+                                    transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                                    SomeDialog builder = new SomeDialog();
+                                    builder.setTitle(mContext.getResources().getString(R.string.warning));
+                                    builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
+                                    builder.show(transaction,"dialog");
 
-                        }
-                        transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
-                        SomeDialog builder= new SomeDialog();
-                        builder.setTitle(mContext.getResources().getString(R.string.warning));
-                        builder.setMessage(mContext.getResources().getString(R.string.deleted));
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                    transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                                    SomeDialog builder= new SomeDialog();
+                                    builder.setTitle(mContext.getResources().getString(R.string.warning));
+                                    builder.setMessage(mContext.getResources().getString(R.string.error_deleting));
+                                    builder.show(transaction,"dialog");
 
-                        builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        reload_articles();
-                                    }
-                                });
-                        builder.show(transaction,"dialog");
-                        //Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
-                        //goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //mContext.getApplicationContext().startActivity(goMainAfterLogin);
-                    }
-                });
+                                }
+                                transaction =((MainActivity)activity).getSupportFragmentManager().beginTransaction();
+                                SomeDialog builder= new SomeDialog();
+                                builder.setTitle(mContext.getResources().getString(R.string.warning));
+                                builder.setMessage(mContext.getResources().getString(R.string.deleted));
+
+                                builder.setPositiveButton(mContext.getResources().getString(R.string.accept),
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                reload_articles();
+                                            }
+                                        });
+                                builder.show(transaction,"dialog");
+                                //Intent goMainAfterLogin = new Intent(mContext, MainActivityAfterLogin.class);
+                                //goMainAfterLogin.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                //mContext.getApplicationContext().startActivity(goMainAfterLogin);
+                            }
+                        });
                 builder.setNegativeButton(mContext.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

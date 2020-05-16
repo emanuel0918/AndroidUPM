@@ -33,8 +33,7 @@ public abstract class ModelEntity {
     @SuppressWarnings("unchecked")
     public JSONObject toJSON(){
         JSONObject jsonArticle = new JSONObject();
-        if(getId()>0)
-            jsonArticle.put("id", getId());
+        if(getId()>0) jsonArticle.put("id", String.valueOf(getId()));
 
         Hashtable<String,String> res = getAttributes();
         Enumeration<String> keys = res.keys();
