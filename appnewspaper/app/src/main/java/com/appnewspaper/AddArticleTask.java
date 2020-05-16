@@ -1,6 +1,8 @@
 package com.appnewspaper;
 
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import com.appnewspaper.model.Article;
 import com.appnewspaper.utils.network.ModelManager;
@@ -8,7 +10,12 @@ import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
 public class AddArticleTask extends AsyncTask<Void, Void, Article> {
     public static Article article;
+    private MainActivity activity;
 
+
+    public void setActivity(MainActivity activity) {
+        this.activity = activity;
+    }
     @Override
     protected Article doInBackground(Void... voids) {
 
@@ -22,4 +29,10 @@ public class AddArticleTask extends AsyncTask<Void, Void, Article> {
         return article;
     }
 
+    @Override
+    protected void onPostExecute(Article article) {
+        ((MainActivity)this.activity).someDialog();
+        super.onPostExecute(article);
+
+    }
 }

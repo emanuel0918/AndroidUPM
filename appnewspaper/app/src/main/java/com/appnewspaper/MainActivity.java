@@ -2,11 +2,14 @@ package com.appnewspaper;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.design.widget.NavigationView;
@@ -18,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 
 //Clase hecha para el Navigation View
@@ -58,14 +62,19 @@ public class MainActivity extends AppCompatActivity {
             session=false;
             editorTwo.commit();
         }else{
-            LoadLoginTask loginTask =new LoadLoginTask();
-            loginTask.stayLoggin=mantenerSesion;
-            loginTask.user= (String) map.get("user");
-            loginTask.password= (String) map.get("password");
-            loginTask.apiKey= (String) map.get("apiKey");
-            loginTask.authType= (String) map.get("authUser");
-            loginTask.execute();
-            String result=loginTask.get();
+            LoadLoginTask loginTask;
+            try {
+                loginTask = new LoadLoginTask();
+                loginTask.stayLoggin=mantenerSesion;
+                loginTask.user= (String) map.get("user");
+                loginTask.password= (String) map.get("password");
+                loginTask.apiKey= (String) map.get("apiKey");
+                loginTask.authType= (String) map.get("authUser");
+                loginTask.execute();
+                String result=loginTask.get();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             stayLogged=mantenerSesion;
             session=sesion1;
@@ -166,6 +175,29 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PublishArticleFragment()).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
+
+    }
+
+
+    public void someDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle(getResources().getString(
+                        R.string.warning
+                ));
+        builder.setMessage("");
+        builder.setPositiveButton(getResources().getString(
+                        R.string.ok
+                ),new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                reload_articles();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
 
     }
 

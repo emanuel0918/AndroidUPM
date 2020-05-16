@@ -224,28 +224,15 @@ public class PublishArticleFragment extends Fragment {
                 //CREAR EN EL WEB SERVICE
 
                 AddArticleTask addArticleTask;
+
                 addArticleTask = (AddArticleTask) new AddArticleTask();
+                addArticleTask.setActivity((MainActivity) getActivity());
                 try {
                     addArticleTask.article = article;
                     addArticleTask.execute();
                 }catch (Exception e){
 
                 }
-
-
-                //--------------------------------------------------
-                new_published = getActivity().getApplicationContext()
-                        .getResources().getString(
-                                R.string.new_published
-                        );
-                builder.setTitle(new_published);
-                builder.setMessage("");
-                clickListener=new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        reload_articles();
-                    }
-                };
             }catch(Exception e){
 
             }
@@ -308,15 +295,15 @@ public class PublishArticleFragment extends Fragment {
             }
             builder.setTitle(missingData);
             builder.setMessage(missingValue);
+
+            String accept_btn=getActivity().getApplicationContext()
+                    .getResources().getString(
+                            R.string.ok
+                    );
+
+            builder.setPositiveButton(accept_btn,clickListener);
+            builder.show(transaction,"dialog");
         }
-
-        String accept_btn=getActivity().getApplicationContext()
-                .getResources().getString(
-                        R.string.ok
-                );
-
-        builder.setPositiveButton(accept_btn,clickListener);
-        builder.show(transaction,"dialog");
         //
         //
         publishArticleButton.setEnabled(true);

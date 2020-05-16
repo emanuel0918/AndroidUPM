@@ -90,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                             editorOne.putBoolean("stayLogged", rememberMe.isChecked());
                             editorOne.putString("password", password);
                             editorOne.putString("user", username);
+                            editorOne.putString("idUser", userLogger);
                             if(rememberMe.isChecked()){
-                                editorOne.putString("idUser", userLogger);
                                 editorOne.putString("apiKey", loginTask.apiKey);
                                 editorOne.putString("authUser", loginTask.authType);
                             }
