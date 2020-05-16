@@ -60,11 +60,11 @@ public class AddArticleTask extends AsyncTask<Void, Void, Article> {
                 }
                 break;
             case OPCION_MODIFY_ACTIVITY:
-                //if (error){
-                //    modifyActivity.error_result();
-                //}else{
+                if (error){
+                    modifyActivity.error_result();
+                }else{
                     modifyActivity.article_modified();
-                //}
+                }
                 break;
             default:
                 break;

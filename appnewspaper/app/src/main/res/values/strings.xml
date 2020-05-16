@@ -24,10 +24,15 @@
     <string name="data_incorrect">Data incorrect</string>
     <string name="ok">Ok</string>
     <string name="error_transaction">Something went wrong</string>
-    <string name="category_name">Category</string>
+    <string name="category_name">Categories</string>
+    <string name="category_name1">National</string>
+    <string name="category_name2">Economy</string>
+    <string name="category_name3">Sports</string>
+    <string name="category_name4">Technology</string>
+
     <string-array name="category">
-        <item name="category1">National</item>
-        <item name="category2">Economy</item>
+        <item>National</item>
+        <item>Economy</item>
         <item>Sports</item>
         <item>Technology</item>
     </string-array>

@@ -8,4 +8,21 @@
             android:icon="@drawable/ic_home"
             android:title="@string/list_news" />
     </group>
+    <item android:checkableBehavior="single"
+        android:title="@string/category_name">
+        <menu>
+
+        <item android:id="@+id/category1"
+            android:title="@string/category_name1" />
+
+        <item android:id="@+id/category2"
+            android:title="@string/category_name2" />
+
+        <item android:id="@+id/category3"
+            android:title="@string/category_name3" />
+
+        <item android:id="@+id/category4"
+            android:title="@string/category_name4" />
+        </menu>
+    </item>
 </menu>

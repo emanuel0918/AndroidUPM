@@ -26,6 +26,11 @@
     <string name="ok">Ok</string>
     <string name="error_transaction">Error en la operación</string>
     <string name="title_activity_modify_article_after_login">Modificar Articulo</string>
+    <string name="category_name">Categorias</string>
+    <string name="category_name1">Nacional</string>
+    <string name="category_name2">Economia</string>
+    <string name="category_name3">Deportes</string>
+    <string name="category_name4">Technologia</string>
 
     <string-array name="category">
         <item>Nacional</item>

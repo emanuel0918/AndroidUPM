@@ -11,7 +11,20 @@
             android:icon="@drawable/ic_logout"
             android:title="@string/logout"/>
     </group>
-    <group android:checkableBehavior="single"
+    <item android:checkableBehavior="single"
         android:title="@string/category_name">
-    </group>
+        <menu>
+        <item android:id="@+id/category1"
+            android:title="@string/category_name1" />
+
+        <item android:id="@+id/category2"
+            android:title="@string/category_name2" />
+
+        <item android:id="@+id/category3"
+            android:title="@string/category_name3" />
+
+        <item android:id="@+id/category4"
+            android:title="@string/category_name4" />
+        </menu>
+    </item>
 </menu>
