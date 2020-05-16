@@ -19,10 +19,15 @@ import android.view.MenuItem;
 
 import java.util.Map;
 
+
+//Clase hecha para el Navigation View
 public class MainActivity extends AppCompatActivity {
+    //Sesion
     private boolean session;
     private boolean stayLogged;
+    //Drawer Layout
     private DrawerLayout drawerLayout;
+    //Navigation View que a su vez contiene el toolbar
     private NavigationView navigationView;
     @SuppressLint("ResourceType")
     @Override
@@ -53,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
             session=false;
             editorTwo.commit();
         }else{
+            LoadLoginTask loginTask =new LoadLoginTask();
+            loginTask.stayLoggin=mantenerSesion;
+            loginTask.user= (String) map.get("user");
+            loginTask.password= (String) map.get("password");
+            loginTask.apiKey= (String) map.get("apiKey");
+            loginTask.authType= (String) map.get("authUser");
+            loginTask.execute();
+            String result=loginTask.get();
+
             stayLogged=mantenerSesion;
             session=sesion1;
             if(!sesion1) {

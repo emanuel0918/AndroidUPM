@@ -88,11 +88,13 @@ public class LoginActivity extends AppCompatActivity {
                             SharedPreferences.Editor editorOne = rememberMeTwo.edit();
                             editorOne.putBoolean("session", true);
                             editorOne.putBoolean("stayLogged", rememberMe.isChecked());
-                            editorOne.putString("idUser", userLogger);
-                            editorOne.putString("user", username);
                             editorOne.putString("password", password);
-                            editorOne.putString("apiKey", password);
-                            editorOne.putString("authUser", password);
+                            editorOne.putString("user", username);
+                            if(rememberMe.isChecked()){
+                                editorOne.putString("idUser", userLogger);
+                                editorOne.putString("apiKey", loginTask.apiKey);
+                                editorOne.putString("authUser", loginTask.authType);
+                            }
                             editorOne.commit();
                             //
                             //
