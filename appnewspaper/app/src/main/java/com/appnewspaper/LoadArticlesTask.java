@@ -52,7 +52,9 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
             for (Article article : res) {
                 // We print articles in Log
                 //Log.i(TAG, String.valueOf(article));
-                DBArticles.saveArticle(article);
+
+                //ESTO LO HIZO MAL PORQUE LOS IDS FUERON INCORRECTOS
+                //DBArticles.saveArticle(article);
             }
         } catch (ServerCommunicationError e) {
             Log.e(TAG, e.getMessage());
