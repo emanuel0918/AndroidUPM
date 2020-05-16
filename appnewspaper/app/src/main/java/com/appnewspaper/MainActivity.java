@@ -34,8 +34,18 @@ public class MainActivity extends AppCompatActivity {
         //Sesion
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
-        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
-        Boolean sesion1 = (Boolean) map.get("session");
+        Boolean mantenerSesion;
+        try {
+            mantenerSesion = (Boolean) map.get("stayLogged");
+        }catch (Exception e){
+            mantenerSesion=null;
+        }
+        Boolean sesion1;
+        try{
+            sesion1=(Boolean)map.get("session");
+        }catch (Exception e){
+            sesion1=false;
+        }
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
@@ -104,31 +114,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
-        editorTwo.putBoolean("stayLogged", stayLogged);
-        editorTwo.commit();
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
-        editorTwo.putBoolean("stayLogged", stayLogged);
-        editorTwo.commit();
-        super.onStop();
-    }
-
     private void logIn() {
         Intent login_intent =
                 new Intent(MainActivity.this,LoginActivity.class);
@@ -168,5 +153,32 @@ public class MainActivity extends AppCompatActivity {
         navigationView.getMenu().getItem(0).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
 
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        //editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        //editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onStop();
     }
 }

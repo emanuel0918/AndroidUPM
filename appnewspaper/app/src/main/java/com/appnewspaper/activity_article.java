@@ -38,8 +38,18 @@ public class activity_article extends Activity {
         //Sesion
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
-        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
-        Boolean sesion1 = (Boolean) map.get("session");
+        Boolean mantenerSesion;
+        try {
+            mantenerSesion = (Boolean) map.get("stayLogged");
+        }catch (Exception e){
+            mantenerSesion=null;
+        }
+        Boolean sesion1;
+        try{
+            sesion1=(Boolean)map.get("session");
+        }catch (Exception e){
+            sesion1=false;
+        }
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();

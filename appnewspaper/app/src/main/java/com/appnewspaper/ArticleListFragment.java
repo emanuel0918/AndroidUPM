@@ -32,7 +32,6 @@ public class ArticleListFragment extends Fragment {
 
 
     private ListView newListView;
-    private SharedPreferences rememberMe;
 
     public ArticleListFragment() {
         // Required empty public constructor
@@ -44,11 +43,21 @@ public class ArticleListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // BD
         DBArticles.init(getActivity().getApplicationContext());
-        //Sesion
-        rememberMe = getActivity().getBaseContext().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences rememberMe = getActivity().getBaseContext().getSharedPreferences(
+                "rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
-        Boolean mantenerSesion = (Boolean) map.get("stayLogged");
-        Boolean sesion1 = (Boolean) map.get("session");
+        Boolean mantenerSesion;
+        try {
+            mantenerSesion = (Boolean) map.get("stayLogged");
+        }catch (Exception e){
+            mantenerSesion=null;
+        }
+        Boolean sesion1;
+        try{
+            sesion1=(Boolean)map.get("session");
+        }catch (Exception e){
+            sesion1=false;
+        }
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
@@ -62,6 +71,7 @@ public class ArticleListFragment extends Fragment {
                 session = mantenerSesion;
             }
         }
+        //
         return inflater.inflate(R.layout.fragment_new_list, container, false);
     }
 
