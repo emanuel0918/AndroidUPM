@@ -175,20 +175,20 @@ public class Modify_article_after_login extends AppCompatActivity {
                         saveArticle.execute();
                         newModifArticle = saveArticle.get();
                         //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle(getResources().getString(R.string.warning));
-                        builder.setMessage(getResources().getString(R.string.article_modified));
+                        //AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+                        //builder.setTitle(getResources().getString(R.string.warning));
+                        //builder.setMessage(getResources().getString(R.string.article_modified));
 
-                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
-                                startActivity(back_intent);
+                        //builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
+                        //    @Override
+                        //    public void onClick(DialogInterface dialog, int which) {
+                        //        Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                        //        startActivity(back_intent);
                                 // reload_articles();
-                            }
-                        });
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
+                        //    }
+                        //});
+                        //AlertDialog alertDialog = builder.create();
+                        //alertDialog.show();
                         //Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
                         //startActivity(back_intent);
                         // reload_articles();
@@ -309,7 +309,7 @@ public class Modify_article_after_login extends AppCompatActivity {
         for(int i=0;i<set.length;i++){
             new_set[i]=set[i];
         }
-        String temp=set[index];
+        String temp=set[0];
         new_set[0]=categoryArticle;
         new_set[index]=temp;
         return new_set;
