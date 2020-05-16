@@ -7,7 +7,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="marginTopBtn">25dp</dimen>
     <dimen name="marginNewTemplate">19sp</dimen>
-    <dimen name="marginTopNewTemplate">35sp</dimen>
+    <dimen name="marginTopNewTemplate">38sp</dimen>
     <dimen name="padding">25sp</dimen>
     <dimen name="textSizeForm">21dp</dimen>
     <dimen name="textSizeNewTitle">19dp</dimen>
@@ -17,4 +17,6 @@
     <dimen name="card_view_radius">15dp</dimen>
     <dimen name="spinnerHeight">29dp</dimen>
     <dimen name="floating_btn_padding">10dp</dimen>
+    <dimen name="text_large1">23dp</dimen>
+    <dimen name="text_small1">18dp</dimen>
 </resources>

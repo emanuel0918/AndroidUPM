@@ -126,12 +126,11 @@ public class activity_article extends Activity {
         startActivity(login_intent);
     }
 
-
     @Override
     protected void onPause() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
+        //editorTwo.putBoolean("session", false);
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onPause();
@@ -141,7 +140,7 @@ public class activity_article extends Activity {
     protected void onStop() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
+        //editorTwo.putBoolean("session", false);
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onStop();

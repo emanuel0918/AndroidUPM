@@ -55,7 +55,6 @@ public class ArticleAdapter extends BaseAdapter {
         final Article article= arrayData.get(position);
         ((TextView)convertView.findViewById(R.id.categoryNew)).setText(article.getCategory());
         ((TextView)convertView.findViewById(R.id.titleNew)).setText(article.getTitleText());
-        ((TextView)convertView.findViewById(R.id.subtitleNew)).setText(article.getSubtitleText());
         ((TextView)convertView.findViewById(R.id.abstractNew)).setText(article.getAbstractText());
         Bitmap bitmap=null;
         try {

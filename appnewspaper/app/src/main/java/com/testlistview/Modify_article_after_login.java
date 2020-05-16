@@ -280,26 +280,6 @@ public class Modify_article_after_login extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
-        editorTwo.putBoolean("stayLogged", stayLogged);
-        editorTwo.commit();
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
-        editorTwo.putBoolean("stayLogged", stayLogged);
-        editorTwo.commit();
-        super.onStop();
-    }
-
     public String[] setcategory(String categoryArticle) {
         //Only English
         //Resources standardResources = Modify_article_after_login.this.getResources();
@@ -347,6 +327,26 @@ public class Modify_article_after_login extends AppCompatActivity {
             }
 
         }
+    }
+
+    @Override
+    protected void onPause() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        //editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        //editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onStop();
     }
 
 }
