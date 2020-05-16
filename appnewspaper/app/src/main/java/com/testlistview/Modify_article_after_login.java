@@ -168,8 +168,8 @@ public class Modify_article_after_login extends AppCompatActivity {
                         thumbail = imgToBase64String(bitmap);
                         Image image = new Image(0,imageDescription, article.getId(), thumbail);
                         article.setImage(image);
-                        AddArticleTask.article = article;
                         AddArticleTask saveArticle = new AddArticleTask();
+                        saveArticle.setArticle(article);
                         saveArticle.execute();
                         newModifArticle = saveArticle.get();
                         //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
