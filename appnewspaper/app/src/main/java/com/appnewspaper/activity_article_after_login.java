@@ -117,11 +117,31 @@ public class activity_article_after_login extends AppCompatActivity {
 
     }
 
+
+
+    @Override
+    protected void onDestroy() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onDestroy();
+    }
+
     @Override
     protected void onPause() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        //editorTwo.putBoolean("session", false);
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onPause();
@@ -131,7 +151,11 @@ public class activity_article_after_login extends AppCompatActivity {
     protected void onStop() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        //editorTwo.putBoolean("session", false);
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onStop();

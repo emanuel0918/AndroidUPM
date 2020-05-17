@@ -47,28 +47,45 @@ public class ArticleListFragment extends Fragment {
                 "rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion;
+        Boolean sesionControlMenu = false;
         try {
             mantenerSesion = (Boolean) map.get("stayLogged");
-        }catch (Exception e){
-            mantenerSesion=null;
+            sesionControlMenu = (Boolean) map.get("session");
+        } catch (Exception e) {
+            mantenerSesion = null;
         }
-        Boolean sesion1;
-        try{
-            sesion1=(Boolean)map.get("session");
-        }catch (Exception e){
-            sesion1=false;
-        }
+
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
             editorTwo.putBoolean("session", false);
-            session=false;
+            editorTwo.putBoolean("stayLogged", false);
+            session = false;
+            stayLogged = false;
             editorTwo.commit();
-        }else{
-            stayLogged=mantenerSesion;
-            session=sesion1;
-            if(!sesion1) {
-                session = mantenerSesion;
+        } else {
+            if (mantenerSesion) {
+                stayLogged = true;
+                session = true;
+                LoadLoginTask loginTask;
+                try {
+                    loginTask = new LoadLoginTask();
+                    loginTask.stayLoggin = mantenerSesion;
+                    loginTask.user = (String) map.get("user");
+                    loginTask.password = (String) map.get("password");
+                    loginTask.apiKey = (String) map.get("apiKey");
+                    loginTask.authType = (String) map.get("authUser");
+                    loginTask.execute();
+                    String result = loginTask.get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if(sesionControlMenu){
+                    session = true;
+                }else{
+                    session = false;
+                }
             }
         }
         //

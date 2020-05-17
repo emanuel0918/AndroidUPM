@@ -59,42 +59,41 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();
         Boolean mantenerSesion;
+        Boolean sesionControlMenu = false;
         try {
             mantenerSesion = (Boolean) map.get("stayLogged");
-        }catch (Exception e){
-            mantenerSesion=null;
+            sesionControlMenu = (Boolean) map.get("session");
+        } catch (Exception e) {
+            mantenerSesion = null;
         }
-        Boolean sesion1;
-        try{
-            sesion1=(Boolean)map.get("session");
-        }catch (Exception e){
-            sesion1=false;
-        }
+
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
             editorTwo.putBoolean("session", false);
-            session=false;
+            editorTwo.putBoolean("stayLogged", false);
+            session = false;
+            stayLogged = false;
             editorTwo.commit();
-        }else{
-            LoadLoginTask loginTask;
-            try {
-                loginTask = new LoadLoginTask();
-                loginTask.stayLoggin=mantenerSesion;
-                loginTask.user= (String) map.get("user");
-                loginTask.password= (String) map.get("password");
-                loginTask.apiKey= (String) map.get("apiKey");
-                loginTask.authType= (String) map.get("authUser");
-                loginTask.execute();
-                String result=loginTask.get();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            stayLogged=mantenerSesion;
-            session=sesion1;
-            if(!sesion1) {
-                session = mantenerSesion;
+        } else {
+            if (mantenerSesion) {
+                stayLogged = true;
+                session = true;
+                LoadLoginTask loginTask;
+                try {
+                    loginTask = new LoadLoginTask();
+                    loginTask.stayLoggin = mantenerSesion;
+                    loginTask.user = (String) map.get("user");
+                    loginTask.password = (String) map.get("password");
+                    loginTask.apiKey = (String) map.get("apiKey");
+                    loginTask.authType = (String) map.get("authUser");
+                    loginTask.execute();
+                    String result = loginTask.get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                session = sesionControlMenu;
             }
         }
         //
@@ -305,7 +304,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        editorTwo.putBoolean("session", false);
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onDestroy();
@@ -315,7 +318,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        //editorTwo.putBoolean("session", false);
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onPause();
@@ -325,7 +332,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        //editorTwo.putBoolean("session", false);
+        if (stayLogged) {
+            editorTwo.putBoolean("session", true);
+        } else {
+            editorTwo.putBoolean("session", false);
+        }
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onStop();
