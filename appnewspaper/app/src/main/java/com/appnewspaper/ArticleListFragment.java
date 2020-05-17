@@ -44,7 +44,8 @@ public class ArticleListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Sesion
+        // BD
+        DBArticles.init(getActivity().getApplicationContext());
         SharedPreferences rememberMe = getActivity().getBaseContext().getSharedPreferences(
                 "rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();

@@ -18,8 +18,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.appnewspaper.db.DBArticles;
-
 import java.util.Map;
 
 
@@ -35,18 +33,16 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     //Navigation View que a su vez contiene el toolbar
     private NavigationView navigationView;
+
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        // BD
-        DBArticles.init(this);
-
         setToolbar();
         //FILTRADO
-        filter=-1;
+        filter = -1;
         //String array_categories[]=getResources().getStringArray(R.array.category);
         //CATEGORIES =new boolean[4]; // las categorias
         //for(int i = 0; i< CATEGORIES.length; i++){
@@ -95,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 session = sesionControlMenu;
             }
+            /*stayLogged = mantenerSesion;
+            session = sesion1;
+            if (!sesion1) {
+                session = mantenerSesion;
+            }*/
+
+
         }
         //
 
@@ -105,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().clear();
         //Interfaz dinamica
-        if(session){
+        if (session) {
             //Interfaz para el usuario que previamente ha iniciado sesion
             navigationView.inflateMenu(R.menu.options_user);
-        }else{
+        } else {
             //Interfaz para el usuario general
             navigationView.inflateMenu(R.menu.options_general);
         }
@@ -130,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
                         f = new PublishArticleFragment();
                         break;
                     case R.id.menu_2:
-                        filter=-1;
+                        filter = -1;
                         f = new ArticleListFragment();
                         break;
                     case R.id.menu_logout:
                         drawerLayout.closeDrawers();
-                        stayLogged=false;
+                        stayLogged = false;
                         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
                         editorTwo.clear();
@@ -148,23 +151,23 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case R.id.category_all:
-                        filter=-1;
+                        filter = -1;
                         f = new ArticleListFragment();
                         break;
                     case R.id.category1:
-                        filter=0;
+                        filter = 0;
                         f = new ArticleListFragment();
                         break;
                     case R.id.category2:
-                        filter=1;
+                        filter = 1;
                         f = new ArticleListFragment();
                         break;
                     case R.id.category3:
-                        filter=2;
+                        filter = 2;
                         f = new ArticleListFragment();
                         break;
                     case R.id.category4:
-                        filter=3;
+                        filter = 3;
                         f = new ArticleListFragment();
                         break;
                     //case R.id.otras_1:
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void logIn() {
         Intent login_intent =
-                new Intent(MainActivity.this,LoginActivity.class);
+                new Intent(MainActivity.this, LoginActivity.class);
         startActivity(login_intent);
         finish();
     }
@@ -209,14 +212,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void reload_articles(){
+    public void reload_articles() {
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ArticleListFragment()).commit();
         navigationView.getMenu().getItem(1).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(1).getTitle());
 
     }
 
-    public void publishArticle(){
+    public void publishArticle() {
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new PublishArticleFragment()).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
         getSupportActionBar().setTitle(navigationView.getMenu().getItem(0).getTitle());
@@ -224,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void article_created(){
+    public void article_created() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setTitle(getResources().getString(
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
         ));
         builder.setPositiveButton(getResources().getString(
                 R.string.ok
-        ),new DialogInterface.OnClickListener(){
+        ), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -249,9 +252,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void error_result(){
+    public void error_result() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
         builder.setTitle(getResources().getString(
                 R.string.warning
         ));
@@ -260,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         ));
         builder.setPositiveButton(getResources().getString(
                 R.string.ok
-        ),new DialogInterface.OnClickListener(){
+        ), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -269,14 +271,10 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
-
     }
 
-
-    public void article_modified(){
+    public void article_modified() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
         builder.setTitle(getResources().getString(
                 R.string.article_modified
         ));
@@ -285,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
         ));
         builder.setPositiveButton(getResources().getString(
                 R.string.ok
-        ),new DialogInterface.OnClickListener(){
+        ), new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -294,10 +292,7 @@ public class MainActivity extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
-
     }
-
 
 
     @Override
@@ -312,13 +307,14 @@ public class MainActivity extends AppCompatActivity {
         editorTwo.putBoolean("stayLogged", stayLogged);
         editorTwo.commit();
         super.onDestroy();
+
     }
 
     @Override
     protected void onPause() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        if (stayLogged) {
+        if (session) {
             editorTwo.putBoolean("session", true);
         } else {
             editorTwo.putBoolean("session", false);
@@ -332,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
         SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
-        if (stayLogged) {
+        if (session) {
             editorTwo.putBoolean("session", true);
         } else {
             editorTwo.putBoolean("session", false);

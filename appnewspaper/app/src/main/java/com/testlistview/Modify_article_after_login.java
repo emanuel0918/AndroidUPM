@@ -412,6 +412,7 @@ public class Modify_article_after_login extends AppCompatActivity {
     private void reload_articles() {
         Intent intent=new Intent(Modify_article_after_login.this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -440,6 +441,16 @@ public class Modify_article_after_login extends AppCompatActivity {
             }
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        SharedPreferences rememberMeTwo = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTwo = rememberMeTwo.edit();
+        //editorTwo.putBoolean("session", false);
+        editorTwo.putBoolean("stayLogged", stayLogged);
+        editorTwo.commit();
+        super.onDestroy();
     }
 
     @Override

@@ -42,25 +42,25 @@ public class activity_article_after_login extends AppCompatActivity {
         Boolean mantenerSesion;
         try {
             mantenerSesion = (Boolean) map.get("stayLogged");
-        }catch (Exception e){
-            mantenerSesion=null;
+        } catch (Exception e) {
+            mantenerSesion = null;
         }
         Boolean sesion1;
-        try{
-            sesion1=(Boolean)map.get("session");
-        }catch (Exception e){
-            sesion1=false;
+        try {
+            sesion1 = (Boolean) map.get("session");
+        } catch (Exception e) {
+            sesion1 = false;
         }
         if (mantenerSesion == null) {
             SharedPreferences.Editor editorTwo = rememberMe.edit();
             editorTwo = rememberMe.edit();
             editorTwo.putBoolean("session", false);
-            session=false;
+            session = false;
             editorTwo.commit();
-        }else{
-            stayLogged=mantenerSesion;
-            session=sesion1;
-            if(!sesion1) {
+        } else {
+            stayLogged = mantenerSesion;
+            session = sesion1;
+            if (!sesion1) {
                 session = mantenerSesion;
             }
         }

@@ -20,6 +20,8 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
     private String strApiKey;
     private String strIdAuthUser;
 
+    private  int buffer;
+
     List<Article> res = null;
 
     @Override
@@ -31,9 +33,15 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
         //ARTICULOS GUARDADOS SOLAMENTE EN LA BD
         int length=0;
         try{
-            //length=DBArticles.loadAllArticles().size();
+            length=DBArticles.loadAllArticles().size();
         }catch (Exception dbException){
+            length=0;
 
+        }
+        if(length==0){
+            buffer=1000;
+        }else {
+            buffer=6;
         }
 
 
@@ -41,10 +49,10 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
         try {
             // obtain 6 articles from offset 0
             if (ModelManager.isConnected()) {
-                res = ModelManager.getArticles(26,length);
+                res = ModelManager.getArticles(buffer,0);
             } else {
                 ModelManager.login("DEV_TEAM_07", "89423");
-                res = ModelManager.getArticles(26, length);
+                res = ModelManager.getArticles(buffer, 0);
                 //Article article2 = ModelManager.getArticle(145);
 
             }
