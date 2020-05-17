@@ -27,7 +27,7 @@
     <string name="ok">D\' accord</string>
     <string name="error_transaction">Erreur</string>
     <string name="error_server_add">Cette opération doit se faire en ligne</string>
-    <string name="error_server_modify">La nouvelle a été modifié uniquement dans la BD</string>
+    <string name="error_server_modify">Cette opération doit se faire en ligne</string>
     <string name="error_server_delete">La nouvelle a été supprimée uniquemente dans la BD</string>
     <string name="title_activity_modify_article_after_login">Modifier l\'Article</string>
     <string name="category_name">Categories</string>

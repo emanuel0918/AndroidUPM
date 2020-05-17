@@ -25,8 +25,8 @@
     <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
     <string name="error_transaction">Error en la operación</string>
-    <string name="error_server_add">La operación no se puede concretar sin conexion</string>
-    <string name="error_server_modify">Modificado el artículo en la copia local</string>
+    <string name="error_server_add">No se puede agregar sin una conexión</string>
+    <string name="error_server_modify">No se puede modificar sin una conexión</string>
     <string name="error_server_delete">Se ha borrado el artículo en la copia local</string>
     <string name="loading_articles">Esperando a descargar los artículos</string>
     <string name="title_activity_modify_article_after_login">Modificar Articulo</string>
