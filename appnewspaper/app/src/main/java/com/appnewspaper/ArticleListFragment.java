@@ -2,6 +2,8 @@ package com.appnewspaper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -100,25 +102,29 @@ public class ArticleListFragment extends Fragment {
         ArrayList<Article> articles=null;
         List<Article> articles_non_filtered=new LinkedList<>();
         Article a;
-        try {
-            AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
-            //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
-            //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
-            //articles_non_filtered = p.get();
-            List<Article> listSE=p.get();
-            for(Article aSE:listSE){
-                articles_non_filtered.add(aSE);
+        if(isNetworkAvailable()) {
+            try {
+                AsyncTask<Void, Void, List<Article>> p = new LoadArticlesTask().execute();
+                //new FetchDataTask().execute("http://sanger.dia.fi.upm.es/pmd-task/articles");
+                //new FetchDataTask().execute("https://DEV_TEAM_07:89423@sanger.dia.fi.upm.es/pmd-task/");
+                //articles_non_filtered = p.get();
+                List<Article> listSE = p.get();
+                for (Article aSE : listSE) {
+                    articles_non_filtered.add(aSE);
+                }
+
+            } catch (Exception er) {
+
             }
-
-        } catch (Exception er) {
-
+        }else {
+            try {
+                List<Article> listDB = DBArticles.loadAllArticles();
+                for (Article aDB : listDB) {
+                    articles_non_filtered.add(aDB);
+                }
+            } catch (Exception dbE) {
+            }
         }
-        try{
-            List<Article> listDB=DBArticles.loadAllArticles();
-            for(Article aDB:listDB){
-                articles_non_filtered.add(aDB);
-            }
-        }catch (Exception dbE){}
 
          //
          //
@@ -204,6 +210,13 @@ public class ArticleListFragment extends Fragment {
 
     private void publishArticle() {
         ((MainActivity)getActivity()).publishArticle();
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getBaseContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

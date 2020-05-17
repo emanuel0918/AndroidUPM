@@ -143,6 +143,9 @@ public class LoginActivity extends AppCompatActivity {
                     builder.setTitle(getResources().getString(R.string.warning));
                     builder.setMessage(getResources().getString(R.string.error_server_login));
                     builder.setPositiveButton(getResources().getString(R.string.accept),null);
+                    AlertDialog alertDialog=builder.create();
+                    alertDialog.show();
+
                 }
 
 

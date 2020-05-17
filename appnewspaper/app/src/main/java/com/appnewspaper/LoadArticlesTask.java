@@ -31,7 +31,7 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
         //ARTICULOS GUARDADOS SOLAMENTE EN LA BD
         int length=0;
         try{
-            length=DBArticles.loadAllArticles().size();
+            //length=DBArticles.loadAllArticles().size();
         }catch (Exception dbException){
 
         }

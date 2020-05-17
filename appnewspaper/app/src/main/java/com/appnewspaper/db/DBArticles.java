@@ -86,116 +86,126 @@ public class DBArticles {
     public static Article readArticle(int id_article){
         Article a=null;
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor=db.query(Constants.DB_TABLE_NAME,
-                null,
-                Constants.DB_TABLE_FIELD_ID+" = "+id_article,
-                null,
-                null,
-                null,
-                null
-        );
-        cursor.moveToFirst();
-        int columnIndex;
-        while(!cursor.isAfterLast()){
-            //reset columnIndex
-            columnIndex=0;
-            //_id
-            int idArticle =cursor.getInt(columnIndex);
-            columnIndex++;
-            //title
-            String title=cursor.getString(columnIndex);
-            columnIndex++;
-            //subtitle
-            String subtitle=cursor.getString(columnIndex);
-            columnIndex++;
-            //category
-            String category = cursor.getString(columnIndex);
-            columnIndex++;
-            //abstract
-            String abstractText=cursor.getString(columnIndex);
-            columnIndex++;
-            //body
-            String body=cursor.getString(columnIndex);
-            columnIndex++;
-            //image
-            String b64Image=cursor.getString(columnIndex);
-            columnIndex++;
-            //description
-            String description = cursor.getString(columnIndex);
-            columnIndex++;
-            //Id User
-            int idUsr = cursor.getInt(columnIndex);
+        try {
+            Cursor cursor = db.query(Constants.DB_TABLE_NAME,
+                    null,
+                    Constants.DB_TABLE_FIELD_ID + " = " + id_article,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            cursor.moveToFirst();
+            int columnIndex;
+            while (!cursor.isAfterLast()) {
+                //reset columnIndex
+                columnIndex = 0;
+                //_id
+                int idArticle = cursor.getInt(columnIndex);
+                columnIndex++;
+                //title
+                String title = cursor.getString(columnIndex);
+                columnIndex++;
+                //subtitle
+                String subtitle = cursor.getString(columnIndex);
+                columnIndex++;
+                //category
+                String category = cursor.getString(columnIndex);
+                columnIndex++;
+                //abstract
+                String abstractText = cursor.getString(columnIndex);
+                columnIndex++;
+                //body
+                String body = cursor.getString(columnIndex);
+                columnIndex++;
+                //image
+                String b64Image = cursor.getString(columnIndex);
+                columnIndex++;
+                //description
+                String description = cursor.getString(columnIndex);
+                columnIndex++;
+                //Id User
+                int idUsr = cursor.getInt(columnIndex);
 
-            //
-            //
-            a=new Article(category,title,abstractText,body,subtitle,idUsr+"");
-            try {
-                a.addImage(b64Image,description);
-            } catch (Exception e) {
+                //
+                //
+                a = new Article(category, title, abstractText, body, subtitle, idUsr + "");
+                try {
+                    a.addImage(b64Image, description);
+                } catch (Exception e) {
+                }
+                a.setId(idArticle);
+                cursor.moveToNext();
             }
-            a.setId(idArticle);
-            cursor.moveToNext();
+        }catch (Exception exRead){
+            a=null;
         }
         return a;
     }
 
     public static void saveArticle(Article article){
-        SQLiteDatabase db =helper.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put(Constants.DB_TABLE_FIELD_ID, article.getId());
-        values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
-        values.put(Constants.DB_TABLE_FIELD_SUBTITLE,article.getSubtitleText());
-        values.put(Constants.DB_TABLE_FIELD_ABSTRACT,article.getAbstractText());
-        values.put(Constants.DB_TABLE_FIELD_CATEGORY,article.getCategory());
-        values.put(Constants.DB_TABLE_FIELD_BODY,article.getBodyText());
-        values.put(Constants.DB_TABLE_FIELD_ID_USER,article.getIdUser());
-        String imagenString="";
-        String description="";
-        try{
-            Image image=article.getImage();
-            imagenString=image.getImage();
-            description=image.getDescription();
-        }catch (Exception e){
-            imagenString= SerializationUtils.IMG_STRING;
-            description="description";
-            Log.i(TAG,"Error insertando la imagen");
+        //Validacion
+        if(readArticle(article.getId())==null) {
+            SQLiteDatabase db = helper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(Constants.DB_TABLE_FIELD_ID, article.getId());
+            values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
+            values.put(Constants.DB_TABLE_FIELD_SUBTITLE, article.getSubtitleText());
+            values.put(Constants.DB_TABLE_FIELD_ABSTRACT, article.getAbstractText());
+            values.put(Constants.DB_TABLE_FIELD_CATEGORY, article.getCategory());
+            values.put(Constants.DB_TABLE_FIELD_BODY, article.getBodyText());
+            values.put(Constants.DB_TABLE_FIELD_ID_USER, article.getIdUser());
+            String imagenString = "";
+            String description = "";
+            try {
+                Image image = article.getImage();
+                imagenString = image.getImage();
+                description = image.getDescription();
+            } catch (Exception e) {
+                imagenString = SerializationUtils.IMG_STRING;
+                description = "description";
+                Log.i(TAG, "Error insertando la imagen");
+            }
+            values.put(Constants.DB_TABLE_FIELD_IMAGE, imagenString);
+            values.put(Constants.DB_TABLE_FIELD_DESCRIPTION, description);
+            long insertId;
+            insertId = db.insert(Constants.DB_TABLE_NAME, null, values);
+            Log.i(TAG, "Article created");
         }
-        values.put(Constants.DB_TABLE_FIELD_IMAGE,imagenString);
-        values.put(Constants.DB_TABLE_FIELD_DESCRIPTION,description);
-        long insertId;
-        insertId=db.insert(Constants.DB_TABLE_NAME,null,values);
-        Log.i(TAG,"Article created");
 
     }
 
     public static void updateArticle(int idArticle,Article article){
-        SQLiteDatabase db =helper.getWritableDatabase();
-        ContentValues values=new ContentValues();
-        values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
-        values.put(Constants.DB_TABLE_FIELD_SUBTITLE,article.getSubtitleText());
-        values.put(Constants.DB_TABLE_FIELD_ABSTRACT,article.getAbstractText());
-        values.put(Constants.DB_TABLE_FIELD_CATEGORY,article.getCategory());
-        values.put(Constants.DB_TABLE_FIELD_BODY,article.getBodyText());
-        values.put(Constants.DB_TABLE_FIELD_ID_USER,article.getIdUser());
-        String imagenString="";
-        String description="";
-        try{
-            Image image=article.getImage();
-            imagenString=image.getImage();
-            description=image.getDescription();
-        }catch (Exception e){
-            imagenString= SerializationUtils.IMG_STRING;
-            description="description";
-            Log.i(TAG,"Error insertando la imagen");
+        //Validacion
+        if(readArticle(idArticle)!=null) {
+            SQLiteDatabase db = helper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
+            values.put(Constants.DB_TABLE_FIELD_SUBTITLE, article.getSubtitleText());
+            values.put(Constants.DB_TABLE_FIELD_ABSTRACT, article.getAbstractText());
+            values.put(Constants.DB_TABLE_FIELD_CATEGORY, article.getCategory());
+            values.put(Constants.DB_TABLE_FIELD_BODY, article.getBodyText());
+            values.put(Constants.DB_TABLE_FIELD_ID_USER, article.getIdUser());
+            String imagenString = "";
+            String description = "";
+            try {
+                Image image = article.getImage();
+                imagenString = image.getImage();
+                description = image.getDescription();
+            } catch (Exception e) {
+                imagenString = SerializationUtils.IMG_STRING;
+                description = "description";
+                Log.i(TAG, "Error insertando la imagen");
+            }
+            values.put(Constants.DB_TABLE_FIELD_IMAGE, imagenString);
+            values.put(Constants.DB_TABLE_FIELD_DESCRIPTION, description);
+            long insertId;
+            insertId = db.update(Constants.DB_TABLE_NAME,
+                    values, Constants.DB_TABLE_FIELD_ID + " = " + idArticle,
+                    null
+            );
+            Log.i(TAG, "Article created");
         }
-        values.put(Constants.DB_TABLE_FIELD_IMAGE,imagenString);
-        values.put(Constants.DB_TABLE_FIELD_DESCRIPTION,description);
-        long insertId;
-        insertId=db.update(Constants.DB_TABLE_NAME,
-                values,Constants.DB_TABLE_FIELD_ID+" = "+idArticle,
-                null
-        );
-        Log.i(TAG,"Article created");
     }
 
     public static void deleteArticle(int idArticle){
