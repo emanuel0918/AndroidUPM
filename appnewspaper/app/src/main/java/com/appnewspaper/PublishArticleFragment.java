@@ -256,7 +256,7 @@ public class PublishArticleFragment extends Fragment {
                             ), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            reload_articles();
+                            //reload_articles();
                         }
                     });
                     builder.show(transaction,"dialog");
