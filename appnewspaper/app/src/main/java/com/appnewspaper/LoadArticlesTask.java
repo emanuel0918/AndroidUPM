@@ -41,10 +41,10 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
         try {
             // obtain 6 articles from offset 0
             if (ModelManager.isConnected()) {
-                res = ModelManager.getArticles(16,length);
+                res = ModelManager.getArticles(26,length);
             } else {
                 ModelManager.login("DEV_TEAM_07", "89423");
-                res = ModelManager.getArticles(16, length);
+                res = ModelManager.getArticles(26, length);
                 //Article article2 = ModelManager.getArticle(145);
 
             }

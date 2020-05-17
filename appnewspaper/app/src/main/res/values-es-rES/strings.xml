@@ -25,6 +25,7 @@
     <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
     <string name="error_transaction">Error en la operación</string>
+    <string name="error_server_login">No se puede iniciar sesión sin una conexión</string>
     <string name="error_server_add">No se puede agregar sin una conexión</string>
     <string name="error_server_modify">No se puede modificar sin una conexión</string>
     <string name="error_server_delete">Se ha borrado el artículo en la copia local</string>

@@ -24,6 +24,7 @@
     <string name="data_incorrect">Data incorrect</string>
     <string name="ok">Ok</string>
     <string name="error_transaction">Something went wrong</string>
+    <string name="error_server_login">Can not log without a conection</string>
     <string name="error_server_add">Can not add without a conection</string>
     <string name="error_server_modify">Can not modify without a conection</string>
     <string name="error_server_delete">Could not delete online, only local</string>
