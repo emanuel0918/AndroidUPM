@@ -76,14 +76,16 @@ public class activity_article extends Activity {
         try {
             article = p.get();
         } catch (ExecutionException e) {
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
             e.printStackTrace();
         } catch (InterruptedException e) {
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
             e.printStackTrace();
         }
-        try {
-            System.out.println("UPDATE DATE " + article.getAttributes().contains("update_date"));
-        }catch (Exception ex1){
-            //HORA DE BUSCAR EN LA BD
+        if(article==null){
+
             article= DBArticles.readArticle(id_article);
         }
         Spanned htmlAsSpanned;

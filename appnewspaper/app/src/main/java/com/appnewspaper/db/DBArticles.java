@@ -169,13 +169,33 @@ public class DBArticles {
     }
 
     public static void updateArticle(int idArticle,Article article){
-        //SQLiteDatabase db=helper.getWritableDatabase();
-        //String where="ID = ?";
-        //String id=idArticle+"";
-        deleteArticle(idArticle);
-        article.setId(idArticle);
-        saveArticle(article);
-        //db.update(Constants.DB_TABLE_NAME,where,new String[]{id});
+        SQLiteDatabase db =helper.getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(Constants.DB_TABLE_FIELD_TITLE, article.getTitleText());
+        values.put(Constants.DB_TABLE_FIELD_SUBTITLE,article.getSubtitleText());
+        values.put(Constants.DB_TABLE_FIELD_ABSTRACT,article.getAbstractText());
+        values.put(Constants.DB_TABLE_FIELD_CATEGORY,article.getCategory());
+        values.put(Constants.DB_TABLE_FIELD_BODY,article.getBodyText());
+        values.put(Constants.DB_TABLE_FIELD_ID_USER,article.getIdUser());
+        String imagenString="";
+        String description="";
+        try{
+            Image image=article.getImage();
+            imagenString=image.getImage();
+            description=image.getDescription();
+        }catch (Exception e){
+            imagenString= SerializationUtils.IMG_STRING;
+            description="description";
+            Log.i(TAG,"Error insertando la imagen");
+        }
+        values.put(Constants.DB_TABLE_FIELD_IMAGE,imagenString);
+        values.put(Constants.DB_TABLE_FIELD_DESCRIPTION,description);
+        long insertId;
+        insertId=db.update(Constants.DB_TABLE_NAME,
+                values,Constants.DB_TABLE_FIELD_ID+" = "+idArticle,
+                null
+        );
+        Log.i(TAG,"Article created");
     }
 
     public static void deleteArticle(int idArticle){

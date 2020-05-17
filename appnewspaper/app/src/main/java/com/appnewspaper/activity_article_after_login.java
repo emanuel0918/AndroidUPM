@@ -74,14 +74,20 @@ public class activity_article_after_login extends AppCompatActivity {
         try {
             article = p.get();
         } catch (ExecutionException e) {
-            e.printStackTrace();
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
         }
         try {
             System.out.println("UPDATE DATE " + article.getAttributes().contains("update_date"));
         }catch (Exception ex1){
             //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
+        }
+        if(article==null){
+
             article= DBArticles.readArticle(id_article);
         }
 

@@ -19,6 +19,7 @@ import com.appnewspaper.MainActivity;
 import com.appnewspaper.MainActivityAfterLogin;
 
 import com.appnewspaper.R;
+import com.appnewspaper.db.DBArticles;
 import com.appnewspaper.model.Article;
 import com.appnewspaper.model.Image;
 import com.appnewspaper.utils.SerializationUtils;
@@ -102,21 +103,42 @@ public class Modify_article_after_login extends AppCompatActivity {
                 startActivityForResult(gallery, PICK_IMAGE);
             }
         });
+        //
+
+        final int id_article;
+        id_article=LoadArticleTask.id;
 
 
         AsyncTask<Void, Void, Article> p = new LoadArticleTask().execute();
         try {
             article = p.get();
+
+
+
+        } catch (ExecutionException e) {
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
+            e.printStackTrace();
+        }
+        if(article==null){
+
+            article= DBArticles.readArticle(id_article);
+        }
             Spanned htmlAsSpanned;
             imageView = (ImageView)findViewById(R.id.imageModify);
-            thumbail = article.getImage().getImage();
-            String base64img=article.getImage().getImage();
-            bitmap=null;
-            try{
-                bitmap=base64StringToImg(base64img);
-            }catch (Exception ee){
-                bitmap= base64StringToImg(SerializationUtils.IMG_STRING);
+            String base64img;
+            try {
+                base64img = article.getImage().getImage();
+                thumbail = article.getImage().getImage();
+            } catch (ServerCommunicationError serverCommunicationError) {
+                base64img=SerializationUtils.IMG_STRING;
+                thumbail=SerializationUtils.IMG_STRING;
             }
+            bitmap=base64StringToImg(base64img);
             imageView.setImageBitmap(bitmap);
             TextView title = (TextView) findViewById(R.id.titleModify);
             htmlAsSpanned = Html.fromHtml(article.getTitleText());
@@ -168,13 +190,21 @@ public class Modify_article_after_login extends AppCompatActivity {
                     article.setAbstractText(abstractAccept);
                     article.setBodyText(bodyAccept);
                     article.setSubtitleText(subTitleAccept);
+                    String imageDescription;
+                    try {
+                        thumbail = imgToBase64String(bitmap);
+                        imageDescription = article.getImage().getDescription();
+                    } catch (ServerCommunicationError serverCommunicationError) {
+                        thumbail=SerializationUtils.IMG_STRING;
+                        imageDescription="";
+                    }
+                    Image image = new Image(0,imageDescription, article.getId(), thumbail);
+                    article.setImage(image);
 
                     //newModifArticle = new Article(addCategory, titleAccept, abstractAccept, bodyAccept, subTitleAccept, userId);
+                    try{DBArticles.updateArticle(id_article,article);}catch (Exception dbEx){}
+                    //
                     try {
-                        String imageDescription = article.getImage().getDescription();
-                        thumbail = imgToBase64String(bitmap);
-                        Image image = new Image(0,imageDescription, article.getId(), thumbail);
-                        article.setImage(image);
                         AddArticleTask saveArticle = new AddArticleTask();
                         saveArticle.setOpcion(AddArticleTask.OPCION_MODIFY_ACTIVITY);
                         saveArticle.setModifyActivity(Modify_article_after_login.this);
@@ -204,7 +234,7 @@ public class Modify_article_after_login extends AppCompatActivity {
                         e.printStackTrace();
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
                         builder.setTitle(getResources().getString(R.string.warning));
-                        builder.setMessage(getResources().getString(R.string.article_not_modified));
+                        builder.setMessage(getResources().getString(R.string.error_server_modify));
 
                         builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
@@ -217,7 +247,7 @@ public class Modify_article_after_login extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
                         builder.setTitle(getResources().getString(R.string.warning));
-                        builder.setMessage(getResources().getString(R.string.article_not_modified));
+                        builder.setMessage(getResources().getString(R.string.error_server_modify));
 
                         builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
@@ -228,21 +258,6 @@ public class Modify_article_after_login extends AppCompatActivity {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
                         e.printStackTrace();
-                    } catch (ServerCommunicationError serverCommunicationError) {
-                        serverCommunicationError.printStackTrace();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle(getResources().getString(R.string.warning));
-                        builder.setMessage(getResources().getString(R.string.article_not_modified));
-
-                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
-
                     }
 
                 }
@@ -276,16 +291,6 @@ public class Modify_article_after_login extends AppCompatActivity {
                 }
 
             });
-
-
-        } catch (
-                ServerCommunicationError serverCommunicationError) {
-            serverCommunicationError.printStackTrace();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        } catch (ExecutionException ex) {
-            ex.printStackTrace();
-        }
 
     }
 
