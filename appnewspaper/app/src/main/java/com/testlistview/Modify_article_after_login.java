@@ -8,6 +8,8 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -162,106 +164,129 @@ public class Modify_article_after_login extends AppCompatActivity {
 
             //
             Button saveArticleModify = (Button)findViewById(R.id.saveModify);
-            saveArticleModify.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            View.OnClickListener clickListener=null;
+            if(isNetworkAvailable()){
+                clickListener=new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    //Vamos a coger los valores para modificar el articulo
-                    TextView title = (TextView)findViewById(R.id.titleModify);
-                    String titleAccept = String.valueOf(title.getText());
-                    //System.out.println("Titulo cambiado " + titleAccept);
-                    TextView subTitle = (TextView) findViewById(R.id.subtitleModify);
-                    String subTitleAccept = String.valueOf(subTitle.getText());
-                    //System.out.println("Subtitulo cambiado " + t);
-                    TextView abstractText = (TextView)findViewById(R.id.abstractModify);
-                    String abstractAccept = String.valueOf(abstractText.getText());
-                    //System.out.println("Abstract cambiado " + abstractAccept);
-                    TextView body = (TextView)findViewById(R.id.bodyModify);
-                    String bodyAccept = String.valueOf(body.getText());
-                    //System.out.println("Body cambiado " + bodyAccept);
-                    Spinner spinnerCategory = (Spinner) findViewById(R.id.categoryModify);
-                    String addCategory = String.valueOf(spinnerCategory.getSelectedItem());
-                    //System.out.println("Category cambiado " + addCategory);
-                    rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
-                    Map<String, ?> map = rememberMe.getAll();
-                    String userId = (String) map.get("idUser");
-                    article.setTitleText(titleAccept);
-                    article.setCategory(addCategory);
-                    article.setAbstractText(abstractAccept);
-                    article.setBodyText(bodyAccept);
-                    article.setSubtitleText(subTitleAccept);
-                    String imageDescription;
-                    try {
-                        thumbail = imgToBase64String(bitmap);
-                        imageDescription = article.getImage().getDescription();
-                    } catch (ServerCommunicationError serverCommunicationError) {
-                        thumbail=SerializationUtils.IMG_STRING;
-                        imageDescription="";
+                        //Vamos a coger los valores para modificar el articulo
+                        TextView title = (TextView)findViewById(R.id.titleModify);
+                        String titleAccept = String.valueOf(title.getText());
+                        //System.out.println("Titulo cambiado " + titleAccept);
+                        TextView subTitle = (TextView) findViewById(R.id.subtitleModify);
+                        String subTitleAccept = String.valueOf(subTitle.getText());
+                        //System.out.println("Subtitulo cambiado " + t);
+                        TextView abstractText = (TextView)findViewById(R.id.abstractModify);
+                        String abstractAccept = String.valueOf(abstractText.getText());
+                        //System.out.println("Abstract cambiado " + abstractAccept);
+                        TextView body = (TextView)findViewById(R.id.bodyModify);
+                        String bodyAccept = String.valueOf(body.getText());
+                        //System.out.println("Body cambiado " + bodyAccept);
+                        Spinner spinnerCategory = (Spinner) findViewById(R.id.categoryModify);
+                        String addCategory = String.valueOf(spinnerCategory.getSelectedItem());
+                        //System.out.println("Category cambiado " + addCategory);
+                        rememberMe = getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+                        Map<String, ?> map = rememberMe.getAll();
+                        String userId = (String) map.get("idUser");
+                        article.setTitleText(titleAccept);
+                        article.setCategory(addCategory);
+                        article.setAbstractText(abstractAccept);
+                        article.setBodyText(bodyAccept);
+                        article.setSubtitleText(subTitleAccept);
+                        String imageDescription;
+                        try {
+                            thumbail = imgToBase64String(bitmap);
+                            imageDescription = article.getImage().getDescription();
+                        } catch (ServerCommunicationError serverCommunicationError) {
+                            thumbail=SerializationUtils.IMG_STRING;
+                            imageDescription="";
+                        }
+                        Image image = new Image(0,imageDescription, article.getId(), thumbail);
+                        article.setImage(image);
+
+                        //newModifArticle = new Article(addCategory, titleAccept, abstractAccept, bodyAccept, subTitleAccept, userId);
+                        try{DBArticles.updateArticle(id_article,article);}catch (Exception dbEx){}
+                        //
+                        try {
+                            AddArticleTask saveArticle = new AddArticleTask();
+                            saveArticle.setOpcion(AddArticleTask.OPCION_MODIFY_ACTIVITY);
+                            saveArticle.setModifyActivity(Modify_article_after_login.this);
+                            saveArticle.article=article;
+                            saveArticle.execute();
+                            newModifArticle = saveArticle.get();
+                            //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
+                            //AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+                            //builder.setTitle(getResources().getString(R.string.warning));
+                            //builder.setMessage(getResources().getString(R.string.article_modified));
+
+                            //builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
+                            //    @Override
+                            //    public void onClick(DialogInterface dialog, int which) {
+                            //        Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                            //        startActivity(back_intent);
+                            // reload_articles();
+                            //    }
+                            //});
+                            //AlertDialog alertDialog = builder.create();
+                            //alertDialog.show();
+                            //Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
+                            //startActivity(back_intent);
+                            // reload_articles();
+
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+                            builder.setTitle(getResources().getString(R.string.warning));
+                            builder.setMessage(getResources().getString(R.string.error_server_modify));
+
+                            builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        } catch (InterruptedException e) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+                            builder.setTitle(getResources().getString(R.string.warning));
+                            builder.setMessage(getResources().getString(R.string.error_server_modify));
+
+                            builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                            e.printStackTrace();
+                        }
+
                     }
-                    Image image = new Image(0,imageDescription, article.getId(), thumbail);
-                    article.setImage(image);
-
-                    //newModifArticle = new Article(addCategory, titleAccept, abstractAccept, bodyAccept, subTitleAccept, userId);
-                    try{DBArticles.updateArticle(id_article,article);}catch (Exception dbEx){}
-                    //
-                    try {
-                        AddArticleTask saveArticle = new AddArticleTask();
-                        saveArticle.setOpcion(AddArticleTask.OPCION_MODIFY_ACTIVITY);
-                        saveArticle.setModifyActivity(Modify_article_after_login.this);
-                        saveArticle.article=article;
-                        saveArticle.execute();
-                        newModifArticle = saveArticle.get();
-                        //SI LA LLAMADA A MODIFICAR EL ARTICULO HA IDO BIEN
-                        //AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        //builder.setTitle(getResources().getString(R.string.warning));
-                        //builder.setMessage(getResources().getString(R.string.article_modified));
-
-                        //builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
-                        //    @Override
-                        //    public void onClick(DialogInterface dialog, int which) {
-                        //        Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
-                        //        startActivity(back_intent);
-                                // reload_articles();
-                        //    }
-                        //});
-                        //AlertDialog alertDialog = builder.create();
-                        //alertDialog.show();
-                        //Intent back_intent=new Intent(Modify_article_after_login.this, MainActivity.class);
-                        //startActivity(back_intent);
-                        // reload_articles();
-
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
+                };
+            }else {
+                clickListener= new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder=
+                                new AlertDialog.Builder(Modify_article_after_login.this);
                         builder.setTitle(getResources().getString(R.string.warning));
                         builder.setMessage(getResources().getString(R.string.error_server_modify));
-
                         builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                                reload_articles();
                             }
                         });
-                        AlertDialog alertDialog = builder.create();
+                        AlertDialog alertDialog=builder.create();
                         alertDialog.show();
-                    } catch (InterruptedException e) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Modify_article_after_login.this);
-                        builder.setTitle(getResources().getString(R.string.warning));
-                        builder.setMessage(getResources().getString(R.string.error_server_modify));
 
-                        builder.setPositiveButton(getResources().getString(R.string.accept), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
-                        e.printStackTrace();
                     }
-
-                }
-            });
+                };
+            }
+            saveArticleModify.setOnClickListener(clickListener);
 
 
             Button cancelArticleModify =(Button) findViewById(R.id.cancelModify);
@@ -325,6 +350,13 @@ public class Modify_article_after_login extends AppCompatActivity {
         new_set[0]=categoryArticle;
         new_set[index]=temp;
         return new_set;
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 
