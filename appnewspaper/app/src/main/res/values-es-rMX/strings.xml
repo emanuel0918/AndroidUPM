@@ -25,6 +25,7 @@
     <string name="data_incorrect">Datos incorrectos</string>
     <string name="ok">Ok</string>
     <string name="error_transaction">Error en la operación</string>
+    <string name="loading_articles">Esperando a descargar los artículos</string>
     <string name="title_activity_modify_article_after_login">Modificar Articulo</string>
     <string name="category_name">Categorias</string>
     <string name="category_name1">Nacional</string>

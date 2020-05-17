@@ -23,6 +23,7 @@
     <string name="required_data">Données nécessaires</string>
     <string name="warning">Attention</string>
     <string name="data_incorrect">Données incorrectes</string>
+    <string name="loading_articles">Attendre jusqu\'à les nouvelles sont été stocké</string>
     <string name="ok">D\' accord</string>
     <string name="error_transaction">Erreur</string>
     <string name="title_activity_modify_article_after_login">Modifier l\'Article</string>
@@ -44,7 +45,7 @@
     <string name="prompt_password">Mot de Passe</string>
     <string name="action_sign_in">S\'identifier ou S\'inscrire</string>
     <string name="action_sign_in_short">Nouvelle Session</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Bienvenue</string>
     <string name="invalid_username">Utilisateur pas valide</string>
     <string name="invalid_password">Le mot de passe doit dépasser 5 caracères</string>
     <string name="login_failed">Échec de la connexion</string>

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.appnewspaper.model.Article;
 import com.appnewspaper.model.Image;
+import com.appnewspaper.utils.SerializationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class DBArticles {
                 null,
                 null,
                 null,
-                null
+                Constants.DB_TABLE_FIELD_ID+" DESC"
         );
         cursor.moveToFirst();
         int columnIndex;
@@ -42,7 +43,7 @@ public class DBArticles {
             //reset columnIndex
             columnIndex=0;
             //_id
-            long id =cursor.getLong(columnIndex);
+            int idArticle =cursor.getInt(columnIndex);
             columnIndex++;
             //title
             String title=cursor.getString(columnIndex);
@@ -75,11 +76,69 @@ public class DBArticles {
                 article.addImage(b64Image,description);
             } catch (Exception e) {
             }
+            article.setId(idArticle);
             articles.add(article);
             cursor.moveToNext();
         }
         return articles;
     }
+
+    public static Article readArticle(int id_article){
+        Article a=null;
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor=db.query(Constants.DB_TABLE_NAME,
+                null,
+                Constants.DB_TABLE_FIELD_ID+" = "+id_article,
+                null,
+                null,
+                null,
+                null
+        );
+        cursor.moveToFirst();
+        int columnIndex;
+        while(!cursor.isAfterLast()){
+            //reset columnIndex
+            columnIndex=0;
+            //_id
+            int idArticle =cursor.getInt(columnIndex);
+            columnIndex++;
+            //title
+            String title=cursor.getString(columnIndex);
+            columnIndex++;
+            //subtitle
+            String subtitle=cursor.getString(columnIndex);
+            columnIndex++;
+            //category
+            String category = cursor.getString(columnIndex);
+            columnIndex++;
+            //abstract
+            String abstractText=cursor.getString(columnIndex);
+            columnIndex++;
+            //body
+            String body=cursor.getString(columnIndex);
+            columnIndex++;
+            //image
+            String b64Image=cursor.getString(columnIndex);
+            columnIndex++;
+            //description
+            String description = cursor.getString(columnIndex);
+            columnIndex++;
+            //Id User
+            int idUsr = cursor.getInt(columnIndex);
+
+            //
+            //
+            a=new Article(category,title,abstractText,body,subtitle,idUsr+"");
+            try {
+                a.addImage(b64Image,description);
+            } catch (Exception e) {
+            }
+            a.setId(idArticle);
+            cursor.moveToNext();
+        }
+        return a;
+    }
+
     public static void saveArticle(Article article){
         SQLiteDatabase db =helper.getWritableDatabase();
         ContentValues values=new ContentValues();
@@ -97,7 +156,8 @@ public class DBArticles {
             imagenString=image.getImage();
             description=image.getDescription();
         }catch (Exception e){
-
+            imagenString= SerializationUtils.IMG_STRING;
+            description="description";
             Log.i(TAG,"Error insertando la imagen");
         }
         values.put(Constants.DB_TABLE_FIELD_IMAGE,imagenString);

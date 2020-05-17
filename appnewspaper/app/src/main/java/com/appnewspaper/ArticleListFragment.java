@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,7 @@ public class ArticleListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // BD
-        DBArticles.init(getActivity().getApplicationContext());
+        //Sesion
         SharedPreferences rememberMe = getActivity().getBaseContext().getSharedPreferences(
                 "rememberMe", Context.MODE_PRIVATE);
         Map<String, ?> map = rememberMe.getAll();

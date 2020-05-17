@@ -9,6 +9,7 @@ import com.appnewspaper.utils.network.ModelManager;
 import com.appnewspaper.utils.network.exceptions.AuthenticationError;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -49,13 +50,27 @@ public class LoadArticlesTask extends AsyncTask<Void, Void, List<Article>> {
             }
 
             //Guardar en la BD solamente si si ha funcionado exitosamente
-            for (Article article : res) {
-                // We print articles in Log
-                //Log.i(TAG, String.valueOf(article));
+            List<Article> arts=new LinkedList<>();
+            Article art2;
+            try {
+                for (Article article : res) {
+                    // We print articles in Log
+                    //Log.i(TAG, String.valueOf(article));
+                    art2 = new Article(article.getCategory(), article.getTitleText(), article.getAbstractText(),
+                            article.getBodyText(), article.getSubtitleText(), "16");
+                    art2.setImage(article.getImage());
+                    art2.setId(article.getId());
+                    arts.add(art2);
+                    //ESTO LO HIZO MAL PORQUE LOS IDS FUERON INCORRECTOS
+                    //DBArticles.saveArticle(article);
 
-                //ESTO LO HIZO MAL PORQUE LOS IDS FUERON INCORRECTOS
-                //DBArticles.saveArticle(article);
+                    DBArticles.saveArticle(art2);
+                }
+            }catch (Exception ee2){
+
             }
+            //for(int i=arts.size()-1;i>=0;i--){
+            //}
         } catch (ServerCommunicationError e) {
             Log.e(TAG, e.getMessage());
         } catch (AuthenticationError authenticationError) {

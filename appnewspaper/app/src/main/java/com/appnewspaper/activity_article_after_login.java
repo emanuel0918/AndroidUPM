@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.appnewspaper.LoadArticleTask;
 import com.appnewspaper.MainActivity;
 import com.appnewspaper.R;
+import com.appnewspaper.db.DBArticles;
 import com.appnewspaper.model.Article;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
@@ -65,6 +66,9 @@ public class activity_article_after_login extends AppCompatActivity {
         }
         //
 
+        int id_article;
+        id_article=LoadArticleTask.id;
+
         AsyncTask<Void, Void, Article> p = new LoadArticleTask().execute();
         Article article = null;
         try {
@@ -73,6 +77,12 @@ public class activity_article_after_login extends AppCompatActivity {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+        try {
+            System.out.println("UPDATE DATE " + article.getAttributes().contains("update_date"));
+        }catch (Exception ex1){
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
         }
 
         //System.out.println(article);

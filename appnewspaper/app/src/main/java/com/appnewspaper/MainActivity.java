@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.appnewspaper.db.DBArticles;
+
 import java.util.Map;
 
 
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        // BD
+        DBArticles.init(this);
+
         setToolbar();
         //FILTRADO
         filter=-1;
@@ -164,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                         f = new ArticleListFragment();
                         break;
                     //case R.id.otras_1:
-                        // f = new MyArticleListFragment();
+                    // f = new MyArticleListFragment();
                     //    break;
                 }
                 if (f != null) {
@@ -224,14 +229,14 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
         builder.setTitle(getResources().getString(
-                        R.string.new_published
-                ));
+                R.string.new_published
+        ));
         builder.setMessage(getResources().getString(
                 R.string.new_published
         ));
         builder.setPositiveButton(getResources().getString(
-                        R.string.ok
-                ),new DialogInterface.OnClickListener(){
+                R.string.ok
+        ),new DialogInterface.OnClickListener(){
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import android.support.annotation.RequiresApi;
 
+import com.appnewspaper.db.DBArticles;
 import com.appnewspaper.model.Article;
 import com.appnewspaper.utils.network.exceptions.ServerCommunicationError;
 
@@ -66,6 +67,10 @@ public class activity_article extends Activity {
         //
         //Hacer peticion al servidor para coger el articulo
 
+        //
+
+        int id_article;
+        id_article=LoadArticleTask.id;
         AsyncTask<Void, Void, Article> p = new LoadArticleTask().execute();
         Article article = null;
         try {
@@ -75,9 +80,12 @@ public class activity_article extends Activity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("UPDATE DATE " + article.getAttributes().contains("update_date"));
-
+        try {
+            System.out.println("UPDATE DATE " + article.getAttributes().contains("update_date"));
+        }catch (Exception ex1){
+            //HORA DE BUSCAR EN LA BD
+            article= DBArticles.readArticle(id_article);
+        }
         Spanned htmlAsSpanned;
         ConstraintLayout articleScreen = (ConstraintLayout) findViewById(R.id.layaoutArticle);
 
