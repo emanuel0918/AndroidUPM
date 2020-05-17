@@ -218,11 +218,11 @@ public class PublishArticleFragment extends Fragment {
 
 
                     // CREAR SOLO EN LA BD
-                    //try {
-                    //DBArticles.saveArticle(article);
-                    //}catch (Exception e){
+                    try {
+                    DBArticles.saveArticle(article);
+                    }catch (Exception e){
 
-                    //}
+                    }
 
                     //CREAR EN EL WEB SERVICE
 
